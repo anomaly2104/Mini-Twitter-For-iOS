@@ -38,5 +38,8 @@ typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 
 - (void) getCurrentLoggedInUserCompletionBlock:(FetchCurrentUserCompletionBlock)completionBlock
                               dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
+- (void)postTweet:(NSString*)tweet
+  completionBlock:(APICompletionBlock)apiCompletionBlock
+  dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
 
 @end

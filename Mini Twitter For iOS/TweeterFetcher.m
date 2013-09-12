@@ -73,6 +73,8 @@ params =    @{@"screen_name" : username,
 - (void) fetchFromApi:(NSString *)api withParams:(NSDictionary *) params
       completionBlock:(APICompletionBlock)apiCompletionBlock
       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+        requestMethod:(SLRequestMethod) requestMethod
+
 {
     //  Step 0: Check that the user has local Twitter accounts
     if ([self userHasAccessToTwitter]) {
@@ -93,7 +95,7 @@ params =    @{@"screen_name" : username,
 
                  SLRequest *request =
                  [SLRequest requestForServiceType:SLServiceTypeTwitter
-                                    requestMethod:SLRequestMethodGET
+                                    requestMethod:requestMethod
                                               URL:url
                                        parameters:params];
                  
@@ -156,7 +158,8 @@ params =    @{@"screen_name" : username,
                              @"count" : @"50"};
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue];
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
 }
 
 - (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
@@ -167,6 +170,18 @@ params =    @{@"screen_name" : username,
                              @"count" : @"10"};
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue];
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
+}
+- (void)postTweet:(NSString*)tweet
+  completionBlock:(APICompletionBlock)apiCompletionBlock
+  dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+{
+    NSString *api = @"statuses/update.json";
+    NSDictionary *params = @{@"status" : tweet};
+    [self fetchFromApi:api withParams:params
+       completionBlock:apiCompletionBlock
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodPOST];
 }
 @end

@@ -24,13 +24,13 @@
     return self;
 }
 
-@synthesize homeTimelineTweets = _homeTimelineTweets;
+@synthesize tweetsToShow = _tweetsToShow;
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize refreshButton = _refreshButton;
 
--(void) setHomeTimelineTweets:(NSArray *)homeTimelineTweets {
-    if( _homeTimelineTweets != homeTimelineTweets ) {
-        _homeTimelineTweets = homeTimelineTweets;
+-(void) setTweetsToShow:(NSArray *)tweetsToShow {
+    if( _tweetsToShow != tweetsToShow ) {
+        _tweetsToShow = tweetsToShow;
         [self.tableView reloadData];
     }
 }
@@ -51,10 +51,10 @@
     APICompletionBlock refreshhomeTimelineTweetsBlock = ^(NSDictionary * timeLineData){
         self.navigationItem.rightBarButtonItem = sender;
         
-        NSMutableArray *homeTimelineTweets = [[NSMutableArray alloc] init];
+        NSMutableArray *tweetsToShow = [[NSMutableArray alloc] init];
         for (NSDictionary* key in timeLineData) {
             Tweet *tweet = [[Tweet alloc] init];
-            tweet.tweetTimestamp = [key objectForKey:TWITTER_TWEET_TIMESTAMP];
+            tweet.tweetTimestamp = [Utils convertTweetDateStringToTweetNSDate: [key objectForKey:TWITTER_TWEET_TIMESTAMP]];
             tweet.tweetMessage = [key objectForKey:TWITTER_TWEET_MESSAGE];
             tweet.tweetId = [key objectForKey:TWITTER_TWEET_ID];
             
@@ -64,9 +64,9 @@
             tweet.tweetedBy.userId = [[key objectForKey:TWITTER_TWEET_USER] objectForKey:TWITTER_USER_ID];
             tweet.tweetedBy.userName = [[key objectForKey:TWITTER_TWEET_USER] objectForKey:TWITTER_USER_USERNAME];
             
-            [homeTimelineTweets addObject:tweet];
+            [tweetsToShow addObject:tweet];
         }
-        self.homeTimelineTweets = homeTimelineTweets;
+        self.tweetsToShow = tweetsToShow;
     };
     [self.tweeterFetcher fetchHomeTimelineForCurrentUserCompletionBlock:refreshhomeTimelineTweetsBlock
                                                         dispatcherQueue:dispatch_get_main_queue()];
@@ -96,13 +96,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.homeTimelineTweets count];
+    return [self.tweetsToShow count];
 }
 
--(HomeTimelineTweetCell*) setTweetData:(Tweet *) tweet OnCell:(HomeTimelineTweetCell*) cell {
+-(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
 
     cell.tweetedByName.text = tweet.tweetedBy.name;
-    cell.tweetTime.text = [Utils convertTweetTimeToTimeAgo:tweet.tweetTimestamp];
+    cell.tweetTime.text = [Utils convertTweetNSDateToTimeAgo:tweet.tweetTimestamp];
     
     cell.tweetMessage.text = tweet.tweetMessage;
     
@@ -120,24 +120,24 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Home Timeline Tweet Cell";
-    HomeTimelineTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"Home Timeline Tweet";
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil){
-        cell = [[HomeTimelineTweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
+        cell = [[TweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
-    Tweet *homeTimelineTweets = [self.homeTimelineTweets objectAtIndex:indexPath.row];
+    Tweet *tweetToShow = [self.tweetsToShow objectAtIndex:indexPath.row];
 
-    cell = [self setTweetData:homeTimelineTweets OnCell:cell];
+    cell = [self setTweetData:tweetToShow OnCell:cell];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Tweet *homeTimelineTweet = [self.homeTimelineTweets objectAtIndex:indexPath.row];
+    Tweet *tweet = [self.tweetsToShow objectAtIndex:indexPath.row];
 
-    id tweetMessage = homeTimelineTweet.tweetMessage;
+    id tweetMessage = tweet.tweetMessage;
     CGSize constraint = CGSizeMake(320 - (CELL_MARGIN_LEFT + CELL_MARGIN_RIGHT), 20000.0f);
     
     CGSize size = [tweetMessage sizeWithFont:[UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
@@ -151,7 +151,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Cell selected %ld, %ld", (long)indexPath.section, (long)indexPath.row);
-    [self performSegueWithIdentifier:@"Home Timeline Tweet To Show Tweet" sender:self];
+    [self performSegueWithIdentifier:@"Home Timeline Tweet To Show Tweet" sender:[self.tweetsToShow objectAtIndex:indexPath.row]];
 }
 
 - (SEL) findAppropriateFunctionToInvokeOnBasisOfCurrentState1 {
@@ -160,7 +160,7 @@
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [segue.identifier isEqualToString:@"Home Timeline Tweet To Show Tweet"]){
-        Tweet* tweet = [[Tweet alloc] init];        
+        Tweet* tweet = (Tweet*)sender;
         [segue.destinationViewController setTweet:tweet];
     }
 }

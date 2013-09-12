@@ -10,10 +10,29 @@
 #import "NSDate+TimeAgo.h"
 
 @implementation Utils
-+(NSString*) convertTweetTimeToTimeAgo:(id)tweetTime {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat: @"EEE MMM dd HH:mm:ss Z yyyy"];        
-        NSDate *date = [dateFormatter dateFromString:tweetTime];
-        return [date timeAgo];
++(NSString*) convertTweetNSDateToTimeAgo:(NSDate*)tweetTime {
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  //      [dateFormatter setDateFormat: @"EEE MMM dd HH:mm:ss Z yyyy"];
+//        NSDate *date = [dateFormatter dateFromString:tweetTime];
+        return [tweetTime timeAgo];
+    
+}
+
++(NSDate*) convertTweetDateStringToTweetNSDate:(id)tweetDateString {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"EEE MMM dd HH:mm:ss Z yyyy"];
+    NSDate *tweetNSDate = [dateFormatter dateFromString:tweetDateString];
+    return tweetNSDate;
+}
+
+-(NSString *) convertTweetDateToStringTimeStamp:(NSDate*) date{
+    NSDateFormatter *dateToStringFormatter = [[NSDateFormatter alloc] init];
+    [dateToStringFormatter setDateFormat: @"dd-MM-yyyy HH:mm"];
+    NSDate *now = [[NSDate alloc] init];
+
+    NSString* convertedString = [dateToStringFormatter stringFromDate:date];
+    NSLog(@"String date: %@",convertedString);
+    return convertedString;
+
 }
 @end

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
+#import "TweeterFetcher.h"
+#import "TweetCell.h"
+#import "Utils.h"
+#import "Tweet.h"
+#import "TweetViewController.h"
 
 @interface UserTweetsViewController : UITableViewController
-@property (nonatomic, strong) NSArray* homeTimelineTweets;
+@property (nonatomic, strong) NSArray* tweetsToShow;
 @property (nonatomic, strong) User* user;
 @end

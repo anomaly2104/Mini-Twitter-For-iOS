@@ -18,7 +18,7 @@
 		AD49F89A17D70FDC0030F0FD /* ResponseCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F89917D70FDC0030F0FD /* ResponseCreator.m */; };
 		AD49F89D17D72E3A0030F0FD /* UserTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F89C17D72E3A0030F0FD /* UserTweetsViewController.m */; };
 		AD49F8A017D73D410030F0FD /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F89F17D73D410030F0FD /* HomeTimelineViewController.m */; };
-		AD49F8A317D74E2D0030F0FD /* HomeTimelineTweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F8A217D74E2D0030F0FD /* HomeTimelineTweetCell.m */; };
+		AD49F8A317D74E2D0030F0FD /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F8A217D74E2D0030F0FD /* TweetCell.m */; };
 		AD49F8A617D85E330030F0FD /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F8A517D85E330030F0FD /* NSDate+TimeAgo.m */; };
 		AD49F8A917D85F570030F0FD /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F8A817D85F570030F0FD /* Utils.m */; };
 		AD49F8AB17D861460030F0FD /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AD49F8AA17D861460030F0FD /* NSDateTimeAgo.bundle */; };
@@ -28,6 +28,10 @@
 		AD54058F17E092510059677A /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = AD54058D17E092510059677A /* 37x-Checkmark.png */; };
 		AD54059017E092510059677A /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD54058E17E092510059677A /* 37x-Checkmark@2x.png */; };
 		AD54059317E096F40059677A /* AnimatedGif.m in Sources */ = {isa = PBXBuildFile; fileRef = AD54059217E096F40059677A /* AnimatedGif.m */; };
+		AD54059F17E1C5BC0059677A /* CreateTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD54059E17E1C5BC0059677A /* CreateTweetViewController.m */; };
+		AD5405A117E1C7480059677A /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5405A017E1C7480059677A /* pencil.png */; };
+		AD5405A317E1CBC90059677A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5405A217E1CBC90059677A /* icon.png */; };
+		AD5405A617E1DB200059677A /* Padder.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405A517E1DB200059677A /* Padder.m */; };
 		ADE4EB7B17D6F5190097987A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7A17D6F5190097987A /* UIKit.framework */; };
 		ADE4EB7D17D6F5190097987A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7C17D6F5190097987A /* Foundation.framework */; };
 		ADE4EB7F17D6F5190097987A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7E17D6F5190097987A /* CoreGraphics.framework */; };
@@ -60,8 +64,8 @@
 		AD49F89C17D72E3A0030F0FD /* UserTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTweetsViewController.m; sourceTree = "<group>"; };
 		AD49F89E17D73D410030F0FD /* HomeTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTimelineViewController.h; sourceTree = "<group>"; };
 		AD49F89F17D73D410030F0FD /* HomeTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimelineViewController.m; sourceTree = "<group>"; };
-		AD49F8A117D74E2D0030F0FD /* HomeTimelineTweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTimelineTweetCell.h; sourceTree = "<group>"; };
-		AD49F8A217D74E2D0030F0FD /* HomeTimelineTweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimelineTweetCell.m; sourceTree = "<group>"; };
+		AD49F8A117D74E2D0030F0FD /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
+		AD49F8A217D74E2D0030F0FD /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		AD49F8A417D85E330030F0FD /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeAgo.h"; sourceTree = "<group>"; };
 		AD49F8A517D85E330030F0FD /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeAgo.m"; sourceTree = "<group>"; };
 		AD49F8A717D85F570030F0FD /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -76,6 +80,12 @@
 		AD54058E17E092510059677A /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		AD54059117E096F40059677A /* AnimatedGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatedGif.h; sourceTree = "<group>"; };
 		AD54059217E096F40059677A /* AnimatedGif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatedGif.m; sourceTree = "<group>"; };
+		AD54059D17E1C5BB0059677A /* CreateTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTweetViewController.h; sourceTree = "<group>"; };
+		AD54059E17E1C5BC0059677A /* CreateTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTweetViewController.m; sourceTree = "<group>"; };
+		AD5405A017E1C7480059677A /* pencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pencil.png; sourceTree = "<group>"; };
+		AD5405A217E1CBC90059677A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		AD5405A417E1DB1F0059677A /* Padder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Padder.h; sourceTree = "<group>"; };
+		AD5405A517E1DB200059677A /* Padder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Padder.m; sourceTree = "<group>"; };
 		ADE4EB7717D6F5190097987A /* Mini Twitter For iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Twitter For iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE4EB7A17D6F5190097987A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ADE4EB7C17D6F5190097987A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +123,8 @@
 		AD36A6D817E05A2000AB6769 /* twitter-icons */ = {
 			isa = PBXGroup;
 			children = (
+				AD5405A217E1CBC90059677A /* icon.png */,
+				AD5405A017E1C7480059677A /* pencil.png */,
 				AD36A6DB17E05AE000AB6769 /* man.png */,
 				AD36A6D917E05A3400AB6769 /* home.png */,
 			);
@@ -174,8 +186,8 @@
 				ADE4EB8117D6F5190097987A /* Supporting Files */,
 				AD49F89B17D72E3A0030F0FD /* UserTweetsViewController.h */,
 				AD49F89C17D72E3A0030F0FD /* UserTweetsViewController.m */,
-				AD49F8A117D74E2D0030F0FD /* HomeTimelineTweetCell.h */,
-				AD49F8A217D74E2D0030F0FD /* HomeTimelineTweetCell.m */,
+				AD49F8A117D74E2D0030F0FD /* TweetCell.h */,
+				AD49F8A217D74E2D0030F0FD /* TweetCell.m */,
 				AD49F8AC17D874F00030F0FD /* TweetViewController.h */,
 				AD49F8AD17D874F00030F0FD /* TweetViewController.m */,
 				AD36A47917DDE2D100AB6769 /* Tweet.h */,
@@ -186,6 +198,10 @@
 				AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */,
 				AD54058017E084C40059677A /* LoginViewController.h */,
 				AD54058117E084C40059677A /* LoginViewController.m */,
+				AD54059D17E1C5BB0059677A /* CreateTweetViewController.h */,
+				AD54059E17E1C5BC0059677A /* CreateTweetViewController.m */,
+				AD5405A417E1DB1F0059677A /* Padder.h */,
+				AD5405A517E1DB200059677A /* Padder.m */,
 			);
 			path = "Mini Twitter For iOS";
 			sourceTree = "<group>";
@@ -276,6 +292,8 @@
 				AD54058417E0873A0059677A /* spinner.gif in Resources */,
 				AD54058F17E092510059677A /* 37x-Checkmark.png in Resources */,
 				AD54059017E092510059677A /* 37x-Checkmark@2x.png in Resources */,
+				AD5405A117E1C7480059677A /* pencil.png in Resources */,
+				AD5405A317E1CBC90059677A /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +310,7 @@
 				AD49F89A17D70FDC0030F0FD /* ResponseCreator.m in Sources */,
 				AD49F89D17D72E3A0030F0FD /* UserTweetsViewController.m in Sources */,
 				AD49F8A017D73D410030F0FD /* HomeTimelineViewController.m in Sources */,
-				AD49F8A317D74E2D0030F0FD /* HomeTimelineTweetCell.m in Sources */,
+				AD49F8A317D74E2D0030F0FD /* TweetCell.m in Sources */,
 				AD49F8A617D85E330030F0FD /* NSDate+TimeAgo.m in Sources */,
 				AD49F8A917D85F570030F0FD /* Utils.m in Sources */,
 				AD49F8AE17D874F00030F0FD /* TweetViewController.m in Sources */,
@@ -301,6 +319,8 @@
 				AD36A6DF17E071A300AB6769 /* MiniTwitterRootViewController.m in Sources */,
 				AD54058217E084C40059677A /* LoginViewController.m in Sources */,
 				AD54059317E096F40059677A /* AnimatedGif.m in Sources */,
+				AD54059F17E1C5BC0059677A /* CreateTweetViewController.m in Sources */,
+				AD5405A617E1DB200059677A /* Padder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

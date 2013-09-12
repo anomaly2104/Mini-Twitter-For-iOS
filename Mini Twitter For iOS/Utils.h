@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Utils : NSObject
-+(NSString *) convertTweetTimeToTimeAgo:(id) tweetTime;
++(NSString *) convertTweetNSDateToTimeAgo:(NSDate*) tweetTime;
++(NSDate*) convertTweetDateStringToTweetNSDate:(id)tweetDateString;
+-(NSString *) convertTweetDateToStringTimeStamp:(NSDate*) date;
 @end

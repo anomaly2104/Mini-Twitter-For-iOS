@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "TweeterFetcher.h"
-#import "HomeTimelineTweetCell.h"
+#import "TweetCell.h"
 #import "Utils.h"
 #import "Tweet.h"
 #import "TweetViewController.h"
 
 @interface HomeTimelineViewController : UITableViewController
-@property (nonatomic, strong) NSArray* homeTimelineTweets;
+@property (nonatomic, strong) NSArray* tweetsToShow;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MiniTwitterRootViewController.h"
-#import "HomeTimelineTweetCell.h"
+#import "TweetCell.h"
 #import "UserTweetsViewController.h"
 #import "TweeterFetcher.h"
 
@@ -45,11 +45,12 @@
     if([userTweetsViewController isKindOfClass:[UserTweetsViewController class]]){
         [userTweetsViewController setUser:self.currentUser];
         userTweetsNavigationViewController.viewControllers = [NSArray arrayWithObject:userTweetsViewController];
-        self.viewControllers = [NSArray arrayWithObjects:[self.viewControllers objectAtIndex:0], userTweetsNavigationViewController, nil];
+        NSMutableArray* newViewControllers = [self.viewControllers mutableCopy];
+        [newViewControllers setObject:userTweetsNavigationViewController atIndexedSubscript:1];
+        self.viewControllers = newViewControllers;
+//        self.viewControllers = [NSArray arrayWithObjects:[self.viewControllers objectAtIndex:0], userTweetsNavigationViewController, [self.viewControllers objectAtIndex:2],nil];
         //[[self.viewControllers objectAtIndex:1] setUser:self.currentUser];
     }
-    
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,9 +64,10 @@
 }
 
 - (void) tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    if([viewController isKindOfClass:[UINavigationController class]]){
+        [viewController performSelector:@selector(popToRootViewControllerAnimated:) ];
+    }
 //    NSLog(@"Class of selected object: %@",[viewController class]);
-
-//    UserTweetsViewController* activeViewController = [[viewController viewControllers] objectAtIndex:0];
 }
 
 @end
