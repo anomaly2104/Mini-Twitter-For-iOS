@@ -32,6 +32,7 @@
 		AD5405A117E1C7480059677A /* pencil.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5405A017E1C7480059677A /* pencil.png */; };
 		AD5405A317E1CBC90059677A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5405A217E1CBC90059677A /* icon.png */; };
 		AD5405A617E1DB200059677A /* Padder.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405A517E1DB200059677A /* Padder.m */; };
+		AD5405A817E2EA120059677A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5405A717E2EA110059677A /* QuartzCore.framework */; };
 		ADE4EB7B17D6F5190097987A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7A17D6F5190097987A /* UIKit.framework */; };
 		ADE4EB7D17D6F5190097987A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7C17D6F5190097987A /* Foundation.framework */; };
 		ADE4EB7F17D6F5190097987A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7E17D6F5190097987A /* CoreGraphics.framework */; };
@@ -86,6 +87,7 @@
 		AD5405A217E1CBC90059677A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		AD5405A417E1DB1F0059677A /* Padder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Padder.h; sourceTree = "<group>"; };
 		AD5405A517E1DB200059677A /* Padder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Padder.m; sourceTree = "<group>"; };
+		AD5405A717E2EA110059677A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		ADE4EB7717D6F5190097987A /* Mini Twitter For iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Twitter For iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE4EB7A17D6F5190097987A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ADE4EB7C17D6F5190097987A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD5405A817E2EA120059677A /* QuartzCore.framework in Frameworks */,
 				AD49F89417D6F82D0030F0FD /* Accounts.framework in Frameworks */,
 				AD49F89217D6F8250030F0FD /* Twitter.framework in Frameworks */,
 				ADE4EB9E17D6F5280097987A /* Social.framework in Frameworks */,
@@ -148,6 +151,7 @@
 		ADE4EB6E17D6F5190097987A = {
 			isa = PBXGroup;
 			children = (
+				AD5405A717E2EA110059677A /* QuartzCore.framework */,
 				ADE4EB8017D6F5190097987A /* Mini Twitter For iOS */,
 				ADE4EB7917D6F5190097987A /* Frameworks */,
 				ADE4EB7817D6F5190097987A /* Products */,

@@ -184,4 +184,16 @@ params =    @{@"screen_name" : username,
        dispatcherQueue:dispatcherQueue
          requestMethod:SLRequestMethodPOST];
 }
+
+- (void)fetchDetailsForUser:(NSString *)username
+             completionBlock:(APICompletionBlock)apiCompletionBlock
+             dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+{
+    NSString *api = @"users/show.json";
+    NSDictionary *params = @{@"screen_name" : username};
+    [self fetchFromApi:api withParams:params
+       completionBlock:apiCompletionBlock
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
+}
 @end

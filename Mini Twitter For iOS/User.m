@@ -13,4 +13,7 @@
 @synthesize name = _name;
 @synthesize profileUrl = _profileUrl;
 @synthesize userId = _userId;
+@synthesize numberTweets = _numberTweets;
+@synthesize numberFollowers = _numberFollowers;
+@synthesize numberFollowing = _numberFollowing;
 @end

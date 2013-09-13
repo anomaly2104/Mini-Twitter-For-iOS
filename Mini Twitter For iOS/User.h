@@ -13,5 +13,8 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSURL *profileUrl;
 @property (nonatomic, strong) NSString *userName;
-@property (nonatomic, strong) NSString * userId;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSNumber *numberTweets;
+@property (nonatomic, strong) NSNumber *numberFollowers;
+@property (nonatomic, strong) NSNumber *numberFollowing;
 @end

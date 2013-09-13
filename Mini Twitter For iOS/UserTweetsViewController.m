@@ -9,6 +9,13 @@
 #import "UserTweetsViewController.h"
 
 @interface UserTweetsViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *userUserName;
+@property (weak, nonatomic) IBOutlet UILabel *tweetsCount;
+@property (weak, nonatomic) IBOutlet UILabel *followingCount;
+@property (weak, nonatomic) IBOutlet UILabel *followersCount;
+
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @end
@@ -71,11 +78,41 @@
     [self.tweeterFetcher fetchTimelineForUser:self.user.userName completionBlock:refreshUserTweetsBlock dispatcherQueue:dispatch_get_main_queue()];
 }
 
+-(void) setUserProfileData{
+    APICompletionBlock getUserDetailsBlock = ^(NSDictionary * UserData){
+        self.user.name = [UserData objectForKey:TWITTER_USER_NAME];
+        self.user.profileUrl = [NSURL URLWithString: [UserData objectForKey:TWITTER_USER_PROFILE_IMAGE_URL]];
+        self.user.numberTweets = [UserData valueForKey:TWITTER_USER_TWEETS_COUNT];
+        self.user.numberFollowers = [UserData valueForKey:TWITTER_USER_FOLLOWERS_COUNT];
+        self.user.numberFollowing = [UserData valueForKey:TWITTER_USER_FOLLOWING_COUNT];
+        
+        self.userName.text = self.user.name;
+        self.userUserName.text = [NSString stringWithFormat:@"@%@",self.user.userName ];
+        self.tweetsCount.text = [NSString stringWithFormat:@"%@",self.user.numberTweets];
+        self.followersCount.text = [NSString stringWithFormat:@"%@",self.user.numberFollowers];
+        self.followingCount.text = [NSString stringWithFormat:@"%@",self.user.numberFollowing];
+        
+        dispatch_queue_t downloadQueue = dispatch_queue_create("Twitter Downloader", NULL);
+        dispatch_async(downloadQueue, ^{
+            
+            NSData *data = [[NSData alloc] initWithContentsOfURL:self.user.profileUrl];
+            UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.userProfileImage.image = tmpImage;
+            });
+        });
+    };
+    [self.tweeterFetcher fetchDetailsForUser:self.user.userName completionBlock:getUserDetailsBlock dispatcherQueue:dispatch_get_main_queue()];
+ 
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self refreshUserTimeline:self.refreshButton];
     self.title = self.user.name;
+    [self setUserProfileData];
 }
 
 - (void)didReceiveMemoryWarning
