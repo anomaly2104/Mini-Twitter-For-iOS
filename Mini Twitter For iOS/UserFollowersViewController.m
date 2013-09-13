@@ -52,13 +52,13 @@
 }
 
 
-- (IBAction)refreshFollowing:(id)sender {
+- (IBAction)refreshFollower:(id)sender {
     [self disableRefresh];
     if(!self.tweeterFetcher){
         NSLog(@"Fetcher Nil");
     }
     
-    APICompletionBlock refreshUserFollowingBlock = ^(NSDictionary * followData){
+    APICompletionBlock refreshUserFollowerBlock = ^(NSDictionary * followData){
         [self enableRefresh:sender];
         NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
@@ -71,27 +71,18 @@
             user.profileUrl = [NSURL URLWithString:[key objectForKey:TWITTER_USER_PROFILE_IMAGE_URL]];
             user.userId = [key objectForKey:TWITTER_USER_ID_STR];
             user.following = [key objectForKey:TWITTER_USER_FOLLOWING];
-            /*            NSLog(@"Following values: %@", following);
-             if([following isEqualToString:@"false"]){
-             user.following = [NSNumber numberWithInt:0];
-             } else if([following isEqualToString:@"true"]){
-             user.following = [NSNumber numberWithInt:1];
-             } else{
-             //some error: must be true or false
-             }
-             */
             [usersToShow addObject:user];
         }
         self.usersToShow = usersToShow;
     };
-    [self.tweeterFetcher fetchFollowersForUser:self.user.userName completionBlock:refreshUserFollowingBlock dispatcherQueue:dispatch_get_main_queue()];
+    [self.tweeterFetcher fetchFollowersForUser:self.user.userName completionBlock:refreshUserFollowerBlock dispatcherQueue:dispatch_get_main_queue()];
     
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self refreshFollowing:self.refreshButton];
+    [self refreshFollower:self.refreshButton];
 }
 
 - (void)didReceiveMemoryWarning
