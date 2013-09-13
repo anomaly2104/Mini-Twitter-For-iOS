@@ -34,11 +34,11 @@
         // Initialization code
         userUserName = [[UILabel alloc]init];
         userUserName.textAlignment = UITextAlignmentLeft;
-        userUserName.font = [UIFont systemFontOfSize:USER_NAME_UILABEL_FONT];
+        userUserName.font = [UIFont systemFontOfSize:USER_USERNAME_UILABEL_FONT];
         
         userName = [[UILabel alloc]init];
         userName.textAlignment = UITextAlignmentLeft;
-        userName.font = [UIFont systemFontOfSize:USER_USERNAME_UILABEL_FONT];
+        userName.font = [UIFont systemFontOfSize:USER_NAME_UILABEL_FONT];
         
         userProileImage = [[UIImageView alloc]init];
         

@@ -115,7 +115,7 @@
 -(UserCell*) setUserData:(User *) user OnCell:(UserCell*) cell {
     
     cell.userName.text = user.name;
-    cell.userUserName.text = user.userName;
+    cell.userUserName.text =[ NSString stringWithFormat:@"@%@",user.userName ];
     
     dispatch_queue_t downloadQueue = dispatch_queue_create("Twitter Downloader", NULL);
     dispatch_async(downloadQueue, ^{
