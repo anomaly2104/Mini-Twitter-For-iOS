@@ -196,4 +196,28 @@ params =    @{@"screen_name" : username,
        dispatcherQueue:dispatcherQueue
          requestMethod:SLRequestMethodGET];
 }
+
+- (void)fetchFollowersForUser:(NSString *)username
+            completionBlock:(APICompletionBlock)apiCompletionBlock
+            dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+{
+    NSString *api = @"followers/list.json";
+    NSDictionary *params = @{@"screen_name" : username};
+    [self fetchFromApi:api withParams:params
+       completionBlock:apiCompletionBlock
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
+}
+
+- (void)fetchFollowingForUser:(NSString *)username
+              completionBlock:(APICompletionBlock)apiCompletionBlock
+              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+{
+    NSString *api = @"friends/list.json";
+    NSDictionary *params = @{@"screen_name" : username};
+    [self fetchFromApi:api withParams:params
+       completionBlock:apiCompletionBlock
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
+}
 @end

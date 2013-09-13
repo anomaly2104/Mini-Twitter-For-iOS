@@ -16,4 +16,5 @@
 @synthesize numberTweets = _numberTweets;
 @synthesize numberFollowers = _numberFollowers;
 @synthesize numberFollowing = _numberFollowing;
+@synthesize following = _following;
 @end

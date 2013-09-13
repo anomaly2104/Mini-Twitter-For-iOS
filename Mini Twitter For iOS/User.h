@@ -17,4 +17,5 @@
 @property (nonatomic, strong) NSNumber *numberTweets;
 @property (nonatomic, strong) NSNumber *numberFollowers;
 @property (nonatomic, strong) NSNumber *numberFollowing;
+@property (nonatomic, strong) NSNumber *following;
 @end

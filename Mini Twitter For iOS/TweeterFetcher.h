@@ -19,9 +19,15 @@
 #define TWITTER_TWEET_USER @"user"
 #define TWITTER_TWEET_ID @"id"
 
+#define TWITTER_FOLLOW_USERS @"users"
+#define TWITTER_FOLLOW_CURSOR_PREVIOUS @"previous_cursor"
+#define TWITTER_FOLLOW_CURSOR_PREVIOUS_STR @"previous_cursor_str"
+#define TWITTER_FOLLOW_CURSOR_NEXT @"next_cursor"
+
 #define TWITTER_USER_NAME @"name"
 #define TWITTER_USER_USERNAME @"screen_name"
 #define TWITTER_USER_ID @"id"
+#define TWITTER_USER_FOLLOWING @"following"
 #define TWITTER_USER_ID_STR @"id_str"
 #define TWITTER_USER_PROFILE_IMAGE_URL @"profile_image_url"
 #define TWITTER_USER_FOLLOWERS_COUNT @"followers_count"
@@ -47,4 +53,11 @@ typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
              completionBlock:(APICompletionBlock) apiCompletionBlock
              dispatcherQueue:(dispatch_queue_t) dispatcherQueue;
 
+- (void)fetchFollowingForUser:(NSString *)username
+              completionBlock:(APICompletionBlock)apiCompletionBlock
+              dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
+
+- (void)fetchFollowersForUser:(NSString *)username
+              completionBlock:(APICompletionBlock)apiCompletionBlock
+              dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
 @end

@@ -198,6 +198,10 @@
     if( [segue.identifier isEqualToString:@"User Tweet To Show Tweet"]){
         Tweet* tweet = (Tweet*)sender;
         [segue.destinationViewController setTweet:tweet];
+    } else if( [segue.identifier isEqualToString:@"User To Following"]){
+        [segue.destinationViewController setUser:self.user];
+    } else if( [segue.identifier isEqualToString:@"User To Followers"]){
+        [segue.destinationViewController setUser:self.user];
     }
 }
 

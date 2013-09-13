@@ -33,6 +33,9 @@
 		AD5405A317E1CBC90059677A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD5405A217E1CBC90059677A /* icon.png */; };
 		AD5405A617E1DB200059677A /* Padder.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405A517E1DB200059677A /* Padder.m */; };
 		AD5405A817E2EA120059677A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5405A717E2EA110059677A /* QuartzCore.framework */; };
+		AD5405AB17E2F0710059677A /* UserFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AA17E2F0700059677A /* UserFollowingViewController.m */; };
+		AD5405AE17E2F0910059677A /* UserFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AD17E2F0900059677A /* UserFollowersViewController.m */; };
+		AD5405B417E2F9930059677A /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405B317E2F9920059677A /* UserCell.m */; };
 		ADE4EB7B17D6F5190097987A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7A17D6F5190097987A /* UIKit.framework */; };
 		ADE4EB7D17D6F5190097987A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7C17D6F5190097987A /* Foundation.framework */; };
 		ADE4EB7F17D6F5190097987A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7E17D6F5190097987A /* CoreGraphics.framework */; };
@@ -88,6 +91,12 @@
 		AD5405A417E1DB1F0059677A /* Padder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Padder.h; sourceTree = "<group>"; };
 		AD5405A517E1DB200059677A /* Padder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Padder.m; sourceTree = "<group>"; };
 		AD5405A717E2EA110059677A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AD5405A917E2F06F0059677A /* UserFollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFollowingViewController.h; sourceTree = "<group>"; };
+		AD5405AA17E2F0700059677A /* UserFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowingViewController.m; sourceTree = "<group>"; };
+		AD5405AC17E2F0900059677A /* UserFollowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFollowersViewController.h; sourceTree = "<group>"; };
+		AD5405AD17E2F0900059677A /* UserFollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowersViewController.m; sourceTree = "<group>"; };
+		AD5405B217E2F9910059677A /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		AD5405B317E2F9920059677A /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		ADE4EB7717D6F5190097987A /* Mini Twitter For iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Twitter For iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE4EB7A17D6F5190097987A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ADE4EB7C17D6F5190097987A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -206,6 +215,12 @@
 				AD54059E17E1C5BC0059677A /* CreateTweetViewController.m */,
 				AD5405A417E1DB1F0059677A /* Padder.h */,
 				AD5405A517E1DB200059677A /* Padder.m */,
+				AD5405A917E2F06F0059677A /* UserFollowingViewController.h */,
+				AD5405AA17E2F0700059677A /* UserFollowingViewController.m */,
+				AD5405AC17E2F0900059677A /* UserFollowersViewController.h */,
+				AD5405AD17E2F0900059677A /* UserFollowersViewController.m */,
+				AD5405B217E2F9910059677A /* UserCell.h */,
+				AD5405B317E2F9920059677A /* UserCell.m */,
 			);
 			path = "Mini Twitter For iOS";
 			sourceTree = "<group>";
@@ -325,6 +340,9 @@
 				AD54059317E096F40059677A /* AnimatedGif.m in Sources */,
 				AD54059F17E1C5BC0059677A /* CreateTweetViewController.m in Sources */,
 				AD5405A617E1DB200059677A /* Padder.m in Sources */,
+				AD5405AB17E2F0710059677A /* UserFollowingViewController.m in Sources */,
+				AD5405AE17E2F0910059677A /* UserFollowersViewController.m in Sources */,
+				AD5405B417E2F9930059677A /* UserCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

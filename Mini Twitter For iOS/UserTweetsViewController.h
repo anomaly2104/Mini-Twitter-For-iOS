@@ -12,6 +12,8 @@
 #import "Utils.h"
 #import "Tweet.h"
 #import "TweetViewController.h"
+#import "UserFollowersViewController.h"
+#import "UserFollowingViewController.h"
 
 @interface UserTweetsViewController : UITableViewController
 @property (nonatomic, strong) NSArray* tweetsToShow;
