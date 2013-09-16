@@ -36,6 +36,9 @@
 		AD5405AB17E2F0710059677A /* UserFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AA17E2F0700059677A /* UserFollowingViewController.m */; };
 		AD5405AE17E2F0910059677A /* UserFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AD17E2F0900059677A /* UserFollowersViewController.m */; };
 		AD5405B417E2F9930059677A /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405B317E2F9920059677A /* UserCell.m */; };
+		ADBCA7EA17E74BF900E7B644 /* coreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7E817E74BF900E7B644 /* coreData.xcdatamodeld */; };
+		ADBCA7ED17E74CB900E7B644 /* User+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EC17E74CB900E7B644 /* User+Twitter.m */; };
+		ADBCA7F017E74CC500E7B644 /* Tweet+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EF17E74CC500E7B644 /* Tweet+Twitter.m */; };
 		ADE4EB7B17D6F5190097987A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7A17D6F5190097987A /* UIKit.framework */; };
 		ADE4EB7D17D6F5190097987A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7C17D6F5190097987A /* Foundation.framework */; };
 		ADE4EB7F17D6F5190097987A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7E17D6F5190097987A /* CoreGraphics.framework */; };
@@ -97,6 +100,11 @@
 		AD5405AD17E2F0900059677A /* UserFollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowersViewController.m; sourceTree = "<group>"; };
 		AD5405B217E2F9910059677A /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		AD5405B317E2F9920059677A /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		ADBCA7E917E74BF900E7B644 /* coreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coreData.xcdatamodel; sourceTree = "<group>"; };
+		ADBCA7EB17E74CB900E7B644 /* User+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Twitter.h"; sourceTree = "<group>"; };
+		ADBCA7EC17E74CB900E7B644 /* User+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Twitter.m"; sourceTree = "<group>"; };
+		ADBCA7EE17E74CC500E7B644 /* Tweet+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tweet+Twitter.h"; sourceTree = "<group>"; };
+		ADBCA7EF17E74CC500E7B644 /* Tweet+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tweet+Twitter.m"; sourceTree = "<group>"; };
 		ADE4EB7717D6F5190097987A /* Mini Twitter For iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Twitter For iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE4EB7A17D6F5190097987A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ADE4EB7C17D6F5190097987A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -160,10 +168,15 @@
 		ADBCA7E617E74B9A00E7B644 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				ADBCA7EB17E74CB900E7B644 /* User+Twitter.h */,
+				ADBCA7EC17E74CB900E7B644 /* User+Twitter.m */,
+				ADBCA7EE17E74CC500E7B644 /* Tweet+Twitter.h */,
+				ADBCA7EF17E74CC500E7B644 /* Tweet+Twitter.m */,
 				AD36A47917DDE2D100AB6769 /* Tweet.h */,
 				AD36A47A17DDE2D100AB6769 /* Tweet.m */,
 				AD36A47C17DDE3CB00AB6769 /* User.h */,
 				AD36A47D17DDE3CB00AB6769 /* User.m */,
+				ADBCA7E817E74BF900E7B644 /* coreData.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -359,6 +372,9 @@
 				AD5405AB17E2F0710059677A /* UserFollowingViewController.m in Sources */,
 				AD5405AE17E2F0910059677A /* UserFollowersViewController.m in Sources */,
 				AD5405B417E2F9930059677A /* UserCell.m in Sources */,
+				ADBCA7EA17E74BF900E7B644 /* coreData.xcdatamodeld in Sources */,
+				ADBCA7ED17E74CB900E7B644 /* User+Twitter.m in Sources */,
+				ADBCA7F017E74CC500E7B644 /* Tweet+Twitter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +500,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ADBCA7E817E74BF900E7B644 /* coreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ADBCA7E917E74BF900E7B644 /* coreData.xcdatamodel */,
+			);
+			currentVersion = ADBCA7E917E74BF900E7B644 /* coreData.xcdatamodel */;
+			path = coreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ADE4EB6F17D6F5190097987A /* Project object */;
 }
