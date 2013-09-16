@@ -1,10 +1,6 @@
-
 *.xcuserstate
-
-.DS_Store
-
-.DS_Store
-
+*.DS_Store
+Mini Twitter For iOS/.DS_Store
 Mini Twitter For iOS.xcodeproj/project.xcworkspace/xcuserdata/udit.ag.xcuserdatad/UserInterfaceState.xcuserstate
+Mini Twitter For iOS.xcodeproj/xcuserdata/udit.ag.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
 
-Mini Twitter For iOS.xcodeproj/project.xcworkspace/xcuserdata/udit.ag.xcuserdatad/UserInterfaceState.xcuserstate
