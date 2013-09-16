@@ -7,6 +7,8 @@
 //
 
 #import "HomeTimelineViewController.h"
+#import "User+Twitter.h"
+#import "Tweet+Twitter.h"
 
 @interface HomeTimelineViewController ()
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
@@ -53,16 +55,7 @@
         
         NSMutableArray *tweetsToShow = [[NSMutableArray alloc] init];
         for (NSDictionary* key in timeLineData) {
-            Tweet *tweet = [[Tweet alloc] init];
-            tweet.tweetTimestamp = [Utils convertTweetDateStringToTweetNSDate: [key objectForKey:TWITTER_TWEET_TIMESTAMP]];
-            tweet.tweetMessage = [key objectForKey:TWITTER_TWEET_MESSAGE];
-            tweet.tweetId = [key objectForKey:TWITTER_TWEET_ID];
-            
-            tweet.tweetedBy = [[User alloc] init];
-            tweet.tweetedBy.name = [[key objectForKey:TWITTER_TWEET_USER] objectForKey:TWITTER_USER_NAME];
-            tweet.tweetedBy.profileUrl = [NSURL URLWithString: [[key objectForKey:TWITTER_TWEET_USER] objectForKey:TWITTER_USER_PROFILE_IMAGE_URL]];
-            tweet.tweetedBy.userId = [[key objectForKey:TWITTER_TWEET_USER] objectForKey:TWITTER_USER_ID];
-            tweet.tweetedBy.userName = [[key objectForKey:TWITTER_TWEET_USER] objectForKey:TWITTER_USER_USERNAME];
+            Tweet *tweet = [Tweet tweetWithTwitterData:key];
             
             [tweetsToShow addObject:tweet];
         }

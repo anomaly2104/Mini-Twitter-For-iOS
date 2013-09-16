@@ -7,6 +7,7 @@
 //
 
 #import "UserFollowingViewController.h"
+#import "User+Twitter.h"
 
 @interface UserFollowingViewController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
@@ -63,23 +64,7 @@
         NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
-            
-            User *user = [[User alloc] init];
-            
-            user.name = [key objectForKey:TWITTER_USER_NAME];
-            user.userName = [key objectForKey:TWITTER_USER_USERNAME];
-            user.profileUrl = [NSURL URLWithString:[key objectForKey:TWITTER_USER_PROFILE_IMAGE_URL]];
-            user.userId = [key objectForKey:TWITTER_USER_ID_STR];
-            user.following = [key objectForKey:TWITTER_USER_FOLLOWING];
-/*            NSLog(@"Following values: %@", following);
-            if([following isEqualToString:@"false"]){
-                user.following = [NSNumber numberWithInt:0];
-            } else if([following isEqualToString:@"true"]){
-                user.following = [NSNumber numberWithInt:1];
-            } else{
-                //some error: must be true or false
-            }
-  */          
+            User *user = [User userWithTwitterData:key];
             [usersToShow addObject:user];
         }
         self.usersToShow = usersToShow;

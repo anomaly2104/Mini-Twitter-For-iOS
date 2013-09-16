@@ -11,7 +11,6 @@
 @implementation User
 @synthesize userName = _userName;
 @synthesize name = _name;
-@synthesize profileUrl = _profileUrl;
 @synthesize userId = _userId;
 @synthesize numberTweets = _numberTweets;
 @synthesize numberFollowers = _numberFollowers;

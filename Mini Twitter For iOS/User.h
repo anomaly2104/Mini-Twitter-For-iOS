@@ -11,7 +11,8 @@
 @interface User : NSObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSURL *profileUrl;
+//@property (nonatomic, strong) NSURL *profileUrl;
+@property (nonatomic, strong) NSString *profileUrlString;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSNumber *numberTweets;
