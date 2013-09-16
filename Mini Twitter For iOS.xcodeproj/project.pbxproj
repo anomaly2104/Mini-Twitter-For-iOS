@@ -36,6 +36,8 @@
 		AD5405AB17E2F0710059677A /* UserFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AA17E2F0700059677A /* UserFollowingViewController.m */; };
 		AD5405AE17E2F0910059677A /* UserFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AD17E2F0900059677A /* UserFollowersViewController.m */; };
 		AD5405B417E2F9930059677A /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405B317E2F9920059677A /* UserCell.m */; };
+		ADBCA7E217E740B600E7B644 /* Tweet+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7E117E740B600E7B644 /* Tweet+Twitter.m */; };
+		ADBCA7E517E740C900E7B644 /* User+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7E417E740C900E7B644 /* User+Twitter.m */; };
 		ADE4EB7B17D6F5190097987A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7A17D6F5190097987A /* UIKit.framework */; };
 		ADE4EB7D17D6F5190097987A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7C17D6F5190097987A /* Foundation.framework */; };
 		ADE4EB7F17D6F5190097987A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7E17D6F5190097987A /* CoreGraphics.framework */; };
@@ -97,6 +99,10 @@
 		AD5405AD17E2F0900059677A /* UserFollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFollowersViewController.m; sourceTree = "<group>"; };
 		AD5405B217E2F9910059677A /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		AD5405B317E2F9920059677A /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		ADBCA7E017E740B600E7B644 /* Tweet+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tweet+Twitter.h"; sourceTree = "<group>"; };
+		ADBCA7E117E740B600E7B644 /* Tweet+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tweet+Twitter.m"; sourceTree = "<group>"; };
+		ADBCA7E317E740C900E7B644 /* User+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Twitter.h"; sourceTree = "<group>"; };
+		ADBCA7E417E740C900E7B644 /* User+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Twitter.m"; sourceTree = "<group>"; };
 		ADE4EB7717D6F5190097987A /* Mini Twitter For iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Twitter For iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE4EB7A17D6F5190097987A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ADE4EB7C17D6F5190097987A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,6 +163,55 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		ADBCA7DD17E7400F00E7B644 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD36A47917DDE2D100AB6769 /* Tweet.h */,
+				AD36A47A17DDE2D100AB6769 /* Tweet.m */,
+				AD36A47C17DDE3CB00AB6769 /* User.h */,
+				AD36A47D17DDE3CB00AB6769 /* User.m */,
+				ADBCA7E017E740B600E7B644 /* Tweet+Twitter.h */,
+				ADBCA7E117E740B600E7B644 /* Tweet+Twitter.m */,
+				ADBCA7E317E740C900E7B644 /* User+Twitter.h */,
+				ADBCA7E417E740C900E7B644 /* User+Twitter.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		ADBCA7DE17E7402B00E7B644 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD49F8A117D74E2D0030F0FD /* TweetCell.h */,
+				AD49F8A217D74E2D0030F0FD /* TweetCell.m */,
+				AD5405B217E2F9910059677A /* UserCell.h */,
+				AD5405B317E2F9920059677A /* UserCell.m */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		ADBCA7DF17E7403200E7B644 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AD49F8AC17D874F00030F0FD /* TweetViewController.h */,
+				AD49F8AD17D874F00030F0FD /* TweetViewController.m */,
+				AD54058017E084C40059677A /* LoginViewController.h */,
+				AD54058117E084C40059677A /* LoginViewController.m */,
+				AD49F89E17D73D410030F0FD /* HomeTimelineViewController.h */,
+				AD49F89F17D73D410030F0FD /* HomeTimelineViewController.m */,
+				AD49F89B17D72E3A0030F0FD /* UserTweetsViewController.h */,
+				AD49F89C17D72E3A0030F0FD /* UserTweetsViewController.m */,
+				AD36A6DD17E071A200AB6769 /* MiniTwitterRootViewController.h */,
+				AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */,
+				AD54059D17E1C5BB0059677A /* CreateTweetViewController.h */,
+				AD54059E17E1C5BC0059677A /* CreateTweetViewController.m */,
+				AD5405A917E2F06F0059677A /* UserFollowingViewController.h */,
+				AD5405AA17E2F0700059677A /* UserFollowingViewController.m */,
+				AD5405AC17E2F0900059677A /* UserFollowersViewController.h */,
+				AD5405AD17E2F0900059677A /* UserFollowersViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		ADE4EB6E17D6F5190097987A = {
 			isa = PBXGroup;
 			children = (
@@ -191,36 +246,11 @@
 		ADE4EB8017D6F5190097987A /* Mini Twitter For iOS */ = {
 			isa = PBXGroup;
 			children = (
-				ADE4EB8917D6F5190097987A /* minitwitterAppDelegate.h */,
-				AD49F89E17D73D410030F0FD /* HomeTimelineViewController.h */,
-				AD49F89F17D73D410030F0FD /* HomeTimelineViewController.m */,
-				ADE4EB8A17D6F5190097987A /* minitwitterAppDelegate.m */,
+				ADBCA7DF17E7403200E7B644 /* View Controllers */,
+				ADBCA7DE17E7402B00E7B644 /* Custom Views */,
+				ADBCA7DD17E7400F00E7B644 /* Model */,
 				ADE4EB9217D6F5190097987A /* MainStoryboard.storyboard */,
 				ADE4EB8117D6F5190097987A /* Supporting Files */,
-				AD49F89B17D72E3A0030F0FD /* UserTweetsViewController.h */,
-				AD49F89C17D72E3A0030F0FD /* UserTweetsViewController.m */,
-				AD49F8A117D74E2D0030F0FD /* TweetCell.h */,
-				AD49F8A217D74E2D0030F0FD /* TweetCell.m */,
-				AD49F8AC17D874F00030F0FD /* TweetViewController.h */,
-				AD49F8AD17D874F00030F0FD /* TweetViewController.m */,
-				AD36A47917DDE2D100AB6769 /* Tweet.h */,
-				AD36A47A17DDE2D100AB6769 /* Tweet.m */,
-				AD36A47C17DDE3CB00AB6769 /* User.h */,
-				AD36A47D17DDE3CB00AB6769 /* User.m */,
-				AD36A6DD17E071A200AB6769 /* MiniTwitterRootViewController.h */,
-				AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */,
-				AD54058017E084C40059677A /* LoginViewController.h */,
-				AD54058117E084C40059677A /* LoginViewController.m */,
-				AD54059D17E1C5BB0059677A /* CreateTweetViewController.h */,
-				AD54059E17E1C5BC0059677A /* CreateTweetViewController.m */,
-				AD5405A417E1DB1F0059677A /* Padder.h */,
-				AD5405A517E1DB200059677A /* Padder.m */,
-				AD5405A917E2F06F0059677A /* UserFollowingViewController.h */,
-				AD5405AA17E2F0700059677A /* UserFollowingViewController.m */,
-				AD5405AC17E2F0900059677A /* UserFollowersViewController.h */,
-				AD5405AD17E2F0900059677A /* UserFollowersViewController.m */,
-				AD5405B217E2F9910059677A /* UserCell.h */,
-				AD5405B317E2F9920059677A /* UserCell.m */,
 			);
 			path = "Mini Twitter For iOS";
 			sourceTree = "<group>";
@@ -228,6 +258,10 @@
 		ADE4EB8117D6F5190097987A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD5405A417E1DB1F0059677A /* Padder.h */,
+				AD5405A517E1DB200059677A /* Padder.m */,
+				ADE4EB8917D6F5190097987A /* minitwitterAppDelegate.h */,
+				ADE4EB8A17D6F5190097987A /* minitwitterAppDelegate.m */,
 				AD54059117E096F40059677A /* AnimatedGif.h */,
 				AD54059217E096F40059677A /* AnimatedGif.m */,
 				AD54058517E087450059677A /* images */,
@@ -343,6 +377,8 @@
 				AD5405AB17E2F0710059677A /* UserFollowingViewController.m in Sources */,
 				AD5405AE17E2F0910059677A /* UserFollowersViewController.m in Sources */,
 				AD5405B417E2F9930059677A /* UserCell.m in Sources */,
+				ADBCA7E217E740B600E7B644 /* Tweet+Twitter.m in Sources */,
+				ADBCA7E517E740C900E7B644 /* User+Twitter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
