@@ -7,6 +7,8 @@
 //
 
 #import "CreateTweetViewController.h"
+#import "Tweet+Twitter.h"
+#import "MiniTwitterRootViewController.h"
 
 @interface CreateTweetViewController ()
 
@@ -72,8 +74,6 @@
 }
 
 -(void)setInitialRightNavigationBar {
-
-    //Padder* padding = [[Padder alloc] initWithWidth:10];
     
     if(self.tweetButton){
         self.navigationItem.rightBarButtonItems = @[self.tweetButton,self.tweetTextLengthBarItem];
@@ -82,12 +82,6 @@
         self.navigationItem.rightBarButtonItems = @[self.tweetTextLengthBarItem];
     }
     
-    
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
     
 }
 
@@ -123,6 +117,9 @@
     [self disableTweetPosting];
     
     APICompletionBlock postTweetCompletionBlock = ^(NSDictionary * responseData){
+        MiniTwitterRootViewController* tabBarController = (MiniTwitterRootViewController*)self.tabBarController;
+        
+        [Tweet tweetWithTwitterData:responseData inManagedObjectContext:tabBarController.currentUser.managedObjectContext];
         [self tweetSuccess];
     };
     NSString* tweet = self.tweetMessageTextBox.text;
