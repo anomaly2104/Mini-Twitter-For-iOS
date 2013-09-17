@@ -13,14 +13,6 @@
 -(NSURL*) profileUrl{
     return [NSURL URLWithString:self.profileUrlString];
 }
-
-/*+(User *)userWithACAccount:(ACAccount *)acAccount inManagedObjectContext:(NSManagedObjectContext *)context{
-    User* user = [[User alloc] init];
-    user.userName = acAccount.username;
-    user.userId = [[acAccount valueForKey:@"properties"] valueForKey:@"user_id"];
-    return user;
-}*/
-
 +(User*) userWithTwitterData:(NSDictionary *)userTwitterData inManagedObjectContext:(NSManagedObjectContext *)context{
 
     User* user = nil;
@@ -50,7 +42,7 @@
     return user;
 }
 
-
+/*
 +(User*) userWithTwitterData:(NSDictionary*) userTwitterData{
     User *user = nil;
     user= [[User alloc] init];
@@ -68,5 +60,5 @@
     user.userName = acAccount.username;
     user.userId = [[acAccount valueForKey:@"properties"] valueForKey:@"user_id"];
     return user;
-}
+}*/
 @end

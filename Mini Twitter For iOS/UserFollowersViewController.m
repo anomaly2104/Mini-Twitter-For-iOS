@@ -12,34 +12,37 @@
 @interface UserFollowersViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
-@property (nonatomic,strong) NSArray* usersToShow;
 @end
 
 @implementation UserFollowersViewController
 
 @synthesize tweeterFetcher = _tweeterFetcher;
-@synthesize usersToShow = _usersToShow;
 @synthesize refreshButton = _refreshButton;
 
-
--(void) setUsersToShow:(NSArray *)usersToShow{
-    if( _usersToShow != usersToShow ) {
-        _usersToShow = usersToShow;
-        [self.tableView reloadData];
-    }
+-(void) setupFetchedResultsController{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                                                     ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)
+                                                        ]];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"any followings.userName = %@", self.user.userName];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.user.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
 }
+
+-(void)setUser:(User *)user{
+    _user = user;
+    [self setupFetchedResultsController];
+    [self refreshFollower:self.refreshButton];
+    self.title = @"Followers";
+}
+
 - (TweeterFetcher *) tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
     return _tweeterFetcher;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 -(void) disableRefresh{
@@ -64,37 +67,11 @@
         NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
-            User *user = [User userWithTwitterData:key];
-            [usersToShow addObject:user];
+            [self.user addFollowersObject:[User userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
         }
-        self.usersToShow = usersToShow;
     };
     [self.tweeterFetcher fetchFollowersForUser:self.user.userName completionBlock:refreshUserFollowerBlock dispatcherQueue:dispatch_get_main_queue()];
     
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self refreshFollower:self.refreshButton];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.usersToShow count];
 }
 
 -(UserCell*) setUserData:(User *) user OnCell:(UserCell*) cell {
@@ -122,7 +99,7 @@
         cell = [[UserCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
-    User *userToShow = [self.usersToShow objectAtIndex:indexPath.row];
+    User *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell = [self setUserData:userToShow OnCell:cell];
     
@@ -133,7 +110,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Cell selected %ld, %ld", (long)indexPath.section, (long)indexPath.row);
-    [self performSegueWithIdentifier:@"Follower To User" sender:[self.usersToShow objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:@"Follower To User" sender:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
