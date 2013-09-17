@@ -10,4 +10,6 @@
 
 @interface Tweet (Twitter)
 +(Tweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData;
++(Tweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData
+inManagedObjectContext:(NSManagedObjectContext*) context;
 @end

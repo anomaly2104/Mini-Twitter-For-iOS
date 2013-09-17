@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController id="lJc-gT-i3k" customClass="UserTweetsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qLY-8y-iWp">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="ZAJ-6k-WpX">
@@ -18,13 +18,13 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SS7-Qu-BOj">
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="72" id="YyD-2i-ZSP"/>
                                         <constraint firstAttribute="height" constant="70" id="dWx-Q3-fRQ"/>
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJC-TP-eyd">
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="isU-xX-Kxe"/>
+                                        <constraint firstAttribute="width" constant="201" id="qzQ-g1-f55"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -166,10 +166,11 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="yJC-TP-eyd" firstAttribute="top" secondItem="ZAJ-6k-WpX" secondAttribute="top" constant="20" symbolic="YES" type="default" id="1St-IB-dax"/>
-                                <constraint firstItem="TiF-Vr-PnG" firstAttribute="trailing" secondItem="ZAJ-6k-WpX" secondAttribute="trailing" type="default" id="5Db-PL-FRL"/>
-                                <constraint firstAttribute="trailing" secondItem="uRr-yN-QZi" secondAttribute="trailing" constant="212" id="7aC-Zw-WQQ"/>
+                                <constraint firstItem="yJC-TP-eyd" firstAttribute="leading" secondItem="ZAJ-6k-WpX" secondAttribute="leading" constant="100" id="8e8-Xg-fPO"/>
                                 <constraint firstItem="R5Y-FZ-NXO" firstAttribute="top" secondItem="uRr-yN-QZi" secondAttribute="top" type="default" id="8sF-rF-J6m"/>
+                                <constraint firstAttribute="trailing" secondItem="uRr-yN-QZi" secondAttribute="trailing" constant="211" id="9fV-21-Jkl"/>
                                 <constraint firstItem="H9Y-4m-DLa" firstAttribute="leading" secondItem="ZAJ-6k-WpX" secondAttribute="leading" constant="212" id="BJO-CI-ozx"/>
+                                <constraint firstItem="TiF-Vr-PnG" firstAttribute="centerX" secondItem="ZAJ-6k-WpX" secondAttribute="centerX" type="default" id="BVw-Oh-awK"/>
                                 <constraint firstItem="SS7-Qu-BOj" firstAttribute="leading" secondItem="ZAJ-6k-WpX" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="DsZ-cT-RSh"/>
                                 <constraint firstItem="uRr-yN-QZi" firstAttribute="leading" secondItem="ZAJ-6k-WpX" secondAttribute="leading" type="default" id="Dsp-ku-SBi"/>
                                 <constraint firstItem="TiF-Vr-PnG" firstAttribute="bottom" secondItem="ZAJ-6k-WpX" secondAttribute="bottom" type="default" id="F50-dc-sSD"/>
@@ -178,16 +179,15 @@
                                 <constraint firstItem="Q4g-qK-bBx" firstAttribute="leading" secondItem="SS7-Qu-BOj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="NBR-KP-chE"/>
                                 <constraint firstItem="TiF-Vr-PnG" firstAttribute="leading" secondItem="ZAJ-6k-WpX" secondAttribute="leading" type="default" id="PtG-E6-ReN"/>
                                 <constraint firstItem="SS7-Qu-BOj" firstAttribute="top" secondItem="ZAJ-6k-WpX" secondAttribute="top" constant="14" id="Qjx-qS-ZkH"/>
-                                <constraint firstAttribute="trailing" secondItem="Q4g-qK-bBx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Wk6-BL-VKx"/>
                                 <constraint firstItem="yJC-TP-eyd" firstAttribute="leading" secondItem="SS7-Qu-BOj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="b6x-sL-5Dn"/>
                                 <constraint firstItem="R5Y-FZ-NXO" firstAttribute="top" secondItem="H9Y-4m-DLa" secondAttribute="top" type="default" id="cvx-P2-Hes"/>
                                 <constraint firstItem="R5Y-FZ-NXO" firstAttribute="centerX" secondItem="TiF-Vr-PnG" secondAttribute="centerX" type="default" id="dQ1-pT-0YV"/>
                                 <constraint firstItem="Q4g-qK-bBx" firstAttribute="top" secondItem="yJC-TP-eyd" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="fdp-4m-n5m"/>
+                                <constraint firstItem="yJC-TP-eyd" firstAttribute="trailing" secondItem="Q4g-qK-bBx" secondAttribute="trailing" type="default" id="fqp-7R-6zA"/>
                                 <constraint firstAttribute="bottom" secondItem="H9Y-4m-DLa" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="iDT-ar-tEt"/>
                                 <constraint firstAttribute="bottom" secondItem="R5Y-FZ-NXO" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="k0o-y7-QpQ"/>
-                                <constraint firstAttribute="trailing" secondItem="yJC-TP-eyd" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="q5e-nE-YO4"/>
+                                <constraint firstItem="H9Y-4m-DLa" firstAttribute="trailing" secondItem="TiF-Vr-PnG" secondAttribute="trailing" type="default" id="mQ9-N1-hjb"/>
                                 <constraint firstItem="R5Y-FZ-NXO" firstAttribute="leading" secondItem="ZAJ-6k-WpX" secondAttribute="leading" constant="107" id="ss6-7W-kfB"/>
-                                <constraint firstItem="H9Y-4m-DLa" firstAttribute="trailing" secondItem="ZAJ-6k-WpX" secondAttribute="trailing" type="default" id="tJw-s8-J4o"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -330,7 +330,6 @@
         <!--Create Tweet View Controller - Compose-->
         <scene sceneID="wed-wM-zv2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a5x-QU-0le" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="xRo-La-xcj" customClass="CreateTweetViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Y7l-fu-90y">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
@@ -340,7 +339,7 @@
                             <tableViewSection id="Jh8-81-OP0">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="172" id="jO8-qu-d41">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="173"/>
+                                        <rect key="frame" x="0.0" y="10" width="320" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="171"/>
@@ -353,7 +352,7 @@
                                                         <constraint firstAttribute="width" constant="260" id="z2u-Me-Imo"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType=""/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -389,6 +388,7 @@
                         <outlet property="tweetMessageTextBox" destination="1ef-nw-bnI" id="Jro-FO-fnG"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a5x-QU-0le" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="318" y="1071"/>
         </scene>
@@ -518,7 +518,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="72" id="vvY-MI-tKU">
-                                        <rect key="frame" x="0.0" y="281" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="281" width="320" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="71"/>
@@ -566,7 +566,6 @@
         <!--Navigation Controller - Home-->
         <scene sceneID="57g-bK-9BG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xjl-8c-TIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Yjq-pV-hSg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="home.png" id="wKt-MC-XrN"/>
                     <toolbarItems/>
@@ -580,6 +579,7 @@
                         <segue destination="vJI-87-NKx" kind="relationship" relationship="rootViewController" id="tJb-3s-obV"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xjl-8c-TIk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="653" y="368"/>
         </scene>
@@ -635,7 +635,6 @@
         <!--Navigation Controller - Me-->
         <scene sceneID="pL2-4m-g77">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="w9O-Rt-7VB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="UiN-kV-NOR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" image="man.png" id="aA5-ax-Ung"/>
                     <toolbarItems/>
@@ -649,6 +648,7 @@
                         <segue destination="lJc-gT-i3k" kind="relationship" relationship="rootViewController" id="wRg-dL-ULy"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w9O-Rt-7VB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="762" y="1061"/>
         </scene>

@@ -18,6 +18,7 @@
 #define TWITTER_TWEET_TIMESTAMP @"created_at"
 #define TWITTER_TWEET_USER @"user"
 #define TWITTER_TWEET_ID @"id"
+#define TWITTER_TWEET_ID_STR @"id_str"
 
 #define TWITTER_FOLLOW_USERS @"users"
 #define TWITTER_FOLLOW_CURSOR_PREVIOUS @"previous_cursor"

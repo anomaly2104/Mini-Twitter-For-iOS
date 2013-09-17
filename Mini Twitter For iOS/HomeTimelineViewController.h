@@ -13,7 +13,8 @@
 #import "Utils.h"
 #import "Tweet.h"
 #import "TweetViewController.h"
-
-@interface HomeTimelineViewController : UITableViewController
-@property (nonatomic, strong) NSArray* tweetsToShow;
+#import "CoreDataTableViewController.h"
+#import "HomeTimeLine+Twitter.h"
+@interface HomeTimelineViewController : CoreDataTableViewController
+@property (nonatomic,strong) User* currentUser;
 @end

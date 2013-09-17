@@ -8,9 +8,9 @@
 
 #import "HomeTimelineViewController.h"
 #import "User+Twitter.h"
-#import "Tweet+Twitter.h"
 
 @interface HomeTimelineViewController ()
+//@property (nonatomic, strong) NSArray* tweetsToShow;
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @end
@@ -25,17 +25,17 @@
     }
     return self;
 }
-
-@synthesize tweetsToShow = _tweetsToShow;
+@synthesize currentUser = _currentUser;
+//@synthesize tweetsToShow = _tweetsToShow;
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize refreshButton = _refreshButton;
 
--(void) setTweetsToShow:(NSArray *)tweetsToShow {
+/*-(void) setTweetsToShow:(NSArray *)tweetsToShow {
     if( _tweetsToShow != tweetsToShow ) {
         _tweetsToShow = tweetsToShow;
         [self.tableView reloadData];
     }
-}
+}*/
 - (TweeterFetcher *) tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
     return _tweeterFetcher;
@@ -53,43 +53,38 @@
     APICompletionBlock refreshhomeTimelineTweetsBlock = ^(NSDictionary * timeLineData){
         self.navigationItem.rightBarButtonItem = sender;
         
-        NSMutableArray *tweetsToShow = [[NSMutableArray alloc] init];
+//        NSMutableArray *tweetsToShow = [[NSMutableArray alloc] init];
         for (NSDictionary* key in timeLineData) {
-            Tweet *tweet = [Tweet tweetWithTwitterData:key];
-            
-            [tweetsToShow addObject:tweet];
+//            Tweet *tweet = [Tweet tweetWithTwitterData:key];
+            [HomeTimeLine insertFeedWithFeedData:key inHomeTimeLineUserName:self.currentUser.userName inManagedObjectContext:self.currentUser.managedObjectContext];
+//            [Tweet tweetWithTwitterData:key inManagedObjectContext:self.currentUser.managedObjectContext];
+                
+
         }
-        self.tweetsToShow = tweetsToShow;
+
     };
     [self.tweeterFetcher fetchHomeTimelineForCurrentUserCompletionBlock:refreshhomeTimelineTweetsBlock
                                                         dispatcherQueue:dispatch_get_main_queue()];
 
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void) setupFetchedResultsController{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tweet"];
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tweetTimestamp"
+                                                                                     ascending:NO
+                                                                                      ]];
+    request.predicate = [NSPredicate predicateWithFormat:@"any inHomeTimeLine.userName = %@",self.currentUser.userName];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.currentUser.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+-(void)setCurrentUser:(User *)currentUser{
+    _currentUser = currentUser;
+    [self setupFetchedResultsController];
     [self refreshHomeTimeline:self.refreshButton];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [self.tweetsToShow count];
 }
 
 -(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
@@ -119,7 +114,7 @@
         cell = [[TweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
-    Tweet *tweetToShow = [self.tweetsToShow objectAtIndex:indexPath.row];
+    Tweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     cell = [self setTweetData:tweetToShow OnCell:cell];
     
@@ -128,7 +123,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Tweet *tweet = [self.tweetsToShow objectAtIndex:indexPath.row];
+    Tweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     id tweetMessage = tweet.tweetMessage;
     CGSize constraint = CGSizeMake(320 - (CELL_MARGIN_LEFT + CELL_MARGIN_RIGHT), 20000.0f);
@@ -144,7 +139,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Cell selected %ld, %ld", (long)indexPath.section, (long)indexPath.row);
-    [self performSegueWithIdentifier:@"Home Timeline Tweet To Show Tweet" sender:[self.tweetsToShow objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:@"Home Timeline Tweet To Show Tweet" sender:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (SEL) findAppropriateFunctionToInvokeOnBasisOfCurrentState1 {

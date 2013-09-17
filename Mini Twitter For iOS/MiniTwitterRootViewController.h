@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "HomeTimelineViewController.h"
 @interface MiniTwitterRootViewController : UITabBarController <UITabBarControllerDelegate>
 @property (nonatomic, strong) User* currentUser;
 @end

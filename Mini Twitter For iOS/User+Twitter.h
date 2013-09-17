@@ -7,8 +7,13 @@
 //
 
 #import "User.h"
-
+#import <Accounts/ACAccount.h>
 @interface User (Twitter)
 -(NSURL*) profileUrl;
 +(User*) userWithTwitterData:(NSDictionary*) userTwitterData;
++(User*) userWithTwitterData:(NSDictionary*) userTwitterData
+inManagedObjectContext:(NSManagedObjectContext*) context;
++(User*) userWithACAccount:(ACAccount*) acAccount;
+//+(User*) userWithACAccount:(ACAccount*) acAccount
+//inManagedObjectContext:(NSManagedObjectContext*) context;
 @end
