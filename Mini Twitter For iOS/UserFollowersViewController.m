@@ -12,18 +12,22 @@
 @interface UserFollowersViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
+@property (strong, nonatomic) NSString* nextCursor;
+@property (nonatomic) BOOL isFetching;
+
 @end
 
 @implementation UserFollowersViewController
 
+@synthesize nextCursor = _nextCursor;
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize refreshButton = _refreshButton;
 
 -(void) setupFetchedResultsController{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                                                     ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)
-                                                        ]];
+    request.sortDescriptors = @[];//[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                    //                                                 ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)
+                                      //                  ]];
     
     request.predicate = [NSPredicate predicateWithFormat:@"any followings.userName = %@", self.user.userName];
     
@@ -36,8 +40,11 @@
 -(void)setUser:(User *)user{
     _user = user;
     [self setupFetchedResultsController];
-    [self refreshFollower:self.refreshButton];
     self.title = @"Followers";
+
+    self.nextCursor = @"-1";
+    self.isFetching = NO;
+    [self fetchUserFollowers];
 }
 
 - (TweeterFetcher *) tweeterFetcher {
@@ -51,26 +58,38 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 }
 
--(void) enableRefresh: (id) sender{
-    self.navigationItem.rightBarButtonItem = sender;
+-(void) enableRefresh{
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
-
-- (IBAction)refreshFollower:(id)sender {
+-(void) fetchUserFollowers{
+    if(self.isFetching){
+        return;
+    }
+    self.isFetching = YES;
+    
     [self disableRefresh];
     if(!self.tweeterFetcher){
         NSLog(@"Fetcher Nil");
     }
     
     APICompletionBlock refreshUserFollowerBlock = ^(NSDictionary * followData){
-        [self enableRefresh:sender];
-        NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
+        [self enableRefresh];
+        self.nextCursor = [NSString stringWithFormat:@"%@", [followData valueForKey:TWITTER_FOLLOW_CURSOR_NEXT] ];
+
+//        NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
             [self.user addFollowersObject:[User userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
         }
+        self.isFetching = NO;
+
     };
-    [self.tweeterFetcher fetchFollowersForUser:self.user.userName completionBlock:refreshUserFollowerBlock dispatcherQueue:dispatch_get_main_queue()];
+    [self.tweeterFetcher fetchFollowersForUser:self.user.userName completionBlock:refreshUserFollowerBlock dispatcherQueue:dispatch_get_main_queue() nextCursor:self.nextCursor];
+}
+
+- (IBAction)refreshFollower:(id)sender {
+    
     
 }
 
@@ -119,6 +138,18 @@
         [segue.destinationViewController setUser:user];
     }
 }
-
+-(void) scrollViewDidScroll:(UIScrollView *)aScrollView{
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    
+    float reload_distance = -400;
+    if(y > h + reload_distance) {
+        [self fetchUserFollowers];
+    }
+}
 
 @end

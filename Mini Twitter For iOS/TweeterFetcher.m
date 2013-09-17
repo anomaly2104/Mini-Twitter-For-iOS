@@ -216,9 +216,11 @@ params =    @{@"screen_name" : username,
 - (void)fetchFollowersForUser:(NSString *)username
             completionBlock:(APICompletionBlock)apiCompletionBlock
             dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                   nextCursor:(NSString*)nextCursor
 {
     NSString *api = @"followers/list.json";
-    NSDictionary *params = @{@"screen_name" : username};
+    NSDictionary *params = @{@"screen_name" : username,
+                             @"cursor": nextCursor};
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue
@@ -228,9 +230,11 @@ params =    @{@"screen_name" : username,
 - (void)fetchFollowingForUser:(NSString *)username
               completionBlock:(APICompletionBlock)apiCompletionBlock
               dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                   nextCursor:(NSString*)nextCursor
 {
     NSString *api = @"friends/list.json";
-    NSDictionary *params = @{@"screen_name" : username};
+    NSDictionary *params = @{@"screen_name" : username,
+                             @"cursor": nextCursor};
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue

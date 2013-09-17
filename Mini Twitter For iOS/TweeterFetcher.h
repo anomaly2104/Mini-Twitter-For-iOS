@@ -58,9 +58,11 @@ typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 
 - (void)fetchFollowingForUser:(NSString *)username
               completionBlock:(APICompletionBlock)apiCompletionBlock
-              dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
+              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                   nextCursor:(NSString*)nextCursor;
 
 - (void)fetchFollowersForUser:(NSString *)username
               completionBlock:(APICompletionBlock)apiCompletionBlock
-              dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
+              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                   nextCursor:(NSString*)nextCursor;
 @end

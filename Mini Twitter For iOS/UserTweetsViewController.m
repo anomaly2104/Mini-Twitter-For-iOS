@@ -113,20 +113,17 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-    //[self.tableView setAlwaysBounceVertical:YES];
-  //  self.tableView.bounces = YES;
-    
     [self.tableView reloadData];
 }
 
 -(void)setUser:(User *)user{
     _user = user;
     [self setupFetchedResultsController];
-    [self refreshUserTimeline:self.refreshButton];
     self.title = self.user.name;
     [self setUserProfileData];
     self.isFetching = NO;
     self.maxId = @"-1";
+    [self fetchUserTweets];
 }
 
 -(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
@@ -172,8 +169,8 @@
     
     CGSize size = [tweetMessage sizeWithFont:[UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
     
-    [self.tableView setContentSize:CGSizeMake(320, self.tableView.contentSize.height + 55 + size.height)];
-    NSLog(@"%f\n",self.tableView.contentSize.height + 55 + size.height);
+//    [self.tableView setContentSize:CGSizeMake(320, self.tableView.contentSize.height + 55 + size.height)];
+
     return (55+size.height);
 }
 
