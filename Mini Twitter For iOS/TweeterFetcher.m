@@ -151,11 +151,17 @@ params =    @{@"screen_name" : username,
 - (void)fetchTimelineForUser:(NSString *)username
              completionBlock:(APICompletionBlock)apiCompletionBlock
              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                       maxId:(NSString*) maxId
 {
     NSString *api = @"statuses/user_timeline.json";
-    NSDictionary *params = @{@"screen_name" : username,
+    
+    NSMutableDictionary *params = [@{@"screen_name" : username,
                              @"include_rts" : @"0",
-                             @"count" : @"50"};
+                             @"count" : @"50"} mutableCopy];
+    
+    if(![maxId isEqualToString: @"-1"]){
+        params[@"max_id"] = maxId;
+    }
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue
@@ -164,10 +170,20 @@ params =    @{@"screen_name" : username,
 
 - (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                                                 maxId:(NSString*) maxId
 {
     NSString *api = @"statuses/home_timeline.json";
-    NSDictionary *params = @{@"include_rts" : @"0",
-                             @"count" : @"10"};
+    NSDictionary *params;
+    if(![maxId isEqualToString: @"-1"]){
+        params = @{@"include_rts" : @"0",
+                                 @"count" : @"20",
+                                 @"max_id" : maxId};
+    }
+    else{
+        params = @{@"include_rts" : @"0",
+                                 @"count" : @"20"};
+
+    }
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue

@@ -13,6 +13,8 @@
 //@property (nonatomic, strong) NSArray* tweetsToShow;
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
+@property (strong, nonatomic) NSString *maxId;
+@property (nonatomic) BOOL isFetching;
 @end
 
 @implementation HomeTimelineViewController
@@ -25,23 +27,21 @@
     }
     return self;
 }
+@synthesize maxId = _maxId;
 @synthesize currentUser = _currentUser;
-//@synthesize tweetsToShow = _tweetsToShow;
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize refreshButton = _refreshButton;
 
-/*-(void) setTweetsToShow:(NSArray *)tweetsToShow {
-    if( _tweetsToShow != tweetsToShow ) {
-        _tweetsToShow = tweetsToShow;
-        [self.tableView reloadData];
-    }
-}*/
 - (TweeterFetcher *) tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
     return _tweeterFetcher;
 }
 
-- (IBAction)refreshHomeTimeline:(id)sender {
+-(void) fetchHomeTimeline {
+    if(self.isFetching){
+        return;
+    }
+    self.isFetching = YES;
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] init];
     [spinner startAnimating];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
@@ -50,22 +50,27 @@
         NSLog(@"Fetcher Nil");
     }
     
-    APICompletionBlock refreshhomeTimelineTweetsBlock = ^(NSDictionary * timeLineData){
-        self.navigationItem.rightBarButtonItem = sender;
-        
-//        NSMutableArray *tweetsToShow = [[NSMutableArray alloc] init];
+    APICompletionBlock fetchHomeTimelineTweetsBlock = ^(NSDictionary * timeLineData){
+        self.navigationItem.rightBarButtonItem = nil;
         for (NSDictionary* key in timeLineData) {
-//            Tweet *tweet = [Tweet tweetWithTwitterData:key];
+            
+            NSString* tweetId = [key valueForKey:TWITTER_TWEET_ID_STR];
+            
+            if(  [self.maxId compare:tweetId] == NSOrderedDescending || [self.maxId isEqualToString:@"-1"] ){
+                self.maxId = tweetId;
+            }
+            NSLog(@"%@, %@", self.maxId, tweetId);
             [HomeTimeLine insertFeedWithFeedData:key inHomeTimeLineUserName:self.currentUser.userName inManagedObjectContext:self.currentUser.managedObjectContext];
-//            [Tweet tweetWithTwitterData:key inManagedObjectContext:self.currentUser.managedObjectContext];
-                
-
         }
+        self.isFetching = NO;
 
     };
-    [self.tweeterFetcher fetchHomeTimelineForCurrentUserCompletionBlock:refreshhomeTimelineTweetsBlock
-                                                        dispatcherQueue:dispatch_get_main_queue()];
+    [self.tweeterFetcher fetchHomeTimelineForCurrentUserCompletionBlock:fetchHomeTimelineTweetsBlock
+                                                        dispatcherQueue:dispatch_get_main_queue() maxId:self.maxId];
 
+}
+
+- (IBAction)refreshHomeTimeline:(id)sender {
 }
 
 -(void) setupFetchedResultsController{
@@ -84,7 +89,9 @@
 -(void)setCurrentUser:(User *)currentUser{
     _currentUser = currentUser;
     [self setupFetchedResultsController];
-    [self refreshHomeTimeline:self.refreshButton];
+    self.maxId = @"-1";
+    self.isFetching = NO;
+    [self fetchHomeTimeline];
 }
 
 -(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
@@ -132,7 +139,9 @@
     
     return (55+size.height);
 }
-
+-(void) viewWillAppear:(BOOL)animated{
+    
+}
 
 #pragma mark - Table view delegate
 
@@ -150,6 +159,20 @@
     if( [segue.identifier isEqualToString:@"Home Timeline Tweet To Show Tweet"]){
         Tweet* tweet = (Tweet*)sender;
         [segue.destinationViewController setTweet:tweet];
+    }
+}
+
+-(void) scrollViewDidScroll:(UIScrollView *)aScrollView{
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    
+    float reload_distance = -400;
+    if(y > h + reload_distance) {
+        [self fetchHomeTimeline];
     }
 }
 

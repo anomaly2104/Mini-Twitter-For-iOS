@@ -20,6 +20,9 @@
 
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
+@property (nonatomic) BOOL isFetching;
+@property (strong, nonatomic) NSString *maxId;
+
 @end
 
 @implementation UserTweetsViewController
@@ -32,24 +35,22 @@
     }
     return self;
 }
-
-//@synthesize tweetsToShow = _tweetsToShow;
+@synthesize maxId = _maxId;
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize refreshButton = _refreshButton;
 @synthesize user = _user;
 
-/*-(void) setTweetsToShow:(NSArray *)tweetsToShow{
-    if( _tweetsToShow != tweetsToShow ) {
-        _tweetsToShow = tweetsToShow;
-        [self.tableView reloadData];
-    }
-}*/
 - (TweeterFetcher *) tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
     return _tweeterFetcher;
 }
 
-- (IBAction)refreshUserTimeline:(id)sender {
+-(void) fetchUserTweets{
+    if(self.isFetching){
+        return;
+    }
+    self.isFetching = YES;
+
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] init];
     [spinner startAnimating];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
@@ -59,17 +60,23 @@
     }
     
     APICompletionBlock refreshUserTweetsBlock = ^(NSDictionary * timeLineData){
-        self.navigationItem.rightBarButtonItem = sender;
-        
-//        NSMutableArray *tweetsToShow = [[NSMutableArray alloc] init];
+        self.navigationItem.rightBarButtonItem = nil;
         for (NSDictionary* key in timeLineData) {
-    //        Tweet *tweet = [Tweet tweetWithTwitterData:key];
+            NSString* tweetId = [key valueForKey:TWITTER_TWEET_ID_STR];
+            
+            if(  [self.maxId compare:tweetId] == NSOrderedDescending || [self.maxId isEqualToString:@"-1"] ){
+                self.maxId = tweetId;
+            }
+            
             [Tweet tweetWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext];
-//            [tweetsToShow addObject:tweet];
         }
-  //      self.tweetsToShow = tweetsToShow;
+        self.isFetching = NO;
     };
-    [self.tweeterFetcher fetchTimelineForUser:self.user.userName completionBlock:refreshUserTweetsBlock dispatcherQueue:dispatch_get_main_queue()];
+    [self.tweeterFetcher fetchTimelineForUser:self.user.userName completionBlock:refreshUserTweetsBlock dispatcherQueue:dispatch_get_main_queue() maxId: self.maxId];
+    
+}
+- (IBAction)refreshUserTimeline:(id)sender {
+
 }
 
 -(void) setUserProfileData{
@@ -105,12 +112,21 @@
                                                                                    cacheName:nil];
 }
 
+-(void) viewWillAppear:(BOOL)animated{
+    //[self.tableView setAlwaysBounceVertical:YES];
+  //  self.tableView.bounces = YES;
+    
+    [self.tableView reloadData];
+}
+
 -(void)setUser:(User *)user{
     _user = user;
     [self setupFetchedResultsController];
     [self refreshUserTimeline:self.refreshButton];
     self.title = self.user.name;
     [self setUserProfileData];
+    self.isFetching = NO;
+    self.maxId = @"-1";
 }
 
 -(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
@@ -156,6 +172,8 @@
     
     CGSize size = [tweetMessage sizeWithFont:[UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
     
+    [self.tableView setContentSize:CGSizeMake(320, self.tableView.contentSize.height + 55 + size.height)];
+    NSLog(@"%f\n",self.tableView.contentSize.height + 55 + size.height);
     return (55+size.height);
 }
 
@@ -182,5 +200,17 @@
         [segue.destinationViewController setUser:self.user];
     }
 }
-
+-(void) scrollViewDidScroll:(UIScrollView *)aScrollView{
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    
+    float reload_distance = -400;
+    if(y > h + reload_distance) {
+        [self fetchUserTweets];
+    }
+}
 @end

@@ -24,8 +24,8 @@
         <relationship name="tweet" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="tweetedBy" inverseEntity="Tweet" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="160" positionY="192" width="128" height="193"/>
+        <element name="HomeTimeLine" positionX="603" positionY="207" width="128" height="73"/>
         <element name="Tweet" positionX="342" positionY="-0" width="128" height="118"/>
-        <element name="HomeTimeLine" positionX="468" positionY="225" width="128" height="73"/>
+        <element name="User" positionX="153" positionY="50" width="128" height="193"/>
     </elements>
 </model>
