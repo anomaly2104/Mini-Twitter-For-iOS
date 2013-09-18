@@ -156,8 +156,8 @@ params =    @{@"screen_name" : username,
     NSString *api = @"statuses/user_timeline.json";
     
     NSMutableDictionary *params = [@{@"screen_name" : username,
-                             @"include_rts" : @"0",
-                             @"count" : @"50"} mutableCopy];
+                                   @"include_rts" : @"0",
+                                   @"count" : @"50"} mutableCopy];
     
     if(![maxId isEqualToString: @"-1"]){
         params[@"max_id"] = maxId;
@@ -173,22 +173,37 @@ params =    @{@"screen_name" : username,
                                                  maxId:(NSString*) maxId
 {
     NSString *api = @"statuses/home_timeline.json";
-    NSDictionary *params;
-    if(![maxId isEqualToString: @"-1"]){
-        params = @{@"include_rts" : @"0",
-                                 @"count" : @"20",
-                                 @"max_id" : maxId};
-    }
-    else{
-        params = @{@"include_rts" : @"0",
-                                 @"count" : @"20"};
+    NSMutableDictionary *params =  [@{@"include_rts" : @"0",
+                                    @"count" : @"20"} mutableCopy];
 
+    if(![maxId isEqualToString: @"-1"]){
+        params[@"max_id"] = maxId;
     }
+    
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue
          requestMethod:SLRequestMethodGET];
 }
+
+- (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
+                                       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                                                 sinceId:(NSString *)sinceId
+{
+    NSString *api = @"statuses/home_timeline.json";
+    NSMutableDictionary *params =  [@{@"include_rts" : @"0",
+                                    @"count" : @"20"} mutableCopy];
+    
+    if(![sinceId isEqualToString: @"-1"]){
+        params[@"since_id"] = sinceId;
+    }
+    
+    [self fetchFromApi:api withParams:params
+       completionBlock:apiCompletionBlock
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
+}
+
 - (void)postTweet:(NSString*)tweet
   completionBlock:(APICompletionBlock)apiCompletionBlock
   dispatcherQueue:(dispatch_queue_t)dispatcherQueue

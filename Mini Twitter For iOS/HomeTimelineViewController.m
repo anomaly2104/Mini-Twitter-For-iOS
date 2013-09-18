@@ -14,6 +14,7 @@
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (strong, nonatomic) NSString *maxId;
+@property (strong, nonatomic) NSString *sinceId;
 @property (nonatomic) BOOL isFetching;
 @end
 
@@ -28,6 +29,7 @@
     return self;
 }
 @synthesize maxId = _maxId;
+@synthesize sinceId = _sinceId;
 @synthesize currentUser = _currentUser;
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize refreshButton = _refreshButton;
@@ -35,6 +37,42 @@
 - (TweeterFetcher *) tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
     return _tweeterFetcher;
+}
+-(void)setCurrentUser:(User *)currentUser{
+    _currentUser = currentUser;
+    [self setupFetchedResultsController];
+    self.maxId = @"-1";
+    self.sinceId = @"-1";
+    self.isFetching = NO;
+    [self fetchHomeTimeline];
+}
+
+-(void) viewDidLoad{
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self action:@selector(fetchNewHomeTimeLineTweets:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+}
+
+-(void) changeIdsForTweetId:(NSString*) tweetId{
+    if(  [self.maxId compare:tweetId] == NSOrderedDescending || [self.maxId isEqualToString:@"-1"] ){
+        self.maxId = tweetId;
+    }
+    if(  [self.sinceId compare:tweetId] == NSOrderedAscending || [self.sinceId isEqualToString:@"-1"] ){
+        self.sinceId = tweetId;
+    }
+}
+
+
+-(void) insertTwitterTweetDataIntoCoreData : (NSDictionary *)timeLineData{
+    for (NSDictionary* key in timeLineData) {
+        
+        NSString* tweetId = [key valueForKey:TWITTER_TWEET_ID_STR];
+        [self changeIdsForTweetId:tweetId];
+        
+        [HomeTimeLine insertFeedWithFeedData:key inHomeTimeLineUserName:self.currentUser.userName inManagedObjectContext:self.currentUser.managedObjectContext];
+    }
+
 }
 
 -(void) fetchHomeTimeline {
@@ -52,22 +90,31 @@
     
     APICompletionBlock fetchHomeTimelineTweetsBlock = ^(NSDictionary * timeLineData){
         self.navigationItem.rightBarButtonItem = nil;
-        for (NSDictionary* key in timeLineData) {
-            
-            NSString* tweetId = [key valueForKey:TWITTER_TWEET_ID_STR];
-            
-            if(  [self.maxId compare:tweetId] == NSOrderedDescending || [self.maxId isEqualToString:@"-1"] ){
-                self.maxId = tweetId;
-            }
-            NSLog(@"%@, %@", self.maxId, tweetId);
-            [HomeTimeLine insertFeedWithFeedData:key inHomeTimeLineUserName:self.currentUser.userName inManagedObjectContext:self.currentUser.managedObjectContext];
-        }
+        [self insertTwitterTweetDataIntoCoreData:timeLineData];
         self.isFetching = NO;
-
+        
     };
     [self.tweeterFetcher fetchHomeTimelineForCurrentUserCompletionBlock:fetchHomeTimelineTweetsBlock
                                                         dispatcherQueue:dispatch_get_main_queue() maxId:self.maxId];
+    
+}
 
+-(void) fetchNewHomeTimeLineTweets : (UIRefreshControl*) refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+
+    APICompletionBlock fetchHomeTimelineTweetsBlock = ^(NSDictionary * timeLineData){
+        [self insertTwitterTweetDataIntoCoreData:timeLineData];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                                 [formatter stringFromDate:[NSDate date]]];
+        refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+        [refresh endRefreshing];
+
+        
+    };
+    [self.tweeterFetcher fetchHomeTimelineForCurrentUserCompletionBlock:fetchHomeTimelineTweetsBlock
+                                                        dispatcherQueue:dispatch_get_main_queue() sinceId:self.sinceId];
 }
 
 - (IBAction)refreshHomeTimeline:(id)sender {
@@ -86,15 +133,9 @@
                                                                                    cacheName:nil];
 }
 
--(void)setCurrentUser:(User *)currentUser{
-    _currentUser = currentUser;
-    [self setupFetchedResultsController];
-    self.maxId = @"-1";
-    self.isFetching = NO;
-    [self fetchHomeTimeline];
-}
-
 -(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
+    
+    [self changeIdsForTweetId:tweet.tweetId];
 
     cell.tweetedByName.text = tweet.tweetedBy.name;
     cell.tweetTime.text = [Utils convertTweetNSDateToTimeAgo:tweet.tweetTimestamp];
