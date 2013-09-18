@@ -36,6 +36,26 @@ params =    @{@"screen_name" : username,
               @"count" : @"10"};
  */
 
+-(void) someTests:(SLRequest*)slRequest{
+    NSURLRequest * reqTemp = slRequest;
+    NSDictionary * dictHeaders = [reqTemp allHTTPHeaderFields];
+    
+    NSString * authString = dictHeaders[@"Authorization"];
+    NSArray * arrayAuth = [authString componentsSeparatedByString:@","];
+    NSString * accessToken=nil;
+    for( NSString * val in arrayAuth ) {
+        if( [val rangeOfString:@"oauth_token"].length > 0 ) {
+            accessToken =
+            [val stringByReplacingOccurrencesOfString:@"\""
+                                           withString:@""];
+            accessToken =
+            [accessToken stringByReplacingOccurrencesOfString:@"oauth_token="
+                                                   withString:@""];
+            break;
+        }
+    }
+}
+
 - (void) fetchCurrentUserCompletionBlock:(FetchCurrentUserCompletionBlock)completionBlock
                          dispatcherQueue:(dispatch_queue_t)dispatcherQueue
  {
@@ -102,6 +122,8 @@ params =    @{@"screen_name" : username,
                  //  Attach an account to the request
 
                  [request setAccount:[twitterAccounts lastObject]];
+                
+                 [self someTests:request];
                  
                  //  Step 3:  Execute the request
                  [request performRequestWithHandler:^(NSData *responseData,

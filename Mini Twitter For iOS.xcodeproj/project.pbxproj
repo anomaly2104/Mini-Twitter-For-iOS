@@ -225,8 +225,6 @@
 		ADE4EB6E17D6F5190097987A = {
 			isa = PBXGroup;
 			children = (
-				ADBCA80317E74FBA00E7B644 /* CoreData.framework */,
-				AD5405A717E2EA110059677A /* QuartzCore.framework */,
 				ADE4EB8017D6F5190097987A /* Mini Twitter For iOS */,
 				ADE4EB7917D6F5190097987A /* Frameworks */,
 				ADE4EB7817D6F5190097987A /* Products */,
@@ -244,6 +242,8 @@
 		ADE4EB7917D6F5190097987A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ADBCA80317E74FBA00E7B644 /* CoreData.framework */,
+				AD5405A717E2EA110059677A /* QuartzCore.framework */,
 				AD49F89317D6F82D0030F0FD /* Accounts.framework */,
 				ADE4EB9D17D6F5280097987A /* Social.framework */,
 				AD49F89117D6F8250030F0FD /* Twitter.framework */,
