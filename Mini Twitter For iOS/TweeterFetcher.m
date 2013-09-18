@@ -168,6 +168,27 @@ params =    @{@"screen_name" : username,
          requestMethod:SLRequestMethodGET];
 }
 
+- (void)fetchTimelineForUser:(NSString *)username
+             completionBlock:(APICompletionBlock)apiCompletionBlock
+             dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                       sinceId:(NSString *)sinceId
+{
+    NSString *api = @"statuses/user_timeline.json";
+    
+    NSMutableDictionary *params = [@{@"screen_name" : username,
+                                   @"include_rts" : @"0",
+                                   @"count" : @"50"} mutableCopy];
+    
+    if(![sinceId isEqualToString: @"-1"]){
+        params[@"since_id"] = sinceId;
+    }
+    [self fetchFromApi:api withParams:params
+       completionBlock:apiCompletionBlock
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
+}
+
+
 - (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
                                                  maxId:(NSString*) maxId

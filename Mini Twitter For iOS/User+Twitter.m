@@ -27,17 +27,20 @@
     
     if (!matches || ([matches count] > 1)) {
         // handle error
-    } else if ([matches count] == 0) {
-        user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+    } else {
+        if ([matches count] == 0) {
+            user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+        } else {
+            user = [matches lastObject];
+        }
+        
         user.profileUrlString = [userTwitterData valueForKey:TWITTER_USER_PROFILE_IMAGE_URL];
         user.name = [userTwitterData valueForKey:TWITTER_USER_NAME];
         user.userId = [userTwitterData valueForKey:TWITTER_USER_ID_STR];
         user.userName = [userTwitterData valueForKey:TWITTER_USER_USERNAME];
         user.numberTweets = [userTwitterData valueForKey:TWITTER_USER_TWEETS_COUNT];
         user.numberFollowers = [userTwitterData valueForKey:TWITTER_USER_FOLLOWERS_COUNT];
-        user.numberFollowing = [userTwitterData valueForKey:TWITTER_USER_FOLLOWING_COUNT];        
-    } else {
-        user = [matches lastObject];
+        user.numberFollowing = [userTwitterData valueForKey:TWITTER_USER_FOLLOWING_COUNT];
     }
     return user;
 }

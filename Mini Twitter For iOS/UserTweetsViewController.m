@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic) BOOL isFetching;
 @property (strong, nonatomic) NSString *maxId;
-
+@property (strong, nonatomic) NSString *sinceId;
 @end
 
 @implementation UserTweetsViewController
@@ -36,6 +36,7 @@
     return self;
 }
 @synthesize maxId = _maxId;
+@synthesize sinceId = _sinceId;
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize refreshButton = _refreshButton;
 @synthesize user = _user;
@@ -43,6 +44,40 @@
 - (TweeterFetcher *) tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
     return _tweeterFetcher;
+}
+-(void)setUser:(User *)user{
+    _user = user;
+    [self setupFetchedResultsController];
+    self.title = self.user.name;
+    self.isFetching = NO;
+    self.maxId = @"-1";
+    self.sinceId = @"-1";
+    [self fetchUserTweets];
+}
+-(void) viewDidLoad{
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to get new Tweets"];
+    [refresh addTarget:self action:@selector(fetchNewUserTweets:) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    [self.tableView reloadData];
+}
+
+-(void) changeIdsForTweetId:(NSString*) tweetId{
+    if(  [self.maxId compare:tweetId] == NSOrderedDescending || [self.maxId isEqualToString:@"-1"] ){
+        self.maxId = tweetId;
+    }
+    if(  [self.sinceId compare:tweetId] == NSOrderedAscending || [self.sinceId isEqualToString:@"-1"] ){
+        self.sinceId = tweetId;
+    }
+}
+-(void) insertTwitterTweetDataIntoCoreData : (NSDictionary *)timeLineData{
+    for (NSDictionary* key in timeLineData) {
+        NSString* tweetId = [key valueForKey:TWITTER_TWEET_ID_STR];
+        [self changeIdsForTweetId:tweetId];
+        
+        [Tweet tweetWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext];
+    }
+    
 }
 
 -(void) fetchUserTweets{
@@ -61,30 +96,40 @@
     
     APICompletionBlock refreshUserTweetsBlock = ^(NSDictionary * timeLineData){
         self.navigationItem.rightBarButtonItem = nil;
-        for (NSDictionary* key in timeLineData) {
-            NSString* tweetId = [key valueForKey:TWITTER_TWEET_ID_STR];
-            
-            if(  [self.maxId compare:tweetId] == NSOrderedDescending || [self.maxId isEqualToString:@"-1"] ){
-                self.maxId = tweetId;
-            }
-            
-            [Tweet tweetWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext];
-        }
+        [self insertTwitterTweetDataIntoCoreData:timeLineData];
         self.isFetching = NO;
     };
     [self.tweeterFetcher fetchTimelineForUser:self.user.userName completionBlock:refreshUserTweetsBlock dispatcherQueue:dispatch_get_main_queue() maxId: self.maxId];
     
+}
+-(void) fetchNewUserTweets : (UIRefreshControl*) refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    
+    APICompletionBlock refreshUserTweetsBlock = ^(NSDictionary * timeLineData){
+        [self insertTwitterTweetDataIntoCoreData:timeLineData];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+                                 [formatter stringFromDate:[NSDate date]]];
+        refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+        [refresh endRefreshing];
+    };
+    [self.tweeterFetcher fetchTimelineForUser:self.user.userName completionBlock:refreshUserTweetsBlock dispatcherQueue:dispatch_get_main_queue() sinceId: self.sinceId];
 }
 - (IBAction)refreshUserTimeline:(id)sender {
 
 }
 
 -(void) setUserProfileData{
-        self.userName.text = self.user.name;
-        self.userUserName.text = [NSString stringWithFormat:@"@%@",self.user.userName ];
-        self.tweetsCount.text = [NSString stringWithFormat:@"%@",self.user.numberTweets];
-        self.followersCount.text = [NSString stringWithFormat:@"%@",self.user.numberFollowers];
-        self.followingCount.text = [NSString stringWithFormat:@"%@",self.user.numberFollowing];
+    
+    APICompletionBlock getUserDetailsBlock = ^(NSDictionary * UserData){
+        User* user = [User userWithTwitterData:UserData inManagedObjectContext:self.user.managedObjectContext];
+        
+        self.userName.text = user.name;
+        self.userUserName.text = [NSString stringWithFormat:@"@%@",user.userName ];
+        self.tweetsCount.text = [NSString stringWithFormat:@"%@",user.numberTweets];
+        self.followersCount.text = [NSString stringWithFormat:@"%@",user.numberFollowers];
+        self.followingCount.text = [NSString stringWithFormat:@"%@",user.numberFollowing];
         
         dispatch_queue_t downloadQueue = dispatch_queue_create("Twitter Downloader", NULL);
         dispatch_async(downloadQueue, ^{
@@ -96,6 +141,8 @@
                 self.userProfileImage.image = tmpImage;
             });
         });
+    };
+    [self.tweeterFetcher fetchDetailsForUser:self.user.userName completionBlock:getUserDetailsBlock dispatcherQueue:dispatch_get_main_queue()];
 }
 
 -(void) setupFetchedResultsController{
@@ -114,19 +161,14 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
+    [self setUserProfileData];
 }
 
--(void)setUser:(User *)user{
-    _user = user;
-    [self setupFetchedResultsController];
-    self.title = self.user.name;
-    [self setUserProfileData];
-    self.isFetching = NO;
-    self.maxId = @"-1";
-    [self fetchUserTweets];
-}
+
 
 -(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
+
+    [self changeIdsForTweetId:tweet.tweetId];
     
     cell.tweetedByName.text = tweet.tweetedBy.name;
     cell.tweetTime.text = [Utils convertTweetNSDateToTimeAgo:tweet.tweetTimestamp];

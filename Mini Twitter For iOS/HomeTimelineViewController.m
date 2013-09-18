@@ -49,7 +49,7 @@
 
 -(void) viewDidLoad{
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to get new Tweets"];
     [refresh addTarget:self action:@selector(fetchNewHomeTimeLineTweets:) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
 }

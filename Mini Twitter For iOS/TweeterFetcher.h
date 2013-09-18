@@ -38,9 +38,16 @@ typedef void (^ APICompletionBlock)(NSDictionary *);
 typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 
 @interface TweeterFetcher : NSObject
+
 - (void)fetchTimelineForUser:(NSString *)username
              completionBlock:(APICompletionBlock) apiCompletionBlock
-             dispatcherQueue:(dispatch_queue_t) dispatcherQueue maxId:(NSString*) maxId;
+             dispatcherQueue:(dispatch_queue_t) dispatcherQueue
+                       maxId:(NSString*) maxId;
+
+- (void)fetchTimelineForUser:(NSString *)username
+             completionBlock:(APICompletionBlock) apiCompletionBlock
+             dispatcherQueue:(dispatch_queue_t) dispatcherQueue
+                       sinceId:(NSString*) sinceId;
 
 - (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
     dispatcherQueue:(dispatch_queue_t)dispatcherQueue
