@@ -35,7 +35,7 @@
 
 }
 
-- (NSString *)extractValueForKey:(NSString *)target fromHTTPBody:(NSString *)body {
++ (NSString *)extractValueForKey:(NSString *)target fromHTTPBody:(NSString *)body {
     if (body.length == 0) {
         return nil;
     }

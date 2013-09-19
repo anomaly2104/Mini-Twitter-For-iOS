@@ -49,7 +49,7 @@
     LoginCompletionBlock loginCompletionBlock = ^(BOOL success){
 
         NSString* userInfo= [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
-        NSString* currentUserName = @"MastChamp";//[Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
+        NSString* currentUserName = [Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
         
         APICompletionBlock fetchUserDetails = ^(NSDictionary* userDetails){
             self.currentUser = [User userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];

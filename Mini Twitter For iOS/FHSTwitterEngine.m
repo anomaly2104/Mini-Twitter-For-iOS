@@ -1311,8 +1311,6 @@ id removeNull(id rootObject) {
     return data;
 }
 
-
-
 -(NSString*)buildOAuthHeaderForRequestForMethod:(NSString*)method
                                          forUrl: (NSURL* )requestUrl{
     return  [self buildOAuthHeaderWithToken:_accessToken.key tokenSecret:_accessToken.secret verifier:nil forMethod:method forUrl:requestUrl];

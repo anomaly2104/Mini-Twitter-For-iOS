@@ -14,8 +14,13 @@
 #import "FHSTwitterEngine.h"
 #import "ResponseCreator.h"
 #import "User.h"
+#import "Utils.h"
 
 #define TWITTER_DEFALT_ACCESS_TOKEN @"access_token"
+#define TWITTER_ACCESS_TOKEN_KEY @"oauth_token"
+#define TWITTER_ACCESS_TOKEN_SECRET @"oauth_token_secret"
+#define TWITTER_ACCESS_TOKEN_USER_ID @"user_id"
+#define TWITTER_ACCESS_TOKEN_SCREEN_NAME @"screen_name"
 
 #define TWITTER_TWEET_MESSAGE @"text"
 #define TWITTER_TWEET_TIMESTAMP @"created_at"
@@ -43,6 +48,8 @@ typedef void (^ LoginCompletionBlock)(BOOL);
 typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 
 @interface TweeterFetcher : NSObject <FHSTwitterEngineAccessTokenDelegate>
+
+@property (nonatomic, strong) NSString* tokenData;
 
 -(void) loginUserViewController:(UIViewController* ) sender
                 CompletionBlock:(LoginCompletionBlock) loginCompletionBlock

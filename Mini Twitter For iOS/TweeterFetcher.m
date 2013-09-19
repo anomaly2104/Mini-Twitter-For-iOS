@@ -44,7 +44,12 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
                 CompletionBlock:(LoginCompletionBlock) loginCompletionBlock
                  dispatcherQueue:(dispatch_queue_t)dispatcherQueue
 {
-    
+    if([self loadAccessToken].length > 0){
+        dispatch_async(dispatcherQueue, ^{
+            loginCompletionBlock(YES);
+        });
+        return;
+    }
     [[FHSTwitterEngine sharedEngine]showOAuthLoginControllerFromViewController:sender withCompletion:^(BOOL success) {
         dispatch_async(dispatcherQueue, ^{
             loginCompletionBlock(success);
@@ -141,7 +146,12 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request setHTTPShouldHandleCookies:NO];
-    [[FHSTwitterEngine sharedEngine] signRequest:request];
+    
+    NSString* tokenKey = [Utils extractValueForKey:TWITTER_ACCESS_TOKEN_KEY fromHTTPBody:[self loadAccessToken]];
+    NSString* tokenSecret = [Utils extractValueForKey:TWITTER_ACCESS_TOKEN_SECRET fromHTTPBody:[self loadAccessToken]];
+    
+    
+    [[FHSTwitterEngine sharedEngine] signRequest:request withToken:tokenKey tokenSecret:tokenSecret verifier:nil];
 
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
@@ -171,75 +181,6 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
         [self fetchPostFromApi:api withParams:params completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
     }
     return;
-    /*
-    
-    //  Step 0: Check that the user has local Twitter accounts
-    if ([self userHasAccessToTwitter]) {
-        //  Step 1:  Obtain access to the user's Twitter accounts
-        ACAccountType *twitterAccountType = [self.accountStore
-                                             accountTypeWithAccountTypeIdentifier:
-                                             ACAccountTypeIdentifierTwitter];
-        [self.accountStore
-         requestAccessToAccountsWithType:twitterAccountType
-         options:NULL
-         completion:^(BOOL granted, NSError *error) {
-             if (granted) {
-                 //  Step 2:  Create a request
-                 NSArray *twitterAccounts =
-                 [self.accountStore accountsWithAccountType:twitterAccountType];
-                 
-                 NSURL *url = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
-
-                 SLRequest *request =
-                 [SLRequest requestForServiceType:SLServiceTypeTwitter
-                                    requestMethod:requestMethod
-                                              URL:url
-                                       parameters:params];
-                 
-                 //  Attach an account to the request
-
-                 [request setAccount:[twitterAccounts lastObject]];
-                
-                // [self someTests:request];
-                 
-                 //  Step 3:  Execute the request
-                 [request performRequestWithHandler:^(NSData *responseData,
-                                                      NSHTTPURLResponse *urlResponse,
-                                                      NSError *error) {
-                     if (responseData) {
-                         if (urlResponse.statusCode >= 200 && urlResponse.statusCode < 300) {
-                             NSError *jsonError;
-                             NSDictionary *timelineData =
-                             [NSJSONSerialization
-                              JSONObjectWithData:responseData
-                              options:NSJSONReadingAllowFragments error:&jsonError];
-                             
-                             if (timelineData) {
-                                 NSLog(@"Api Response Data for %@ :%@", api,timelineData);
-                                 dispatch_async(dispatcherQueue, ^{
-                                     apiCompletionBlock(timelineData);
-                                 });
-                             }
-                             else {
-                                 // Our JSON deserialization went awry
-                                 NSLog(@"JSON Error: %@", [jsonError localizedDescription]);
-                             }
-                         }
-                         else {
-                             // The server did not respond successfully... were we rate-limited?
-                             NSLog(@"The response status code is %d", urlResponse.statusCode);
-                         }
-                     }
-                 }];
-             }
-             else {
-                 // Access was not granted, or an error occurred
-                 NSLog(@"Some error occurred: %@", [error localizedDescription]);
-             }
-         }];
-    } else {
-        NSLog(@"User does not have access.");
-    }*/
 }
 
 - (void)fetchTimelineForUser:(NSString *)username
