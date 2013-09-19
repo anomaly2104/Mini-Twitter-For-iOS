@@ -1,6 +1,18 @@
-*.xcuserstate
+*xcuserstate
 *.DS_Store
 Mini Twitter For iOS/.DS_Store
 Mini Twitter For iOS.xcodeproj/project.xcworkspace/xcuserdata/udit.ag.xcuserdatad/UserInterfaceState.xcuserstate
 Mini Twitter For iOS.xcodeproj/xcuserdata/udit.ag.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
-
+.DS_Store
+*.pbxuser
+*.mode2v3
+*.mode1v3
+*.perspectivev*
+/build
+xcuserdata
+*.xcworkspace
+*.uncrustify
+Resources/Conf.plist
+Resources/InfoPlist.h
+Resources/en.lproj/Localizable.strings
+coverage/
