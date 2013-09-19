@@ -57,21 +57,65 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 }
 
-
-
-/*
-api =   @"/statuses/user_timeline.json"    
-params =    @{@"screen_name" : username,
-              @"include_rts" : @"0",
-              @"trim_user" : @"1",
-              @"count" : @"10"};
- */
-
 - (void) fetchPostFromApi:(NSString *)api withParams:(NSDictionary *) params
       completionBlock:(APICompletionBlock)apiCompletionBlock
       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
 
 {
+    NSURL* apiURL = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
+    NSString* oauthHeader = [[FHSTwitterEngine sharedEngine] buildOAuthHeaderForRequestForMethod:@"" forUrl:apiURL];
+    
+    NSURL *url = apiURL;
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPShouldHandleCookies:NO];
+    
+    NSString *boundary = [NSString fhs_UUID];
+    
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+    
+    [[FHSTwitterEngine sharedEngine] signRequest:request];
+    
+    NSMutableData *body = [NSMutableData dataWithLength:0];
+    
+    for (NSString *key in params.allKeys) {
+        id obj = params[key];
+        
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        NSData *data = nil;
+        
+        if ([obj isKindOfClass:[NSData class]]) {
+            [body appendData:[@"Content-Type: application/octet-stream\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+            data = (NSData *)obj;
+        } else if ([obj isKindOfClass:[NSString class]]) {
+            data = [[NSString stringWithFormat:@"%@\r\n",(NSString *)obj]dataUsingEncoding:NSUTF8StringEncoding];
+        }
+        
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n",key] dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:data];
+    }
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [request setValue:@(body.length).stringValue forHTTPHeaderField:@"Content-Length"];
+    request.HTTPBody = body;
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"Api Response Data for %@ :%@", api,JSON);
+        dispatch_async(dispatcherQueue, ^{
+            apiCompletionBlock(JSON);
+        });
+        
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"ERROR OCCURRED: %@", [error localizedDescription]);
+    }];
+    [operation start];
 }
 - (void) fetchGetFromApi:(NSString *)api withParams:(NSDictionary *) params
           completionBlock:(APICompletionBlock)apiCompletionBlock
@@ -111,8 +155,6 @@ params =    @{@"screen_name" : username,
         NSLog(@"ERROR OCCURRED: %@", [error localizedDescription]);
     }];
     [operation start];
-    
-    NSLog(@"AUTH HEADER : %@" , oauthHeader);
 }
 - (void) fetchFromApi:(NSString *)api withParams:(NSDictionary *) params
       completionBlock:(APICompletionBlock)apiCompletionBlock
@@ -125,7 +167,7 @@ params =    @{@"screen_name" : username,
     if(requestMethod == SLRequestMethodGET){
         [self fetchGetFromApi:api withParams:params completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
     }
-    else if(requestMethod == SLRequestMethodGET){
+    else if(requestMethod == SLRequestMethodPOST){
         [self fetchPostFromApi:api withParams:params completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
     }
     return;
