@@ -11,7 +11,8 @@
 #import "UserCell.h"
 #import "Padder.h"
 #import "TweeterFetcher.h"
+#import "CoreDataTableViewController.h"
 
-@interface UserFollowersViewController : UITableViewController
+@interface UserFollowersViewController : CoreDataTableViewController
 @property (nonatomic, strong) User* user;
 @end

@@ -36,6 +36,26 @@ params =    @{@"screen_name" : username,
               @"count" : @"10"};
  */
 
+-(void) someTests:(SLRequest*)slRequest{
+    NSURLRequest * reqTemp = slRequest;
+    NSDictionary * dictHeaders = [reqTemp allHTTPHeaderFields];
+    
+    NSString * authString = dictHeaders[@"Authorization"];
+    NSArray * arrayAuth = [authString componentsSeparatedByString:@","];
+    NSString * accessToken=nil;
+    for( NSString * val in arrayAuth ) {
+        if( [val rangeOfString:@"oauth_token"].length > 0 ) {
+            accessToken =
+            [val stringByReplacingOccurrencesOfString:@"\""
+                                           withString:@""];
+            accessToken =
+            [accessToken stringByReplacingOccurrencesOfString:@"oauth_token="
+                                                   withString:@""];
+            break;
+        }
+    }
+}
+
 - (void) fetchCurrentUserCompletionBlock:(FetchCurrentUserCompletionBlock)completionBlock
                          dispatcherQueue:(dispatch_queue_t)dispatcherQueue
  {
@@ -102,6 +122,8 @@ params =    @{@"screen_name" : username,
                  //  Attach an account to the request
 
                  [request setAccount:[twitterAccounts lastObject]];
+                
+                 //[self someTests:request];
                  
                  //  Step 3:  Execute the request
                  [request performRequestWithHandler:^(NSData *responseData,
@@ -151,11 +173,56 @@ params =    @{@"screen_name" : username,
 - (void)fetchTimelineForUser:(NSString *)username
              completionBlock:(APICompletionBlock)apiCompletionBlock
              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                       maxId:(NSString*) maxId
 {
     NSString *api = @"statuses/user_timeline.json";
-    NSDictionary *params = @{@"screen_name" : username,
-                             @"include_rts" : @"0",
-                             @"count" : @"50"};
+    
+    NSMutableDictionary *params = [@{@"screen_name" : username,
+                                   @"include_rts" : @"0",
+                                   @"count" : @"50"} mutableCopy];
+    
+    if(![maxId isEqualToString: @"-1"]){
+        params[@"max_id"] = maxId;
+    }
+    [self fetchFromApi:api withParams:params
+       completionBlock:apiCompletionBlock
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
+}
+
+- (void)fetchTimelineForUser:(NSString *)username
+             completionBlock:(APICompletionBlock)apiCompletionBlock
+             dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                       sinceId:(NSString *)sinceId
+{
+    NSString *api = @"statuses/user_timeline.json";
+    
+    NSMutableDictionary *params = [@{@"screen_name" : username,
+                                   @"include_rts" : @"0",
+                                   @"count" : @"50"} mutableCopy];
+    
+    if(![sinceId isEqualToString: @"-1"]){
+        params[@"since_id"] = sinceId;
+    }
+    [self fetchFromApi:api withParams:params
+       completionBlock:apiCompletionBlock
+       dispatcherQueue:dispatcherQueue
+         requestMethod:SLRequestMethodGET];
+}
+
+
+- (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
+             dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                                                 maxId:(NSString*) maxId
+{
+    NSString *api = @"statuses/home_timeline.json";
+    NSMutableDictionary *params =  [@{@"include_rts" : @"0",
+                                    @"count" : @"20"} mutableCopy];
+
+    if(![maxId isEqualToString: @"-1"]){
+        params[@"max_id"] = maxId;
+    }
+    
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue
@@ -163,16 +230,23 @@ params =    @{@"screen_name" : username,
 }
 
 - (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
-             dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                                       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                                                 sinceId:(NSString *)sinceId
 {
     NSString *api = @"statuses/home_timeline.json";
-    NSDictionary *params = @{@"include_rts" : @"0",
-                             @"count" : @"10"};
+    NSMutableDictionary *params =  [@{@"include_rts" : @"0",
+                                    @"count" : @"20"} mutableCopy];
+    
+    if(![sinceId isEqualToString: @"-1"]){
+        params[@"since_id"] = sinceId;
+    }
+    
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue
          requestMethod:SLRequestMethodGET];
 }
+
 - (void)postTweet:(NSString*)tweet
   completionBlock:(APICompletionBlock)apiCompletionBlock
   dispatcherQueue:(dispatch_queue_t)dispatcherQueue
@@ -200,9 +274,11 @@ params =    @{@"screen_name" : username,
 - (void)fetchFollowersForUser:(NSString *)username
             completionBlock:(APICompletionBlock)apiCompletionBlock
             dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                   nextCursor:(NSString*)nextCursor
 {
     NSString *api = @"followers/list.json";
-    NSDictionary *params = @{@"screen_name" : username};
+    NSDictionary *params = @{@"screen_name" : username,
+                             @"cursor": nextCursor};
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue
@@ -212,9 +288,11 @@ params =    @{@"screen_name" : username,
 - (void)fetchFollowingForUser:(NSString *)username
               completionBlock:(APICompletionBlock)apiCompletionBlock
               dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                   nextCursor:(NSString*)nextCursor
 {
     NSString *api = @"friends/list.json";
-    NSDictionary *params = @{@"screen_name" : username};
+    NSDictionary *params = @{@"screen_name" : username,
+                             @"cursor": nextCursor};
     [self fetchFromApi:api withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue

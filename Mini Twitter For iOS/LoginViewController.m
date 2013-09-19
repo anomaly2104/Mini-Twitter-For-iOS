@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "MiniTwitterRootViewController.h"
-
+#import "User+Twitter.h"
 @interface LoginViewController ()
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (nonatomic, strong) User* currentUser;
@@ -35,9 +35,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void) getCurrentLoggedInUser{
     NSURL* spinnerImageURL = [NSURL  fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"spinner" ofType:@"gif"]];
     
     UIImageView* spinnerImage = [AnimatedGif getAnimationForGifAtUrl:spinnerImageURL];
@@ -48,22 +46,65 @@
     [self.view addSubview:spinnerImage];
     
     FetchCurrentUserCompletionBlock fetchCurrentUser = ^(ACAccount* userData){
-        self.currentUser.userName = userData.username;
-        self.currentUser.userId = [[userData valueForKey:@"properties"] valueForKey:@"user_id"];
-        [self performSegueWithIdentifier:@"Show Root VIew Controller" sender:self];
+        NSString* currentUserName = userData.username;
+        APICompletionBlock fetchUserDetails = ^(NSDictionary* userDetails){
+            self.currentUser = [User userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];
+            [self performSegueWithIdentifier:@"Show Root VIew Controller" sender:self];
+        };
+        [self.tweeterFetcher fetchDetailsForUser:currentUserName completionBlock:fetchUserDetails dispatcherQueue:dispatch_get_main_queue()];
     };
     
     [self.tweeterFetcher getCurrentLoggedInUserCompletionBlock:fetchCurrentUser
                                                dispatcherQueue:dispatch_get_main_queue()];
-    
+
 }
+
+
+-(void) useDocument{
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.twitterDatabase.fileURL path]]) {
+        // does not exist on disk, so create it
+        [self.twitterDatabase saveToURL:self.twitterDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+//            [self setupFetchedResultsController];
+            [self getCurrentLoggedInUser];
+            
+        }];
+    } else if (self.twitterDatabase.documentState == UIDocumentStateClosed) {
+        // exists on disk, but we need to open it
+        [self.twitterDatabase openWithCompletionHandler:^(BOOL success) {
+            [self getCurrentLoggedInUser];
+        }];
+    } else if (self.twitterDatabase.documentState == UIDocumentStateNormal) {
+        // already open and ready to use
+        [self getCurrentLoggedInUser];
+    }
+   
+}
+
+-(void) setTwitterDatabase:(UIManagedDocument *)twitterDatabase{
+    if(_twitterDatabase != twitterDatabase){
+        _twitterDatabase = twitterDatabase;
+        [self useDocument];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (!self.twitterDatabase) {
+        NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        url = [url URLByAppendingPathComponent:@"Mini Twitter Database"];
+
+        self.twitterDatabase = [[UIManagedDocument alloc] initWithFileURL:url];
+    }
+}
+
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"Show Root VIew Controller"]){
         [segue.destinationViewController setCurrentUser:self.currentUser];
     }
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

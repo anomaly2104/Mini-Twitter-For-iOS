@@ -32,25 +32,48 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.delegate = self;
+-(void) setHomeCurrentUser{
+    
+}
+
+-(void) setTabBarViewControllersCurrentUsers{
+    NSMutableArray* newViewControllers = [self.viewControllers mutableCopy];
+
+    for(UINavigationController* navigationController in newViewControllers){
+        UIViewController* tabBarController = [navigationController.viewControllers lastObject];
+        if ([tabBarController isKindOfClass:[UserTweetsViewController class]]) {
+            [tabBarController performSelector:@selector(setUser:) withObject:self.currentUser];
+        } else if([tabBarController isKindOfClass: [HomeTimelineViewController class] ]){
+            [tabBarController performSelector:@selector(setCurrentUser:) withObject:self.currentUser];
+        }
+    }
+    
+    if ( self.viewControllers != newViewControllers ) {
+        self.viewControllers = newViewControllers;
+    }
+
+   /*
     UINavigationController* userTweetsNavigationViewController = [self.viewControllers objectAtIndex:1];
-//    NSLog(@"Class of object at 1: %@",[userTweetsNavigationViewController class]);
+    //    NSLog(@"Class of object at 1: %@",[userTweetsNavigationViewController class]);
     
     UserTweetsViewController *userTweetsViewController = [userTweetsNavigationViewController.viewControllers lastObject];
-  //  NSLog(@"Class of object at 1: %@",[userTweetsViewController class]);
+    //  NSLog(@"Class of object at 1: %@",[userTweetsViewController class]);
     
     if([userTweetsViewController isKindOfClass:[UserTweetsViewController class]]){
         [userTweetsViewController setUser:self.currentUser];
         userTweetsNavigationViewController.viewControllers = [NSArray arrayWithObject:userTweetsViewController];
+        
         NSMutableArray* newViewControllers = [self.viewControllers mutableCopy];
         [newViewControllers setObject:userTweetsNavigationViewController atIndexedSubscript:1];
         self.viewControllers = newViewControllers;
-//        self.viewControllers = [NSArray arrayWithObjects:[self.viewControllers objectAtIndex:0], userTweetsNavigationViewController, [self.viewControllers objectAtIndex:2],nil];
-        //[[self.viewControllers objectAtIndex:1] setUser:self.currentUser];
     }
+*/
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.delegate = self;
+    [self setTabBarViewControllersCurrentUsers];
 }
 
 - (void)didReceiveMemoryWarning

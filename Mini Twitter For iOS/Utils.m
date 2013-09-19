@@ -28,7 +28,6 @@
 -(NSString *) convertTweetDateToStringTimeStamp:(NSDate*) date{
     NSDateFormatter *dateToStringFormatter = [[NSDateFormatter alloc] init];
     [dateToStringFormatter setDateFormat: @"dd-MM-yyyy HH:mm"];
-    NSDate *now = [[NSDate alloc] init];
 
     NSString* convertedString = [dateToStringFormatter stringFromDate:date];
     NSLog(@"String date: %@",convertedString);

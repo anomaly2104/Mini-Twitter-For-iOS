@@ -18,6 +18,7 @@
 #define TWITTER_TWEET_TIMESTAMP @"created_at"
 #define TWITTER_TWEET_USER @"user"
 #define TWITTER_TWEET_ID @"id"
+#define TWITTER_TWEET_ID_STR @"id_str"
 
 #define TWITTER_FOLLOW_USERS @"users"
 #define TWITTER_FOLLOW_CURSOR_PREVIOUS @"previous_cursor"
@@ -37,11 +38,25 @@ typedef void (^ APICompletionBlock)(NSDictionary *);
 typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 
 @interface TweeterFetcher : NSObject
+
 - (void)fetchTimelineForUser:(NSString *)username
              completionBlock:(APICompletionBlock) apiCompletionBlock
-             dispatcherQueue:(dispatch_queue_t) dispatcherQueue;
+             dispatcherQueue:(dispatch_queue_t) dispatcherQueue
+                       maxId:(NSString*) maxId;
+
+- (void)fetchTimelineForUser:(NSString *)username
+             completionBlock:(APICompletionBlock) apiCompletionBlock
+             dispatcherQueue:(dispatch_queue_t) dispatcherQueue
+                       sinceId:(NSString*) sinceId;
+
 - (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
-    dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
+    dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                                                 maxId:(NSString*) maxId;
+
+- (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
+                                       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                                                 sinceId:(NSString*) sinceId;
+
 
 - (void) getCurrentLoggedInUserCompletionBlock:(FetchCurrentUserCompletionBlock)completionBlock
                               dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
@@ -55,9 +70,11 @@ typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 
 - (void)fetchFollowingForUser:(NSString *)username
               completionBlock:(APICompletionBlock)apiCompletionBlock
-              dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
+              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                   nextCursor:(NSString*)nextCursor;
 
 - (void)fetchFollowersForUser:(NSString *)username
               completionBlock:(APICompletionBlock)apiCompletionBlock
-              dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
+              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+                   nextCursor:(NSString*)nextCursor;
 @end

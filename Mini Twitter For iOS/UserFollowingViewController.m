@@ -12,34 +12,44 @@
 @interface UserFollowingViewController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
-@property (nonatomic,strong) NSArray* usersToShow;
+@property (strong, nonatomic) NSString* nextCursor;
+@property (nonatomic) BOOL isFetching;
 @end
 
 @implementation UserFollowingViewController
 
+@synthesize nextCursor = _nextCursor;
 @synthesize tweeterFetcher = _tweeterFetcher;
-@synthesize usersToShow = _usersToShow;
 @synthesize refreshButton = _refreshButton;
 
 
--(void) setUsersToShow:(NSArray *)usersToShow{
-    if( _usersToShow != usersToShow ) {
-        _usersToShow = usersToShow;
-        [self.tableView reloadData];
-    }
-}
 - (TweeterFetcher *) tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
     return _tweeterFetcher;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+-(void) setupFetchedResultsController{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    request.sortDescriptors = @[];
+//    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
+  //                                                                                   ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)
+    //                                                    ]];
+    
+    request.predicate = [NSPredicate predicateWithFormat:@"any followers.userName = %@", self.user.userName];
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:self.user.managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+-(void)setUser:(User *)user{
+    _user = user;
+    [self setupFetchedResultsController];
+    self.title = @"Following";
+    self.nextCursor = @"-1";
+    self.isFetching = NO;
+    [self fetchUserFollowing];
 }
 
 -(void) disableRefresh{
@@ -48,54 +58,41 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 }
 
--(void) enableRefresh: (id) sender{
-    self.navigationItem.rightBarButtonItem = sender;
+-(void) enableRefresh{
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
-
-- (IBAction)refreshFollowing:(id)sender {
+-(void) fetchUserFollowing{
+    if(self.isFetching){
+        return;
+    }
+    self.isFetching = YES;
+    
     [self disableRefresh];
     if(!self.tweeterFetcher){
         NSLog(@"Fetcher Nil");
     }
     
     APICompletionBlock refreshUserFollowingBlock = ^(NSDictionary * followData){
-        [self enableRefresh:sender];
-        NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
+        [self enableRefresh];
+        self.nextCursor = [NSString stringWithFormat:@"%@", [followData valueForKey:TWITTER_FOLLOW_CURSOR_NEXT] ];
+        NSLog(@"Next Cursor: %@", self.nextCursor);
+//        NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
-            User *user = [User userWithTwitterData:key];
-            [usersToShow addObject:user];
+            [self.user addFollowingsObject:[User userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
         }
-        self.usersToShow = usersToShow;
+        self.isFetching = NO;
+
     };
-    [self.tweeterFetcher fetchFollowingForUser:self.user.userName completionBlock:refreshUserFollowingBlock dispatcherQueue:dispatch_get_main_queue()];
+    [self.tweeterFetcher fetchFollowingForUser:self.user.userName completionBlock:refreshUserFollowingBlock dispatcherQueue:dispatch_get_main_queue() nextCursor:self.nextCursor];
+}
+
+- (IBAction)refreshFollowing:(id)sender {
+    
 
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self refreshFollowing:self.refreshButton];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.usersToShow count];
-}
 
 -(UserCell*) setUserData:(User *) user OnCell:(UserCell*) cell {
     
@@ -122,7 +119,7 @@
         cell = [[UserCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
-    User *userToShow = [self.usersToShow objectAtIndex:indexPath.row];
+    User *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell = [self setUserData:userToShow OnCell:cell];
     
@@ -133,13 +130,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Cell selected %ld, %ld", (long)indexPath.section, (long)indexPath.row);
-    [self performSegueWithIdentifier:@"Following To User" sender:[self.usersToShow objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:@"Following To User" sender:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [segue.identifier isEqualToString:@"Following To User"]){
         User* user = (User*)sender;
         [segue.destinationViewController setUser:user];
+    }
+}
+
+-(void) scrollViewDidScroll:(UIScrollView *)aScrollView{
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    
+    float reload_distance = -400;
+    if(y > h + reload_distance) {
+        [self fetchUserFollowing];
     }
 }
 

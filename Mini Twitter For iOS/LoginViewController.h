@@ -14,5 +14,5 @@
 #import "User.h"
 
 @interface LoginViewController : UIViewController
-
+@property (nonatomic,strong) UIManagedDocument* twitterDatabase;
 @end
