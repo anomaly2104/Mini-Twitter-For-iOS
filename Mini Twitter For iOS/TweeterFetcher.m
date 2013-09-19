@@ -62,6 +62,13 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 }
 
+-(void) signRequest:(NSMutableURLRequest*) request{
+    NSString* tokenKey = [Utils extractValueForKey:TWITTER_ACCESS_TOKEN_KEY fromHTTPBody:[self loadAccessToken]];
+    NSString* tokenSecret = [Utils extractValueForKey:TWITTER_ACCESS_TOKEN_SECRET fromHTTPBody:[self loadAccessToken]];
+    
+    [[FHSTwitterEngine sharedEngine] signRequest:request withToken:tokenKey tokenSecret:tokenSecret verifier:nil];
+}
+
 -(void) sendRequest: (NSURLRequest*) request
     completionBlock:(APICompletionBlock)apiCompletionBlock
     dispatcherQueue:(dispatch_queue_t)dispatcherQueue{
@@ -94,7 +101,7 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
     [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
     
-    [[FHSTwitterEngine sharedEngine] signRequest:request];
+    [self signRequest:request];
     
     NSMutableData *body = [NSMutableData dataWithLength:0];
     
@@ -131,11 +138,7 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
           dispatcherQueue:(dispatch_queue_t)dispatcherQueue
 
 {
-    NSURL* apiURL = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
-    NSString* oauthHeader = [[FHSTwitterEngine sharedEngine] buildOAuthHeaderForRequestForMethod:@"" forUrl:apiURL];
-    
-    NSURL *url = apiURL;
-
+    NSURL *url = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
     
     if (params.count > 0) {
         NSMutableArray *paramPairs = [NSMutableArray arrayWithCapacity:params.count];
@@ -150,13 +153,7 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];
     [request setHTTPShouldHandleCookies:NO];
-    
-    NSString* tokenKey = [Utils extractValueForKey:TWITTER_ACCESS_TOKEN_KEY fromHTTPBody:[self loadAccessToken]];
-    NSString* tokenSecret = [Utils extractValueForKey:TWITTER_ACCESS_TOKEN_SECRET fromHTTPBody:[self loadAccessToken]];
-    
-    
-    [[FHSTwitterEngine sharedEngine] signRequest:request withToken:tokenKey tokenSecret:tokenSecret verifier:nil];
-
+    [self signRequest:request];
     [self sendRequest:request completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
 }
 
