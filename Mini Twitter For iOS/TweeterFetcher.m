@@ -123,7 +123,7 @@ params =    @{@"screen_name" : username,
 
                  [request setAccount:[twitterAccounts lastObject]];
                 
-                 [self someTests:request];
+                 //[self someTests:request];
                  
                  //  Step 3:  Execute the request
                  [request performRequestWithHandler:^(NSData *responseData,
