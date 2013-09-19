@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD28ACA617EAE75C001A3C34 /* FHSTwitterEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACA517EAE75C001A3C34 /* FHSTwitterEngine.m */; };
+		AD28ACA817EAEB85001A3C34 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD28ACA717EAEB85001A3C34 /* SystemConfiguration.framework */; };
+		AD28ACBD17EB0342001A3C34 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACAB17EB0342001A3C34 /* AFHTTPClient.m */; };
+		AD28ACBE17EB0342001A3C34 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACAD17EB0342001A3C34 /* AFHTTPRequestOperation.m */; };
+		AD28ACBF17EB0342001A3C34 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACAF17EB0342001A3C34 /* AFImageRequestOperation.m */; };
+		AD28ACC017EB0342001A3C34 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACB117EB0342001A3C34 /* AFJSONRequestOperation.m */; };
+		AD28ACC117EB0342001A3C34 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACB317EB0342001A3C34 /* AFNetworkActivityIndicatorManager.m */; };
+		AD28ACC217EB0342001A3C34 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACB617EB0342001A3C34 /* AFPropertyListRequestOperation.m */; };
+		AD28ACC317EB0342001A3C34 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACB817EB0342001A3C34 /* AFURLConnectionOperation.m */; };
+		AD28ACC417EB0342001A3C34 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACBA17EB0342001A3C34 /* AFXMLRequestOperation.m */; };
+		AD28ACC517EB0342001A3C34 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACBC17EB0342001A3C34 /* UIImageView+AFNetworking.m */; };
 		AD36A6DA17E05A3400AB6769 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = AD36A6D917E05A3400AB6769 /* home.png */; };
 		AD36A6DC17E05AE000AB6769 /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = AD36A6DB17E05AE000AB6769 /* man.png */; };
 		AD36A6DF17E071A300AB6769 /* MiniTwitterRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */; };
@@ -57,6 +68,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AD28ACA417EAE75C001A3C34 /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
+		AD28ACA517EAE75C001A3C34 /* FHSTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTwitterEngine.m; sourceTree = "<group>"; };
+		AD28ACA717EAEB85001A3C34 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		AD28ACAA17EB0342001A3C34 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		AD28ACAB17EB0342001A3C34 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		AD28ACAC17EB0342001A3C34 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		AD28ACAD17EB0342001A3C34 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		AD28ACAE17EB0342001A3C34 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		AD28ACAF17EB0342001A3C34 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		AD28ACB017EB0342001A3C34 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		AD28ACB117EB0342001A3C34 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		AD28ACB217EB0342001A3C34 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		AD28ACB317EB0342001A3C34 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		AD28ACB417EB0342001A3C34 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		AD28ACB517EB0342001A3C34 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		AD28ACB617EB0342001A3C34 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		AD28ACB717EB0342001A3C34 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		AD28ACB817EB0342001A3C34 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		AD28ACB917EB0342001A3C34 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		AD28ACBA17EB0342001A3C34 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		AD28ACBB17EB0342001A3C34 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		AD28ACBC17EB0342001A3C34 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		AD36A6D917E05A3400AB6769 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		AD36A6DB17E05AE000AB6769 /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
 		AD36A6DD17E071A200AB6769 /* MiniTwitterRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniTwitterRootViewController.h; sourceTree = "<group>"; };
@@ -138,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD28ACA817EAEB85001A3C34 /* SystemConfiguration.framework in Frameworks */,
 				ADBCA80417E74FBA00E7B644 /* CoreData.framework in Frameworks */,
 				AD5405A817E2EA120059677A /* QuartzCore.framework in Frameworks */,
 				AD49F89417D6F82D0030F0FD /* Accounts.framework in Frameworks */,
@@ -152,6 +186,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD28ACA917EB0342001A3C34 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				AD28ACAA17EB0342001A3C34 /* AFHTTPClient.h */,
+				AD28ACAB17EB0342001A3C34 /* AFHTTPClient.m */,
+				AD28ACAC17EB0342001A3C34 /* AFHTTPRequestOperation.h */,
+				AD28ACAD17EB0342001A3C34 /* AFHTTPRequestOperation.m */,
+				AD28ACAE17EB0342001A3C34 /* AFImageRequestOperation.h */,
+				AD28ACAF17EB0342001A3C34 /* AFImageRequestOperation.m */,
+				AD28ACB017EB0342001A3C34 /* AFJSONRequestOperation.h */,
+				AD28ACB117EB0342001A3C34 /* AFJSONRequestOperation.m */,
+				AD28ACB217EB0342001A3C34 /* AFNetworkActivityIndicatorManager.h */,
+				AD28ACB317EB0342001A3C34 /* AFNetworkActivityIndicatorManager.m */,
+				AD28ACB417EB0342001A3C34 /* AFNetworking.h */,
+				AD28ACB517EB0342001A3C34 /* AFPropertyListRequestOperation.h */,
+				AD28ACB617EB0342001A3C34 /* AFPropertyListRequestOperation.m */,
+				AD28ACB717EB0342001A3C34 /* AFURLConnectionOperation.h */,
+				AD28ACB817EB0342001A3C34 /* AFURLConnectionOperation.m */,
+				AD28ACB917EB0342001A3C34 /* AFXMLRequestOperation.h */,
+				AD28ACBA17EB0342001A3C34 /* AFXMLRequestOperation.m */,
+				AD28ACBB17EB0342001A3C34 /* UIImageView+AFNetworking.h */,
+				AD28ACBC17EB0342001A3C34 /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 		AD36A6D817E05A2000AB6769 /* twitter-icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +285,7 @@
 		ADE4EB6E17D6F5190097987A = {
 			isa = PBXGroup;
 			children = (
+				AD28ACA717EAEB85001A3C34 /* SystemConfiguration.framework */,
 				ADE4EB8017D6F5190097987A /* Mini Twitter For iOS */,
 				ADE4EB7917D6F5190097987A /* Frameworks */,
 				ADE4EB7817D6F5190097987A /* Products */,
@@ -257,6 +318,7 @@
 		ADE4EB8017D6F5190097987A /* Mini Twitter For iOS */ = {
 			isa = PBXGroup;
 			children = (
+				AD28ACA917EB0342001A3C34 /* AFNetworking */,
 				ADBCA7E717E74BA700E7B644 /* View Controllers */,
 				ADBCA7E617E74B9A00E7B644 /* Model */,
 				ADE4EB9217D6F5190097987A /* MainStoryboard.storyboard */,
@@ -274,6 +336,8 @@
 		ADE4EB8117D6F5190097987A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD28ACA417EAE75C001A3C34 /* FHSTwitterEngine.h */,
+				AD28ACA517EAE75C001A3C34 /* FHSTwitterEngine.m */,
 				ADE4EB8917D6F5190097987A /* minitwitterAppDelegate.h */,
 				ADE4EB8A17D6F5190097987A /* minitwitterAppDelegate.m */,
 				AD54059117E096F40059677A /* AnimatedGif.h */,
@@ -397,6 +461,16 @@
 				ADBCA81017E83BD900E7B644 /* HomeTimeLine+Twitter.m in Sources */,
 				ADBCA81617E8460700E7B644 /* HomeTimeLine.m in Sources */,
 				ADBCA81917E8462900E7B644 /* Tweet.m in Sources */,
+				AD28ACA617EAE75C001A3C34 /* FHSTwitterEngine.m in Sources */,
+				AD28ACBD17EB0342001A3C34 /* AFHTTPClient.m in Sources */,
+				AD28ACBE17EB0342001A3C34 /* AFHTTPRequestOperation.m in Sources */,
+				AD28ACBF17EB0342001A3C34 /* AFImageRequestOperation.m in Sources */,
+				AD28ACC017EB0342001A3C34 /* AFJSONRequestOperation.m in Sources */,
+				AD28ACC117EB0342001A3C34 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				AD28ACC217EB0342001A3C34 /* AFPropertyListRequestOperation.m in Sources */,
+				AD28ACC317EB0342001A3C34 /* AFURLConnectionOperation.m in Sources */,
+				AD28ACC417EB0342001A3C34 /* AFXMLRequestOperation.m in Sources */,
+				AD28ACC517EB0342001A3C34 /* UIImageView+AFNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

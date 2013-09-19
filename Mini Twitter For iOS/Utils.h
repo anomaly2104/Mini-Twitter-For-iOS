@@ -11,5 +11,8 @@
 @interface Utils : NSObject
 +(NSString *) convertTweetNSDateToTimeAgo:(NSDate*) tweetTime;
 +(NSDate*) convertTweetDateStringToTweetNSDate:(id)tweetDateString;
++(NSString *)extractValueForKey:(NSString *)target fromHTTPBody:(NSString *)body;
+
 -(NSString *) convertTweetDateToStringTimeStamp:(NSDate*) date;
+
 @end

@@ -36,6 +36,7 @@
 }
 
 -(void) getCurrentLoggedInUser{
+    
     NSURL* spinnerImageURL = [NSURL  fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"spinner" ofType:@"gif"]];
     
     UIImageView* spinnerImage = [AnimatedGif getAnimationForGifAtUrl:spinnerImageURL];
@@ -44,6 +45,21 @@
     CGFloat spinnerWidth = 100.0;
     spinnerImage.frame = CGRectMake(self.view.frame.size.width/2-spinnerWidth/2.0,150,spinnerWidth,spinnerHeight);
     [self.view addSubview:spinnerImage];
+    
+    LoginCompletionBlock loginCompletionBlock = ^(BOOL success){
+
+        NSString* userInfo= [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
+        NSString* currentUserName = [Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
+        
+        APICompletionBlock fetchUserDetails = ^(NSDictionary* userDetails){
+            self.currentUser = [User userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];
+            [self performSegueWithIdentifier:@"Show Root VIew Controller" sender:self];
+        };
+        [self.tweeterFetcher fetchDetailsForUser:currentUserName completionBlock:fetchUserDetails dispatcherQueue:dispatch_get_main_queue()];
+    };
+    [self.tweeterFetcher loginUserViewController:self CompletionBlock:loginCompletionBlock dispatcherQueue:GCDBackgroundThread];
+    
+    return;
     
     FetchCurrentUserCompletionBlock fetchCurrentUser = ^(ACAccount* userData){
         NSString* currentUserName = userData.username;

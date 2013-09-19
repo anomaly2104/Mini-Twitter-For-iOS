@@ -13,6 +13,8 @@
 
 @implementation TweeterFetcher
 NSString* baseApiUrl = @"https://api.twitter.com/1.1/";
+NSString* consumerKey = @"BhnnJQsTflOlwJpGkh9SA";
+NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
 
 - (id)init
 {
@@ -20,13 +22,40 @@ NSString* baseApiUrl = @"https://api.twitter.com/1.1/";
     if (self) {
         _accountStore = [[ACAccountStore alloc] init];
     }
+    
+    [[FHSTwitterEngine sharedEngine]permanentlySetConsumerKey:consumerKey andSecret:consumerSecret];
+    
+    [[FHSTwitterEngine sharedEngine]setDelegate:self];
+    
     return self;
+}
+- (NSString*) loadAccessToken{
+    NSString* accessToken= [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
+    return accessToken;
+}
+-(void) storeAccessToken:(NSString *)accessToken{
+    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:TWITTER_DEFALT_ACCESS_TOKEN];
+    NSLog(@"Access Token: %@" , accessToken);
+}
+
+-(void) loginUserViewController:(UIViewController* ) sender
+                CompletionBlock:(LoginCompletionBlock) loginCompletionBlock
+                 dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+{
+    
+    [[FHSTwitterEngine sharedEngine]showOAuthLoginControllerFromViewController:sender withCompletion:^(BOOL success) {
+        dispatch_async(dispatcherQueue, ^{
+            loginCompletionBlock(success);
+        });
+    }];
 }
 
 - (BOOL)userHasAccessToTwitter
 {
     return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 }
+
+
 
 /*
 api =   @"/statuses/user_timeline.json"    
@@ -37,24 +66,7 @@ params =    @{@"screen_name" : username,
  */
 
 -(void) someTests:(SLRequest*)slRequest{
-    NSURLRequest * reqTemp = slRequest;
-    NSDictionary * dictHeaders = [reqTemp allHTTPHeaderFields];
-    
-    NSString * authString = dictHeaders[@"Authorization"];
-    NSArray * arrayAuth = [authString componentsSeparatedByString:@","];
-    NSString * accessToken=nil;
-    for( NSString * val in arrayAuth ) {
-        if( [val rangeOfString:@"oauth_token"].length > 0 ) {
-            accessToken =
-            [val stringByReplacingOccurrencesOfString:@"\""
-                                           withString:@""];
-            accessToken =
-            [accessToken stringByReplacingOccurrencesOfString:@"oauth_token="
-                                                   withString:@""];
-            break;
-        }
     }
-}
 
 - (void) fetchCurrentUserCompletionBlock:(FetchCurrentUserCompletionBlock)completionBlock
                          dispatcherQueue:(dispatch_queue_t)dispatcherQueue
@@ -90,12 +102,38 @@ params =    @{@"screen_name" : username,
     }
 }
 
+- (void) fetchPostFromApi:(NSString *)api withParams:(NSDictionary *) params
+      completionBlock:(APICompletionBlock)apiCompletionBlock
+      dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+
+{
+}
+- (void) fetchGetFromApi:(NSString *)api withParams:(NSDictionary *) params
+          completionBlock:(APICompletionBlock)apiCompletionBlock
+          dispatcherQueue:(dispatch_queue_t)dispatcherQueue
+
+{
+    NSURL* apiURL = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
+    NSString* oauthHeader = [[FHSTwitterEngine sharedEngine] buildOAuthHeaderForRequestForMethod:@"" forUrl:apiURL];
+    NSLog(@"AUTH HEADER : %@" , oauthHeader);
+}
 - (void) fetchFromApi:(NSString *)api withParams:(NSDictionary *) params
       completionBlock:(APICompletionBlock)apiCompletionBlock
       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
         requestMethod:(SLRequestMethod) requestMethod
 
 {
+    
+    
+    if(requestMethod == SLRequestMethodGET){
+        [self fetchGetFromApi:api withParams:params completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
+    }
+    else if(requestMethod == SLRequestMethodGET){
+        [self fetchPostFromApi:api withParams:params completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
+    }
+    return;
+    
+    
     //  Step 0: Check that the user has local Twitter accounts
     if ([self userHasAccessToTwitter]) {
         //  Step 1:  Obtain access to the user's Twitter accounts
@@ -123,7 +161,7 @@ params =    @{@"screen_name" : username,
 
                  [request setAccount:[twitterAccounts lastObject]];
                 
-                 //[self someTests:request];
+                 [self someTests:request];
                  
                  //  Step 3:  Execute the request
                  [request performRequestWithHandler:^(NSData *responseData,

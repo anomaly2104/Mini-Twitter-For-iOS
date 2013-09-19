@@ -11,8 +11,11 @@
 #import <Accounts/ACAccountType.h>
 #import <Social/Social.h>
 
+#import "FHSTwitterEngine.h"
 #import "ResponseCreator.h"
 #import "User.h"
+
+#define TWITTER_DEFALT_ACCESS_TOKEN @"access_token"
 
 #define TWITTER_TWEET_MESSAGE @"text"
 #define TWITTER_TWEET_TIMESTAMP @"created_at"
@@ -34,10 +37,16 @@
 #define TWITTER_USER_FOLLOWERS_COUNT @"followers_count"
 #define TWITTER_USER_FOLLOWING_COUNT @"friends_count"
 #define TWITTER_USER_TWEETS_COUNT @"statuses_count"
+
 typedef void (^ APICompletionBlock)(NSDictionary *);
+typedef void (^ LoginCompletionBlock)(BOOL);
 typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 
-@interface TweeterFetcher : NSObject
+@interface TweeterFetcher : NSObject <FHSTwitterEngineAccessTokenDelegate>
+
+-(void) loginUserViewController:(UIViewController* ) sender
+                CompletionBlock:(LoginCompletionBlock) loginCompletionBlock
+                dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
 
 - (void)fetchTimelineForUser:(NSString *)username
              completionBlock:(APICompletionBlock) apiCompletionBlock

@@ -34,4 +34,34 @@
     return convertedString;
 
 }
+
+- (NSString *)extractValueForKey:(NSString *)target fromHTTPBody:(NSString *)body {
+    if (body.length == 0) {
+        return nil;
+    }
+    
+    if (target.length == 0) {
+        return nil;
+    }
+	
+	NSArray *tuples = [body componentsSeparatedByString:@"&"];
+	if (tuples.count < 1) {
+        return nil;
+    }
+	
+	for (NSString *tuple in tuples) {
+		NSArray *keyValueArray = [tuple componentsSeparatedByString:@"="];
+		
+		if (keyValueArray.count >= 2) {
+			NSString *key = [keyValueArray objectAtIndex:0];
+			NSString *value = [keyValueArray objectAtIndex:1];
+			
+			if ([key isEqualToString:target]) {
+                return value;
+            }
+		}
+	}
+	
+	return nil;
+}
 @end
