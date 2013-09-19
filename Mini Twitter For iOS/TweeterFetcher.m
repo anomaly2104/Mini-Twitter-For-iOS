@@ -62,15 +62,28 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
 }
 
+-(void) sendRequest: (NSURLRequest*) request
+    completionBlock:(APICompletionBlock)apiCompletionBlock
+    dispatcherQueue:(dispatch_queue_t)dispatcherQueue{
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"Api Response Data for : %@",JSON);
+        dispatch_async(dispatcherQueue, ^{
+            apiCompletionBlock(JSON);
+        });
+        
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"ERROR OCCURRED: %@", [error localizedDescription]);
+    }];
+    [operation start];
+}
+
 - (void) fetchPostFromApi:(NSString *)api withParams:(NSDictionary *) params
       completionBlock:(APICompletionBlock)apiCompletionBlock
       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
 
 {
-    NSURL* apiURL = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
-    NSString* oauthHeader = [[FHSTwitterEngine sharedEngine] buildOAuthHeaderForRequestForMethod:@"" forUrl:apiURL];
-    
-    NSURL *url = apiURL;
+    NSURL *url = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
@@ -110,18 +123,9 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     [request setValue:@(body.length).stringValue forHTTPHeaderField:@"Content-Length"];
     request.HTTPBody = body;
     
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"Api Response Data for %@ :%@", api,JSON);
-        dispatch_async(dispatcherQueue, ^{
-            apiCompletionBlock(JSON);
-        });
-        
-        
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"ERROR OCCURRED: %@", [error localizedDescription]);
-    }];
-    [operation start];
+    [self sendRequest:request completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
 }
+
 - (void) fetchGetFromApi:(NSString *)api withParams:(NSDictionary *) params
           completionBlock:(APICompletionBlock)apiCompletionBlock
           dispatcherQueue:(dispatch_queue_t)dispatcherQueue
@@ -153,34 +157,21 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     
     [[FHSTwitterEngine sharedEngine] signRequest:request withToken:tokenKey tokenSecret:tokenSecret verifier:nil];
 
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"Api Response Data for %@ :%@", api,JSON);
-        dispatch_async(dispatcherQueue, ^{
-            apiCompletionBlock(JSON);
-        });
-
-
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"ERROR OCCURRED: %@", [error localizedDescription]);
-    }];
-    [operation start];
+    [self sendRequest:request completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
 }
+
 - (void) fetchFromApi:(NSString *)api withParams:(NSDictionary *) params
       completionBlock:(APICompletionBlock)apiCompletionBlock
       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
         requestMethod:(SLRequestMethod) requestMethod
 
 {
-    
-    
     if(requestMethod == SLRequestMethodGET){
         [self fetchGetFromApi:api withParams:params completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
     }
     else if(requestMethod == SLRequestMethodPOST){
         [self fetchPostFromApi:api withParams:params completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
     }
-    return;
 }
 
 - (void)fetchTimelineForUser:(NSString *)username
