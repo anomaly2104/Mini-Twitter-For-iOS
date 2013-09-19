@@ -49,17 +49,21 @@
     LoginCompletionBlock loginCompletionBlock = ^(BOOL success){
 
         NSString* userInfo= [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
-        NSString* currentUserName = [Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
+        NSString* currentUserName = @"MastChamp";//[Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
         
         APICompletionBlock fetchUserDetails = ^(NSDictionary* userDetails){
             self.currentUser = [User userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];
             [self performSegueWithIdentifier:@"Show Root VIew Controller" sender:self];
+         //   [self dismissViewControllerAnimated:NO completion:^{
+                
+           // }];
+
         };
         [self.tweeterFetcher fetchDetailsForUser:currentUserName completionBlock:fetchUserDetails dispatcherQueue:dispatch_get_main_queue()];
     };
-    [self.tweeterFetcher loginUserViewController:self CompletionBlock:loginCompletionBlock dispatcherQueue:GCDBackgroundThread];
+    [self.tweeterFetcher loginUserViewController:self CompletionBlock:loginCompletionBlock dispatcherQueue:dispatch_get_main_queue()];
     
-    return;
+    /*return;
     
     FetchCurrentUserCompletionBlock fetchCurrentUser = ^(ACAccount* userData){
         NSString* currentUserName = userData.username;
@@ -71,7 +75,7 @@
     };
     
     [self.tweeterFetcher getCurrentLoggedInUserCompletionBlock:fetchCurrentUser
-                                               dispatcherQueue:dispatch_get_main_queue()];
+                                               dispatcherQueue:dispatch_get_main_queue()];*/
 
 }
 

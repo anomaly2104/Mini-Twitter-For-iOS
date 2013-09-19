@@ -18,6 +18,7 @@
 		AD28ACC317EB0342001A3C34 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACB817EB0342001A3C34 /* AFURLConnectionOperation.m */; };
 		AD28ACC417EB0342001A3C34 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACBA17EB0342001A3C34 /* AFXMLRequestOperation.m */; };
 		AD28ACC517EB0342001A3C34 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACBC17EB0342001A3C34 /* UIImageView+AFNetworking.m */; };
+		AD28ACCD17EB1721001A3C34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD28ACCC17EB1721001A3C34 /* Security.framework */; };
 		AD36A6DA17E05A3400AB6769 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = AD36A6D917E05A3400AB6769 /* home.png */; };
 		AD36A6DC17E05AE000AB6769 /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = AD36A6DB17E05AE000AB6769 /* man.png */; };
 		AD36A6DF17E071A300AB6769 /* MiniTwitterRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */; };
@@ -90,6 +91,7 @@
 		AD28ACBA17EB0342001A3C34 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		AD28ACBB17EB0342001A3C34 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		AD28ACBC17EB0342001A3C34 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		AD28ACCC17EB1721001A3C34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		AD36A6D917E05A3400AB6769 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		AD36A6DB17E05AE000AB6769 /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
 		AD36A6DD17E071A200AB6769 /* MiniTwitterRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniTwitterRootViewController.h; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD28ACCD17EB1721001A3C34 /* Security.framework in Frameworks */,
 				AD28ACA817EAEB85001A3C34 /* SystemConfiguration.framework in Frameworks */,
 				ADBCA80417E74FBA00E7B644 /* CoreData.framework in Frameworks */,
 				AD5405A817E2EA120059677A /* QuartzCore.framework in Frameworks */,
@@ -285,6 +288,7 @@
 		ADE4EB6E17D6F5190097987A = {
 			isa = PBXGroup;
 			children = (
+				AD28ACCC17EB1721001A3C34 /* Security.framework */,
 				AD28ACA717EAEB85001A3C34 /* SystemConfiguration.framework */,
 				ADE4EB8017D6F5190097987A /* Mini Twitter For iOS */,
 				ADE4EB7917D6F5190097987A /* Frameworks */,

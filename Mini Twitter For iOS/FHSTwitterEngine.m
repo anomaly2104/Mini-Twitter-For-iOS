@@ -1311,12 +1311,7 @@ id removeNull(id rootObject) {
     return data;
 }
 
-- (void)signRequest:(NSMutableURLRequest *)request {
-    NSString *oauthHeader = [self buildOAuthHeaderForRequestForMethod:request.HTTPMethod forUrl:request.URL ];
-    
-    [request setValue:oauthHeader forHTTPHeaderField:@"Authorization"];
-//    [self signRequest:request withToken:_accessToken.key tokenSecret:_accessToken.secret verifier:nil];
-}
+
 
 -(NSString*)buildOAuthHeaderForRequestForMethod:(NSString*)method
                                          forUrl: (NSURL* )requestUrl{
@@ -1397,6 +1392,12 @@ id removeNull(id rootObject) {
     
     NSString *oauthHeader = [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", %@%@oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%@\", oauth_nonce=\"%@\", oauth_version=\"1.0\"",consumerKey,oauthToken,oauthVerifier,signature,timestamp,nonce];
     return oauthHeader;
+}
+- (void)signRequest:(NSMutableURLRequest *)request {
+    NSString *oauthHeader = [self buildOAuthHeaderForRequestForMethod:request.HTTPMethod forUrl:request.URL ];
+    
+    [request setValue:oauthHeader forHTTPHeaderField:@"Authorization"];
+    //    [self signRequest:request withToken:_accessToken.key tokenSecret:_accessToken.secret verifier:nil];
 }
 
 - (void)signRequest:(NSMutableURLRequest *)request withToken:(NSString *)tokenString tokenSecret:(NSString *)tokenSecretString verifier:(NSString *)verifierString {
@@ -1846,7 +1847,7 @@ id removeNull(id rootObject) {
             if (reqString.length == 0) {
                 dispatch_sync(GCDMainThread, ^{
                     @autoreleasepool {
-                   // [self dismissViewControllerAnimated:YES completion:nil];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                     }
                 });
             } else {
@@ -1871,7 +1872,12 @@ id removeNull(id rootObject) {
     void(^block)(BOOL success) = objc_getAssociatedObject(self, "FHSTwitterEngineOAuthCompletion");
     
     if (block) {
-        block(ret);
+        [self dismissViewControllerAnimated:YES completion:^{
+            block(ret);
+             objc_setAssociatedObject(self, "FHSTwitterEngineOAuthCompletion", nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
+        }];
+
+        return;
     }
     
     objc_setAssociatedObject(self, "FHSTwitterEngineOAuthCompletion", nil, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -1976,12 +1982,12 @@ id removeNull(id rootObject) {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)dismissModalViewControllerAnimated:(BOOL)animated {
+/*- (void)dismissModalViewControllerAnimated:(BOOL)animated {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [_theWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@""]]];
     [super dismissModalViewControllerAnimated:animated];
-}
+}*/
 
 @end
 

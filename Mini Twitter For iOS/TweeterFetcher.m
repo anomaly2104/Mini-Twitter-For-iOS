@@ -7,6 +7,8 @@
 //
 
 #import "TweeterFetcher.h"
+#import "AFJSONRequestOperation.h"
+
 @interface TweeterFetcher()
 @property (nonatomic) ACAccountStore *accountStore;
 @end
@@ -65,43 +67,6 @@ params =    @{@"screen_name" : username,
               @"count" : @"10"};
  */
 
--(void) someTests:(SLRequest*)slRequest{
-    }
-
-- (void) fetchCurrentUserCompletionBlock:(FetchCurrentUserCompletionBlock)completionBlock
-                         dispatcherQueue:(dispatch_queue_t)dispatcherQueue
- {
-     NSLog(@"Fetching current user");
-    //  Step 0: Check that the user has local Twitter accounts
-    if ([self userHasAccessToTwitter]) {
-        //  Step 1:  Obtain access to the user's Twitter accounts
-        ACAccountType *twitterAccountType = [self.accountStore
-                                             accountTypeWithAccountTypeIdentifier:
-                                             ACAccountTypeIdentifierTwitter];
-        [self.accountStore
-         requestAccessToAccountsWithType:twitterAccountType
-         options:NULL
-         completion:^(BOOL granted, NSError *error) {
-             if (granted) {
-                 //  Step 2:  Create a request
-                 NSArray *twitterAccounts =
-                 [self.accountStore accountsWithAccountType:twitterAccountType];
-                 ACAccount* twitterAccount = [twitterAccounts lastObject];
-
-                 dispatch_async(dispatcherQueue, ^{
-                     completionBlock(twitterAccount);
-                 });
-             }
-             else {
-                 // Access was not granted, or an error occurred
-                 NSLog(@"Some error occurred: %@", [error localizedDescription]);
-             }
-         }];
-    } else {
-        NSLog(@"User does not have access.");
-    }
-}
-
 - (void) fetchPostFromApi:(NSString *)api withParams:(NSDictionary *) params
       completionBlock:(APICompletionBlock)apiCompletionBlock
       dispatcherQueue:(dispatch_queue_t)dispatcherQueue
@@ -115,6 +80,38 @@ params =    @{@"screen_name" : username,
 {
     NSURL* apiURL = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
     NSString* oauthHeader = [[FHSTwitterEngine sharedEngine] buildOAuthHeaderForRequestForMethod:@"" forUrl:apiURL];
+    
+    NSURL *url = apiURL;
+
+    
+    if (params.count > 0) {
+        NSMutableArray *paramPairs = [NSMutableArray arrayWithCapacity:params.count];
+        
+        for (NSString *key in params) {
+            NSString *paramPair = [NSString stringWithFormat:@"%@=%@",[key fhs_URLEncode],[params[key] fhs_URLEncode]];
+            [paramPairs addObject:paramPair];
+        }
+        
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",fhs_url_remove_params(url), [paramPairs componentsJoinedByString:@"&"]]];
+    }
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request setHTTPShouldHandleCookies:NO];
+    [[FHSTwitterEngine sharedEngine] signRequest:request];
+
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"Api Response Data for %@ :%@", api,JSON);
+        dispatch_async(dispatcherQueue, ^{
+            apiCompletionBlock(JSON);
+        });
+
+
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"ERROR OCCURRED: %@", [error localizedDescription]);
+    }];
+    [operation start];
+    
     NSLog(@"AUTH HEADER : %@" , oauthHeader);
 }
 - (void) fetchFromApi:(NSString *)api withParams:(NSDictionary *) params
@@ -132,7 +129,7 @@ params =    @{@"screen_name" : username,
         [self fetchPostFromApi:api withParams:params completionBlock:apiCompletionBlock dispatcherQueue:dispatcherQueue];
     }
     return;
-    
+    /*
     
     //  Step 0: Check that the user has local Twitter accounts
     if ([self userHasAccessToTwitter]) {
@@ -161,7 +158,7 @@ params =    @{@"screen_name" : username,
 
                  [request setAccount:[twitterAccounts lastObject]];
                 
-                 [self someTests:request];
+                // [self someTests:request];
                  
                  //  Step 3:  Execute the request
                  [request performRequestWithHandler:^(NSData *responseData,
@@ -200,12 +197,7 @@ params =    @{@"screen_name" : username,
          }];
     } else {
         NSLog(@"User does not have access.");
-    }
-}
-
--(void) getCurrentLoggedInUserCompletionBlock:(FetchCurrentUserCompletionBlock)completionBlock
-                               dispatcherQueue:(dispatch_queue_t)dispatcherQueue{
-    [self fetchCurrentUserCompletionBlock:completionBlock dispatcherQueue:dispatcherQueue];
+    }*/
 }
 
 - (void)fetchTimelineForUser:(NSString *)username

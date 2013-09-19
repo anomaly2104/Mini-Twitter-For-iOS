@@ -83,7 +83,14 @@ extern NSString * const FHSErrorDomain;
 @end
 
 @interface FHSTwitterEngine : NSObject
+- (void)signRequest:(NSMutableURLRequest *)request ;
+- (void)signRequest:(NSMutableURLRequest *)request withToken:(NSString *)tokenString tokenSecret:(NSString *)tokenSecretString verifier:(NSString *)verifierString;
 
+-(NSString*) buildOAuthHeaderWithToken:(NSString *)tokenString
+                           tokenSecret:(NSString *)tokenSecretString
+                              verifier:(NSString *)verifierString
+                             forMethod:(NSString*)method
+                                forUrl: (NSURL* )requestUrl;
 -(NSString*)buildOAuthHeaderForRequestForMethod:(NSString*)method
                                          forUrl: (NSURL* )requestUrl;
 
@@ -331,6 +338,7 @@ extern NSString * const FHSErrorDomain;
 @end
 
 @interface NSString (FHSTwitterEngine)
+- (NSString *)fhs_URLEncode;
 - (NSString *)fhs_trimForTwitter;
 - (NSString *)fhs_stringWithRange:(NSRange)range;
 + (NSString *)fhs_UUID;
