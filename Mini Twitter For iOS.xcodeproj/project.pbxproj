@@ -19,13 +19,18 @@
 		AD28ACC417EB0342001A3C34 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACBA17EB0342001A3C34 /* AFXMLRequestOperation.m */; };
 		AD28ACC517EB0342001A3C34 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACBC17EB0342001A3C34 /* UIImageView+AFNetworking.m */; };
 		AD28ACCD17EB1721001A3C34 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD28ACCC17EB1721001A3C34 /* Security.framework */; };
+		AD28ACD117EC1F9A001A3C34 /* spanner.png in Resources */ = {isa = PBXBuildFile; fileRef = AD28ACD017EC1F9A001A3C34 /* spanner.png */; };
+		AD28ACD417EC2124001A3C34 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD28ACD317EC2124001A3C34 /* SettingsViewController.m */; };
+		AD28ACD617EC2268001A3C34 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = AD28ACD517EC2268001A3C34 /* lock.png */; };
+		AD28ACD817EC228A001A3C34 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = AD28ACD717EC228A001A3C34 /* gear.png */; };
+		AD28ACDA17EC234F001A3C34 /* twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = AD28ACD917EC234F001A3C34 /* twitter.png */; };
+		AD28ACDC17EC24F9001A3C34 /* twitter-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = AD28ACDB17EC24F9001A3C34 /* twitter-bird.png */; };
 		AD36A6DA17E05A3400AB6769 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = AD36A6D917E05A3400AB6769 /* home.png */; };
 		AD36A6DC17E05AE000AB6769 /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = AD36A6DB17E05AE000AB6769 /* man.png */; };
 		AD36A6DF17E071A300AB6769 /* MiniTwitterRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */; };
 		AD49F89217D6F8250030F0FD /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD49F89117D6F8250030F0FD /* Twitter.framework */; };
 		AD49F89417D6F82D0030F0FD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD49F89317D6F82D0030F0FD /* Accounts.framework */; };
 		AD49F89717D6F9BD0030F0FD /* TweeterFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F89617D6F9BD0030F0FD /* TweeterFetcher.m */; };
-		AD49F89A17D70FDC0030F0FD /* ResponseCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F89917D70FDC0030F0FD /* ResponseCreator.m */; };
 		AD49F89D17D72E3A0030F0FD /* UserTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F89C17D72E3A0030F0FD /* UserTweetsViewController.m */; };
 		AD49F8A017D73D410030F0FD /* HomeTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F89F17D73D410030F0FD /* HomeTimelineViewController.m */; };
 		AD49F8A317D74E2D0030F0FD /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F8A217D74E2D0030F0FD /* TweetCell.m */; };
@@ -92,6 +97,13 @@
 		AD28ACBB17EB0342001A3C34 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		AD28ACBC17EB0342001A3C34 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		AD28ACCC17EB1721001A3C34 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		AD28ACD017EC1F9A001A3C34 /* spanner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spanner.png; sourceTree = "<group>"; };
+		AD28ACD217EC2124001A3C34 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		AD28ACD317EC2124001A3C34 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		AD28ACD517EC2268001A3C34 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		AD28ACD717EC228A001A3C34 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		AD28ACD917EC234F001A3C34 /* twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter.png; sourceTree = "<group>"; };
+		AD28ACDB17EC24F9001A3C34 /* twitter-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-bird.png"; sourceTree = "<group>"; };
 		AD36A6D917E05A3400AB6769 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		AD36A6DB17E05AE000AB6769 /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
 		AD36A6DD17E071A200AB6769 /* MiniTwitterRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniTwitterRootViewController.h; sourceTree = "<group>"; };
@@ -100,8 +112,6 @@
 		AD49F89317D6F82D0030F0FD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		AD49F89517D6F9BD0030F0FD /* TweeterFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweeterFetcher.h; sourceTree = "<group>"; };
 		AD49F89617D6F9BD0030F0FD /* TweeterFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweeterFetcher.m; sourceTree = "<group>"; };
-		AD49F89817D70FDC0030F0FD /* ResponseCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseCreator.h; sourceTree = "<group>"; };
-		AD49F89917D70FDC0030F0FD /* ResponseCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseCreator.m; sourceTree = "<group>"; };
 		AD49F89B17D72E3A0030F0FD /* UserTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTweetsViewController.h; sourceTree = "<group>"; };
 		AD49F89C17D72E3A0030F0FD /* UserTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTweetsViewController.m; sourceTree = "<group>"; };
 		AD49F89E17D73D410030F0FD /* HomeTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTimelineViewController.h; sourceTree = "<group>"; };
@@ -215,9 +225,26 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		AD28ACCF17EC1B2A001A3C34 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD49F8A117D74E2D0030F0FD /* TweetCell.h */,
+				AD49F8A217D74E2D0030F0FD /* TweetCell.m */,
+				AD5405A417E1DB1F0059677A /* Padder.h */,
+				AD5405A517E1DB200059677A /* Padder.m */,
+				AD5405B217E2F9910059677A /* UserCell.h */,
+				AD5405B317E2F9920059677A /* UserCell.m */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
 		AD36A6D817E05A2000AB6769 /* twitter-icons */ = {
 			isa = PBXGroup;
 			children = (
+				AD28ACD917EC234F001A3C34 /* twitter.png */,
+				AD28ACD717EC228A001A3C34 /* gear.png */,
+				AD28ACD517EC2268001A3C34 /* lock.png */,
+				AD28ACD017EC1F9A001A3C34 /* spanner.png */,
 				AD5405A217E1CBC90059677A /* icon.png */,
 				AD5405A017E1C7480059677A /* pencil.png */,
 				AD36A6DB17E05AE000AB6769 /* man.png */,
@@ -229,6 +256,7 @@
 		AD54058517E087450059677A /* images */ = {
 			isa = PBXGroup;
 			children = (
+				AD28ACDB17EC24F9001A3C34 /* twitter-bird.png */,
 				AD54058D17E092510059677A /* 37x-Checkmark.png */,
 				AD54058E17E092510059677A /* 37x-Checkmark@2x.png */,
 				ADE4EB8C17D6F5190097987A /* Default.png */,
@@ -281,6 +309,8 @@
 				AD5405AD17E2F0900059677A /* UserFollowersViewController.m */,
 				AD49F89E17D73D410030F0FD /* HomeTimelineViewController.h */,
 				AD49F89F17D73D410030F0FD /* HomeTimelineViewController.m */,
+				AD28ACD217EC2124001A3C34 /* SettingsViewController.h */,
+				AD28ACD317EC2124001A3C34 /* SettingsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -322,17 +352,11 @@
 		ADE4EB8017D6F5190097987A /* Mini Twitter For iOS */ = {
 			isa = PBXGroup;
 			children = (
-				AD28ACA917EB0342001A3C34 /* AFNetworking */,
+				AD28ACCF17EC1B2A001A3C34 /* Custom Views */,
 				ADBCA7E717E74BA700E7B644 /* View Controllers */,
 				ADBCA7E617E74B9A00E7B644 /* Model */,
 				ADE4EB9217D6F5190097987A /* MainStoryboard.storyboard */,
 				ADE4EB8117D6F5190097987A /* Supporting Files */,
-				AD49F8A117D74E2D0030F0FD /* TweetCell.h */,
-				AD49F8A217D74E2D0030F0FD /* TweetCell.m */,
-				AD5405A417E1DB1F0059677A /* Padder.h */,
-				AD5405A517E1DB200059677A /* Padder.m */,
-				AD5405B217E2F9910059677A /* UserCell.h */,
-				AD5405B317E2F9920059677A /* UserCell.m */,
 			);
 			path = "Mini Twitter For iOS";
 			sourceTree = "<group>";
@@ -340,6 +364,7 @@
 		ADE4EB8117D6F5190097987A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				AD28ACA917EB0342001A3C34 /* AFNetworking */,
 				AD28ACA417EAE75C001A3C34 /* FHSTwitterEngine.h */,
 				AD28ACA517EAE75C001A3C34 /* FHSTwitterEngine.m */,
 				ADE4EB8917D6F5190097987A /* minitwitterAppDelegate.h */,
@@ -349,8 +374,6 @@
 				AD54058517E087450059677A /* images */,
 				AD49F89517D6F9BD0030F0FD /* TweeterFetcher.h */,
 				AD49F89617D6F9BD0030F0FD /* TweeterFetcher.m */,
-				AD49F89817D70FDC0030F0FD /* ResponseCreator.h */,
-				AD49F89917D70FDC0030F0FD /* ResponseCreator.m */,
 				AD49F8AA17D861460030F0FD /* NSDateTimeAgo.bundle */,
 				AD49F8A417D85E330030F0FD /* NSDate+TimeAgo.h */,
 				AD49F8A517D85E330030F0FD /* NSDate+TimeAgo.m */,
@@ -429,6 +452,11 @@
 				AD54059017E092510059677A /* 37x-Checkmark@2x.png in Resources */,
 				AD5405A117E1C7480059677A /* pencil.png in Resources */,
 				AD5405A317E1CBC90059677A /* icon.png in Resources */,
+				AD28ACD117EC1F9A001A3C34 /* spanner.png in Resources */,
+				AD28ACD617EC2268001A3C34 /* lock.png in Resources */,
+				AD28ACD817EC228A001A3C34 /* gear.png in Resources */,
+				AD28ACDA17EC234F001A3C34 /* twitter.png in Resources */,
+				AD28ACDC17EC24F9001A3C34 /* twitter-bird.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +470,6 @@
 				ADE4EB8717D6F5190097987A /* main.m in Sources */,
 				ADE4EB8B17D6F5190097987A /* minitwitterAppDelegate.m in Sources */,
 				AD49F89717D6F9BD0030F0FD /* TweeterFetcher.m in Sources */,
-				AD49F89A17D70FDC0030F0FD /* ResponseCreator.m in Sources */,
 				AD49F89D17D72E3A0030F0FD /* UserTweetsViewController.m in Sources */,
 				AD49F8A017D73D410030F0FD /* HomeTimelineViewController.m in Sources */,
 				AD49F8A317D74E2D0030F0FD /* TweetCell.m in Sources */,
@@ -475,6 +502,7 @@
 				AD28ACC317EB0342001A3C34 /* AFURLConnectionOperation.m in Sources */,
 				AD28ACC417EB0342001A3C34 /* AFXMLRequestOperation.m in Sources */,
 				AD28ACC517EB0342001A3C34 /* UIImageView+AFNetworking.m in Sources */,
+				AD28ACD417EC2124001A3C34 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

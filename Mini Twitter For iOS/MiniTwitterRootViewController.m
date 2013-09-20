@@ -40,11 +40,13 @@
     NSMutableArray* newViewControllers = [self.viewControllers mutableCopy];
 
     for(UINavigationController* navigationController in newViewControllers){
-        UIViewController* tabBarController = [navigationController.viewControllers lastObject];
-        if ([tabBarController isKindOfClass:[UserTweetsViewController class]]) {
-            [tabBarController performSelector:@selector(setUser:) withObject:self.currentUser];
-        } else if([tabBarController isKindOfClass: [HomeTimelineViewController class] ]){
-            [tabBarController performSelector:@selector(setCurrentUser:) withObject:self.currentUser];
+        if( [navigationController isKindOfClass:[UINavigationController class]]){
+            UIViewController* tabBarController = [navigationController.viewControllers lastObject];
+            if ([tabBarController isKindOfClass:[UserTweetsViewController class]] && [tabBarController respondsToSelector:@selector(setUser:)]) {
+                [tabBarController performSelector:@selector(setUser:) withObject:self.currentUser];
+            } else if([tabBarController isKindOfClass: [HomeTimelineViewController class] ]){
+                [tabBarController performSelector:@selector(setCurrentUser:) withObject:self.currentUser];
+            }
         }
     }
     

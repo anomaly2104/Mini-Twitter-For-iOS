@@ -1,3 +1,4 @@
+
 //
 //  TweeterFetcher.m
 //  Mini Twitter For iOS
@@ -37,6 +38,7 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
 }
 -(void) storeAccessToken:(NSString *)accessToken{
     [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:TWITTER_DEFALT_ACCESS_TOKEN];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     NSLog(@"Access Token: %@" , accessToken);
 }
 
@@ -44,6 +46,7 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
                 CompletionBlock:(LoginCompletionBlock) loginCompletionBlock
                  dispatcherQueue:(dispatch_queue_t)dispatcherQueue
 {
+    NSLog(@"Login access token%@", [self loadAccessToken]);
     if([self loadAccessToken].length > 0){
         dispatch_async(dispatcherQueue, ^{
             loginCompletionBlock(YES);
@@ -57,9 +60,17 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     }];
 }
 
-- (BOOL)userHasAccessToTwitter
+-(void) logoutUserViewController:(UIViewController* ) sender
+                CompletionBlock:(LogoutCompletionBlock) logoutCompletionBlock
+                dispatcherQueue:(dispatch_queue_t)dispatcherQueue
 {
-    return [SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
+    dispatch_async(dispatcherQueue, ^{
+        logoutCompletionBlock(YES);
+    });
+
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"Still access token%@", [self loadAccessToken]);
 }
 
 -(void) signRequest:(NSMutableURLRequest*) request{

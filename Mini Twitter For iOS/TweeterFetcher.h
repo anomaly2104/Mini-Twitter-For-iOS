@@ -12,7 +12,6 @@
 #import <Social/Social.h>
 
 #import "FHSTwitterEngine.h"
-#import "ResponseCreator.h"
 #import "User.h"
 #import "Utils.h"
 
@@ -45,6 +44,7 @@
 
 typedef void (^ APICompletionBlock)(NSDictionary *);
 typedef void (^ LoginCompletionBlock)(BOOL);
+typedef void (^ LogoutCompletionBlock)(BOOL);
 typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 
 @interface TweeterFetcher : NSObject <FHSTwitterEngineAccessTokenDelegate>
@@ -54,6 +54,10 @@ typedef void (^ FetchCurrentUserCompletionBlock)(ACAccount *);
 -(void) loginUserViewController:(UIViewController* ) sender
                 CompletionBlock:(LoginCompletionBlock) loginCompletionBlock
                 dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
+
+-(void) logoutUserViewController:(UIViewController* ) sender
+                 CompletionBlock:(LogoutCompletionBlock) logoutCompletionBlock
+                 dispatcherQueue:(dispatch_queue_t)dispatcherQueue;
 
 - (void)fetchTimelineForUser:(NSString *)username
              completionBlock:(APICompletionBlock) apiCompletionBlock
