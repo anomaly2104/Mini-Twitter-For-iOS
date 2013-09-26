@@ -22,7 +22,7 @@
 #define PROFILE_PICTURE_HEIGHT 50
 #define PROFILE_PICTURE_WIDTH 50
 
-@interface TweetCell : UITableViewCell
+@interface MTTweetCell : UITableViewCell
 @property(nonatomic,strong)UILabel *tweetedByName;
 @property(nonatomic,strong)UILabel *tweetTime;
 @property(nonatomic,strong)UILabel *tweetMessage;

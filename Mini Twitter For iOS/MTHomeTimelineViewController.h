@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "TweeterFetcher.h"
-#import "TweetCell.h"
+#import "MTTweetCell.h"
 #import "Utils.h"
 #import "MTTweet.h"
 #import "MTTweetViewController.h"

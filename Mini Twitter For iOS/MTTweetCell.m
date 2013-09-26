@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "TweetCell.h"
+#import "MTTweetCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation TweetCell
+@implementation MTTweetCell
 @synthesize tweetedByName,tweetedByProileImage,tweetMessage,tweetTime;
 
 - (void)layoutSubviews {

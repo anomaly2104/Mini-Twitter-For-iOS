@@ -133,7 +133,7 @@
                                                                                    cacheName:nil];
 }
 
--(TweetCell*) setTweetData:(MTTweet *) tweet OnCell:(TweetCell*) cell {
+-(MTTweetCell*) setTweetData:(MTTweet *) tweet OnCell:(MTTweetCell*) cell {
     
     [self changeIdsForTweetId:tweet.tweetId];
 
@@ -157,9 +157,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Home Timeline Tweet";
-    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MTTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil){
-        cell = [[TweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
+        cell = [[MTTweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
     MTTweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];

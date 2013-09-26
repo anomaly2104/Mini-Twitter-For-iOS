@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "Padder.h"
+#import "MTPadder.h"
 
-@implementation Padder
+@implementation MTPadder
 
 - (id)initWithWidth:(CGFloat)width
 {

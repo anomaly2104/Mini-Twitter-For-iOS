@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MTUser.h"
-#import "UserCell.h"
-#import "Padder.h"
+#import "MTUserCell.h"
+#import "MTPadder.h"
 #import "TweeterFetcher.h"
 #import "MTCoreDataTableViewController.h"
 

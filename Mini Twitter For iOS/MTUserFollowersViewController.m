@@ -93,7 +93,7 @@
     
 }
 
--(UserCell*) setUserData:(MTUser *) user OnCell:(UserCell*) cell {
+-(MTUserCell*) setUserData:(MTUser *) user OnCell:(MTUserCell*) cell {
     
     cell.userName.text = user.name;
     cell.userUserName.text =[ NSString stringWithFormat:@"@%@",user.userName ];
@@ -113,9 +113,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Follower User ";
-    UserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MTUserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil){
-        cell = [[UserCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
+        cell = [[MTUserCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
     MTUser *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];

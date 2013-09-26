@@ -94,7 +94,7 @@
 -(void) disableTweetPosting {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] init];
     [spinner startAnimating];
-    Padder* padding = [[Padder alloc] initWithWidth:10];
+    MTPadder* padding = [[MTPadder alloc] initWithWidth:10];
     UIBarButtonItem* spinnerView = [[UIBarButtonItem alloc] initWithCustomView:spinner];
     UIBarButtonItem* paddingItem = [[UIBarButtonItem alloc] initWithCustomView:padding];
     

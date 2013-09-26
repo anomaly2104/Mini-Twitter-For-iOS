@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Padder.h"
+#import "MTPadder.h"
 #import "TweeterFetcher.h"
 
 @interface MTCreateTweetViewController : UITableViewController <UITextViewDelegate>

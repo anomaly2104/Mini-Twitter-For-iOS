@@ -7,7 +7,7 @@
 //
 
 #import "MiniTwitterRootViewController.h"
-#import "TweetCell.h"
+#import "MTTweetCell.h"
 #import "MTUserTweetsViewController.h"
 #import "TweeterFetcher.h"
 

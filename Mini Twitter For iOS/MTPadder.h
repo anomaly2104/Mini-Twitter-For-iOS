@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Padder : UILabel
+@interface MTPadder : UILabel
 - (id)initWithWidth:(CGFloat)width;
 @end

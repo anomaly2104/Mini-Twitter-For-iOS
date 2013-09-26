@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "UserCell.h"
+#import "MTUserCell.h"
 
-@implementation UserCell
+@implementation MTUserCell
 @synthesize userName,userUserName,userProileImage;
 
 - (void)layoutSubviews {
