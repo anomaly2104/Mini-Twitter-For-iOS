@@ -20,7 +20,7 @@
     tweet.tweetMessage = [tweetTwitterData objectForKey:TWITTER_TWEET_MESSAGE];
     tweet.tweetId = [tweetTwitterData objectForKey:TWITTER_TWEET_ID];
     
-    tweet.tweetedBy = [User userWithTwitterData:[tweetTwitterData objectForKey:TWITTER_TWEET_USER]];
+    tweet.tweetedBy = [MTUser userWithTwitterData:[tweetTwitterData objectForKey:TWITTER_TWEET_USER]];
     
     return tweet;
 }
@@ -44,7 +44,7 @@
         tweet.tweetMessage = [tweetTwitterData objectForKey:TWITTER_TWEET_MESSAGE];
         tweet.tweetId = [tweetTwitterData objectForKey:TWITTER_TWEET_ID_STR];
         
-        tweet.tweetedBy = [User userWithTwitterData:[tweetTwitterData objectForKey:TWITTER_TWEET_USER] inManagedObjectContext:context];
+        tweet.tweetedBy = [MTUser userWithTwitterData:[tweetTwitterData objectForKey:TWITTER_TWEET_USER] inManagedObjectContext:context];
     } else {
         tweet = [matches lastObject];
     }

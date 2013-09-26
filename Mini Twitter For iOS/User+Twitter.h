@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "User.h"
+#import "MTUser.h"
 #import <Accounts/ACAccount.h>
-@interface User (Twitter)
+@interface MTUser (Twitter)
 -(NSURL*) profileUrl;
-+(User*) userWithTwitterData:(NSDictionary*) userTwitterData;
-+(User*) userWithTwitterData:(NSDictionary*) userTwitterData
++(MTUser*) userWithTwitterData:(NSDictionary*) userTwitterData;
++(MTUser*) userWithTwitterData:(NSDictionary*) userTwitterData
 inManagedObjectContext:(NSManagedObjectContext*) context;
-+(User*) userWithACAccount:(ACAccount*) acAccount;
++(MTUser*) userWithACAccount:(ACAccount*) acAccount;
 //+(User*) userWithACAccount:(ACAccount*) acAccount
 //inManagedObjectContext:(NSManagedObjectContext*) context;
 @end

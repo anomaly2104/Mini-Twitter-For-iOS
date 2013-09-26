@@ -6,17 +6,17 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "UserFollowingViewController.h"
+#import "MTUserFollowingViewController.h"
 #import "User+Twitter.h"
 
-@interface UserFollowingViewController ()
+@interface MTUserFollowingViewController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (strong, nonatomic) NSString* nextCursor;
 @property (nonatomic) BOOL isFetching;
 @end
 
-@implementation UserFollowingViewController
+@implementation MTUserFollowingViewController
 
 @synthesize nextCursor = _nextCursor;
 @synthesize tweeterFetcher = _tweeterFetcher;
@@ -43,7 +43,7 @@
                                                                                    cacheName:nil];
 }
 
--(void)setUser:(User *)user{
+-(void)setUser:(MTUser *)user{
     _user = user;
     [self setupFetchedResultsController];
     self.title = @"Following";
@@ -80,7 +80,7 @@
 //        NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
-            [self.user addFollowingsObject:[User userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
+            [self.user addFollowingsObject:[MTUser userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
         }
         self.isFetching = NO;
 
@@ -94,7 +94,7 @@
 }
 
 
--(UserCell*) setUserData:(User *) user OnCell:(UserCell*) cell {
+-(UserCell*) setUserData:(MTUser *) user OnCell:(UserCell*) cell {
     
     cell.userName.text = user.name;    
     cell.userUserName.text =[ NSString stringWithFormat:@"@%@",user.userName ];
@@ -119,7 +119,7 @@
         cell = [[UserCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
-    User *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    MTUser *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell = [self setUserData:userToShow OnCell:cell];
     
@@ -135,7 +135,7 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [segue.identifier isEqualToString:@"Following To User"]){
-        User* user = (User*)sender;
+        MTUser* user = (MTUser*)sender;
         [segue.destinationViewController setUser:user];
     }
 }

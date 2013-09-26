@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "User.h"
+#import "MTUser.h"
 #import "UserCell.h"
 #import "Padder.h"
 #import "TweeterFetcher.h"
-#import "CoreDataTableViewController.h"
+#import "MTCoreDataTableViewController.h"
 
-@interface UserFollowersViewController : CoreDataTableViewController
-@property (nonatomic, strong) User* user;
+@interface MTUserFollowersViewController : MTCoreDataTableViewController
+@property (nonatomic, strong) MTUser* user;
 @end

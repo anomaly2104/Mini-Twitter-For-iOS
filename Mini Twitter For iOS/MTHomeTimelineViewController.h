@@ -12,9 +12,9 @@
 #import "TweetCell.h"
 #import "Utils.h"
 #import "Tweet.h"
-#import "TweetViewController.h"
-#import "CoreDataTableViewController.h"
+#import "MTTweetViewController.h"
+#import "MTCoreDataTableViewController.h"
 #import "HomeTimeLine+Twitter.h"
-@interface HomeTimelineViewController : CoreDataTableViewController
-@property (nonatomic,strong) User* currentUser;
+@interface MTHomeTimelineViewController : MTCoreDataTableViewController
+@property (nonatomic,strong) MTUser* currentUser;
 @end

@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "UserFollowersViewController.h"
+#import "MTUserFollowersViewController.h"
 #import "User+Twitter.h"
 
-@interface UserFollowersViewController ()
+@interface MTUserFollowersViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (strong, nonatomic) NSString* nextCursor;
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation UserFollowersViewController
+@implementation MTUserFollowersViewController
 
 @synthesize nextCursor = _nextCursor;
 @synthesize tweeterFetcher = _tweeterFetcher;
@@ -37,7 +37,7 @@
                                                                                    cacheName:nil];
 }
 
--(void)setUser:(User *)user{
+-(void)setUser:(MTUser *)user{
     _user = user;
     [self setupFetchedResultsController];
     self.title = @"Followers";
@@ -80,7 +80,7 @@
 //        NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
-            [self.user addFollowersObject:[User userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
+            [self.user addFollowersObject:[MTUser userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
         }
         self.isFetching = NO;
 
@@ -93,7 +93,7 @@
     
 }
 
--(UserCell*) setUserData:(User *) user OnCell:(UserCell*) cell {
+-(UserCell*) setUserData:(MTUser *) user OnCell:(UserCell*) cell {
     
     cell.userName.text = user.name;
     cell.userUserName.text =[ NSString stringWithFormat:@"@%@",user.userName ];
@@ -118,7 +118,7 @@
         cell = [[UserCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
-    User *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    MTUser *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell = [self setUserData:userToShow OnCell:cell];
     
@@ -134,7 +134,7 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [segue.identifier isEqualToString:@"Follower To User"]){
-        User* user = (User*)sender;
+        MTUser* user = (MTUser*)sender;
         [segue.destinationViewController setUser:user];
     }
 }

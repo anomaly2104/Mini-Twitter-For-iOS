@@ -12,7 +12,7 @@
 #import <Social/Social.h>
 
 #import "FHSTwitterEngine.h"
-#import "User.h"
+#import "MTUser.h"
 #import "Utils.h"
 
 #define TWITTER_DEFALT_ACCESS_TOKEN @"access_token"

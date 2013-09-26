@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "TweetViewController.h"
+#import "MTTweetViewController.h"
 #import "User+Twitter.h"
 
-@interface TweetViewController ()
+@interface MTTweetViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *tweetedByProfileImage;
 @property (weak, nonatomic) IBOutlet UILabel *tweetedByName;
 @property (weak, nonatomic) IBOutlet UILabel *tweetMessage;
@@ -18,7 +18,7 @@
 @property (nonatomic, strong) Utils* utils;
 @end
 
-@implementation TweetViewController
+@implementation MTTweetViewController
 @synthesize tweet = _tweet;
 @synthesize tweetTime = _tweetTime;
 @synthesize tweetedByName = _tweetedByName;

@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class HomeTimeLine, User;
+@class HomeTimeLine, MTUser;
 
 @interface Tweet : NSManagedObject
 
 @property (nonatomic, retain) NSString * tweetMessage;
 @property (nonatomic, retain) NSDate * tweetTimestamp;
 @property (nonatomic, retain) NSString * tweetId;
-@property (nonatomic, retain) User *tweetedBy;
+@property (nonatomic, retain) MTUser *tweetedBy;
 @property (nonatomic, retain) NSSet *inHomeTimeLine;
 @end
 

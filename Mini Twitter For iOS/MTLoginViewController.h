@@ -11,8 +11,8 @@
 #import <Accounts/ACAccount.h>
 #import "TweeterFetcher.h"
 #import "AnimatedGif.h"
-#import "User.h"
+#import "MTUser.h"
 
-@interface LoginViewController : UIViewController
+@interface MTLoginViewController : UIViewController
 @property (nonatomic,strong) UIManagedDocument* twitterDatabase;
 @end

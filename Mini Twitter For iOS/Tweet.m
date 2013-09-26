@@ -8,7 +8,7 @@
 
 #import "Tweet.h"
 #import "HomeTimeLine.h"
-#import "User.h"
+#import "MTUser.h"
 
 
 @implementation Tweet

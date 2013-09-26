@@ -8,7 +8,7 @@
 
 #import "MiniTwitterRootViewController.h"
 #import "TweetCell.h"
-#import "UserTweetsViewController.h"
+#import "MTUserTweetsViewController.h"
 #import "TweeterFetcher.h"
 
 @interface MiniTwitterRootViewController ()
@@ -18,8 +18,8 @@
 @implementation MiniTwitterRootViewController
 @synthesize currentUser = _currentUser;
 
--(User*) currentUser{
-    if(!_currentUser) _currentUser = [[User alloc] init];
+-(MTUser*) currentUser{
+    if(!_currentUser) _currentUser = [[MTUser alloc] init];
     return _currentUser;
 }
 
@@ -42,9 +42,9 @@
     for(UINavigationController* navigationController in newViewControllers){
         if( [navigationController isKindOfClass:[UINavigationController class]]){
             UIViewController* tabBarController = [navigationController.viewControllers lastObject];
-            if ([tabBarController isKindOfClass:[UserTweetsViewController class]] && [tabBarController respondsToSelector:@selector(setUser:)]) {
+            if ([tabBarController isKindOfClass:[MTUserTweetsViewController class]] && [tabBarController respondsToSelector:@selector(setUser:)]) {
                 [tabBarController performSelector:@selector(setUser:) withObject:self.currentUser];
-            } else if([tabBarController isKindOfClass: [HomeTimelineViewController class] ]){
+            } else if([tabBarController isKindOfClass: [MTHomeTimelineViewController class] ]){
                 [tabBarController performSelector:@selector(setCurrentUser:) withObject:self.currentUser];
             }
         }

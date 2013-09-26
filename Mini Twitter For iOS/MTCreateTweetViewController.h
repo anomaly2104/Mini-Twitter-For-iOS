@@ -10,6 +10,6 @@
 #import "Padder.h"
 #import "TweeterFetcher.h"
 
-@interface CreateTweetViewController : UITableViewController <UITextViewDelegate>
+@interface MTCreateTweetViewController : UITableViewController <UITextViewDelegate>
 
 @end

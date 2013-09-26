@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Tweet, User;
+@class Tweet, MTUser;
 
-@interface User : NSManagedObject
+@interface MTUser : NSManagedObject
 
 @property (nonatomic, retain) NSString * userId;
 @property (nonatomic, retain) NSNumber * numberFollowers;
@@ -25,20 +25,20 @@
 @property (nonatomic, retain) NSSet *followings;
 @end
 
-@interface User (CoreDataGeneratedAccessors)
+@interface MTUser (CoreDataGeneratedAccessors)
 
 - (void)addTweetObject:(Tweet *)value;
 - (void)removeTweetObject:(Tweet *)value;
 - (void)addTweet:(NSSet *)values;
 - (void)removeTweet:(NSSet *)values;
 
-- (void)addFollowersObject:(User *)value;
-- (void)removeFollowersObject:(User *)value;
+- (void)addFollowersObject:(MTUser *)value;
+- (void)removeFollowersObject:(MTUser *)value;
 - (void)addFollowers:(NSSet *)values;
 - (void)removeFollowers:(NSSet *)values;
 
-- (void)addFollowingsObject:(User *)value;
-- (void)removeFollowingsObject:(User *)value;
+- (void)addFollowingsObject:(MTUser *)value;
+- (void)removeFollowingsObject:(MTUser *)value;
 - (void)addFollowings:(NSSet *)values;
 - (void)removeFollowings:(NSSet *)values;
 

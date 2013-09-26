@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "SettingsViewController.h"
+#import "MTSettingsViewController.h"
 #import "TweeterFetcher.h"
-@interface SettingsViewController ()
+@interface MTSettingsViewController ()
 @property (nonatomic,strong) TweeterFetcher* tweeterFetcher;
 @end
 
-@implementation SettingsViewController
+@implementation MTSettingsViewController
 
 @synthesize tweeterFetcher = _tweeterFetcher;
 - (TweeterFetcher *) tweeterFetcher {

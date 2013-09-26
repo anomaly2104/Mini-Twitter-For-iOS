@@ -6,20 +6,20 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "MTLoginViewController.h"
 #import "MiniTwitterRootViewController.h"
 #import "User+Twitter.h"
-@interface LoginViewController ()
+@interface MTLoginViewController ()
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
-@property (nonatomic, strong) User* currentUser;
+@property (nonatomic, strong) MTUser* currentUser;
 @end
 
-@implementation LoginViewController
+@implementation MTLoginViewController
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize currentUser = _currentUser;
 
--(User*) currentUser{
-    if(!_currentUser) _currentUser = [[User alloc] init];
+-(MTUser*) currentUser{
+    if(!_currentUser) _currentUser = [[MTUser alloc] init];
     return _currentUser;
 }
 - (TweeterFetcher *) tweeterFetcher {
@@ -52,7 +52,7 @@
         NSString* currentUserName = [Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
         
         APICompletionBlock fetchUserDetails = ^(NSDictionary* userDetails){
-            self.currentUser = [User userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];
+            self.currentUser = [MTUser userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];
             [self performSegueWithIdentifier:@"Show Root VIew Controller" sender:self];
          //   [self dismissViewControllerAnimated:NO completion:^{
                 

@@ -9,14 +9,14 @@
 #import "User+Twitter.h"
 #import "TweeterFetcher.h"
 
-@implementation User (Twitter)
+@implementation MTUser (Twitter)
 -(NSURL*) profileUrl{
     return [NSURL URLWithString:self.profileUrlString];
 }
-+(User*) userWithTwitterData:(NSDictionary *)userTwitterData inManagedObjectContext:(NSManagedObjectContext *)context{
++(MTUser*) userWithTwitterData:(NSDictionary *)userTwitterData inManagedObjectContext:(NSManagedObjectContext *)context{
 
-    User* user = nil;
-    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    MTUser* user = nil;
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"MTUser"];
     
     request.predicate = [NSPredicate predicateWithFormat:@"(userName = %@) OR (userId = %@)", [userTwitterData valueForKey:TWITTER_USER_USERNAME],[userTwitterData valueForKey:TWITTER_USER_ID_STR]];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
@@ -29,7 +29,7 @@
         // handle error
     } else {
         if ([matches count] == 0) {
-            user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:context];
+            user = [NSEntityDescription insertNewObjectForEntityForName:@"MTUser" inManagedObjectContext:context];
         } else {
             user = [matches lastObject];
         }

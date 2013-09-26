@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "User.h"
+#import "MTUser.h"
 #import "Tweet.h"
-#import "User.h"
+#import "MTUser.h"
 
 
-@implementation User
+@implementation MTUser
 
 @dynamic userId;
 @dynamic numberFollowers;

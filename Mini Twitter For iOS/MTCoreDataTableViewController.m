@@ -5,13 +5,13 @@
 //  Copyright 2011 Stanford University. All rights reserved.
 //
 
-#import "CoreDataTableViewController.h"
+#import "MTCoreDataTableViewController.h"
 
-@interface CoreDataTableViewController()
+@interface MTCoreDataTableViewController()
 @property (nonatomic) BOOL beganUpdates;
 @end
 
-@implementation CoreDataTableViewController
+@implementation MTCoreDataTableViewController
 
 #pragma mark - Properties
 

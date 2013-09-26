@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "CreateTweetViewController.h"
+#import "MTCreateTweetViewController.h"
 #import "Tweet+Twitter.h"
 #import "MiniTwitterRootViewController.h"
 
-@interface CreateTweetViewController ()
+@interface MTCreateTweetViewController ()
 
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (strong, nonatomic) IBOutlet UITextView *tweetMessageTextBox;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation CreateTweetViewController
+@implementation MTCreateTweetViewController
 
 @synthesize tweetMessageTextBox = _tweetMessageTextBox;
 @synthesize tweetTextLength = _tweetTextLength;
