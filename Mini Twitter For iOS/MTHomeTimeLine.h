@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Tweet;
+@class MTTweet;
 
-@interface HomeTimeLine : NSManagedObject
+@interface MTHomeTimeLine : NSManagedObject
 
 @property (nonatomic, retain) NSString * userName;
 @property (nonatomic, retain) NSSet *feeds;
 @end
 
-@interface HomeTimeLine (CoreDataGeneratedAccessors)
+@interface MTHomeTimeLine (CoreDataGeneratedAccessors)
 
-- (void)addFeedsObject:(Tweet *)value;
-- (void)removeFeedsObject:(Tweet *)value;
+- (void)addFeedsObject:(MTTweet *)value;
+- (void)removeFeedsObject:(MTTweet *)value;
 - (void)addFeeds:(NSSet *)values;
 - (void)removeFeeds:(NSSet *)values;
 

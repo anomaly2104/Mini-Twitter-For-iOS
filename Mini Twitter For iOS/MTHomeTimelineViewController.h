@@ -11,7 +11,7 @@
 #import "TweeterFetcher.h"
 #import "TweetCell.h"
 #import "Utils.h"
-#import "Tweet.h"
+#import "MTTweet.h"
 #import "MTTweetViewController.h"
 #import "MTCoreDataTableViewController.h"
 #import "HomeTimeLine+Twitter.h"

@@ -8,7 +8,7 @@
 
 #import "MTUser.h"
 #import <Accounts/ACAccount.h>
-@interface MTUser (Twitter)
+@interface MTUser (TwitterAdditions)
 -(NSURL*) profileUrl;
 +(MTUser*) userWithTwitterData:(NSDictionary*) userTwitterData;
 +(MTUser*) userWithTwitterData:(NSDictionary*) userTwitterData

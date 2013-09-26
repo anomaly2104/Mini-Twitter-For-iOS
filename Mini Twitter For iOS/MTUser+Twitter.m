@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "User+Twitter.h"
+#import "MTUser+Twitter.h"
 #import "TweeterFetcher.h"
 
-@implementation MTUser (Twitter)
+@implementation MTUser (TwitterAdditions)
 -(NSURL*) profileUrl{
     return [NSURL URLWithString:self.profileUrlString];
 }

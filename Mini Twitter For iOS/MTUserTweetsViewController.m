@@ -7,8 +7,8 @@
 //
 
 #import "MTUserTweetsViewController.h"
-#import "Tweet+Twitter.h"
-#import "User+Twitter.h"
+#import "MTTweet+Twitter.h"
+#import "MTUser+Twitter.h"
 
 @interface MTUserTweetsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
@@ -75,7 +75,7 @@
         NSString* tweetId = [key valueForKey:TWITTER_TWEET_ID_STR];
         [self changeIdsForTweetId:tweetId];
         
-        [Tweet tweetWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext];
+        [MTTweet tweetWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext];
     }
     
 }
@@ -166,7 +166,7 @@
 
 
 
--(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
+-(TweetCell*) setTweetData:(MTTweet *) tweet OnCell:(TweetCell*) cell {
 
     [self changeIdsForTweetId:tweet.tweetId];
     
@@ -195,7 +195,7 @@
         cell = [[TweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
-    Tweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    MTTweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell = [self setTweetData:tweetToShow OnCell:cell];
     
@@ -204,7 +204,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Tweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    MTTweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     id tweetMessage = tweet.tweetMessage;
     CGSize constraint = CGSizeMake(320 - (CELL_MARGIN_LEFT + CELL_MARGIN_RIGHT), 20000.0f);
@@ -231,7 +231,7 @@
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [segue.identifier isEqualToString:@"User Tweet To Show Tweet"]){
-        Tweet* tweet = (Tweet*)sender;
+        MTTweet* tweet = (MTTweet*)sender;
         [segue.destinationViewController setTweet:tweet];
     } else if( [segue.identifier isEqualToString:@"User To Following"]){
         [segue.destinationViewController setUser:self.user];

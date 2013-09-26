@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "Tweet.h"
-#import "HomeTimeLine.h"
+#import "MTTweet.h"
+#import "MTHomeTimeLine.h"
 #import "MTUser.h"
 
 
-@implementation Tweet
+@implementation MTTweet
 
 @dynamic tweetMessage;
 @dynamic tweetTimestamp;

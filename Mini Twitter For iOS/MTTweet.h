@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class HomeTimeLine, MTUser;
+@class MTHomeTimeLine, MTUser;
 
-@interface Tweet : NSManagedObject
+@interface MTTweet : NSManagedObject
 
 @property (nonatomic, retain) NSString * tweetMessage;
 @property (nonatomic, retain) NSDate * tweetTimestamp;
@@ -20,10 +20,10 @@
 @property (nonatomic, retain) NSSet *inHomeTimeLine;
 @end
 
-@interface Tweet (CoreDataGeneratedAccessors)
+@interface MTTweet (CoreDataGeneratedAccessors)
 
-- (void)addInHomeTimeLineObject:(HomeTimeLine *)value;
-- (void)removeInHomeTimeLineObject:(HomeTimeLine *)value;
+- (void)addInHomeTimeLineObject:(MTHomeTimeLine *)value;
+- (void)removeInHomeTimeLineObject:(MTHomeTimeLine *)value;
 - (void)addInHomeTimeLine:(NSSet *)values;
 - (void)removeInHomeTimeLine:(NSSet *)values;
 

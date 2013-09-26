@@ -7,7 +7,7 @@
 //
 
 #import "MTUser.h"
-#import "Tweet.h"
+#import "MTTweet.h"
 #import "MTUser.h"
 
 

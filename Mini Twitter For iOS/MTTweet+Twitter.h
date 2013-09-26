@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "Tweet.h"
+#import "MTTweet.h"
 
-@interface Tweet (Twitter)
-+(Tweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData;
-+(Tweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData
+@interface MTTweet (TwitterAdditions)
++(MTTweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData;
++(MTTweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData
 inManagedObjectContext:(NSManagedObjectContext*) context;
 @end

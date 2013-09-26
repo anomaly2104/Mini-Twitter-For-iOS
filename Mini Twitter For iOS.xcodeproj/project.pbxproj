@@ -52,14 +52,14 @@
 		AD5405AE17E2F0910059677A /* MTUserFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AD17E2F0900059677A /* MTUserFollowersViewController.m */; };
 		AD5405B417E2F9930059677A /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405B317E2F9920059677A /* UserCell.m */; };
 		ADBCA7EA17E74BF900E7B644 /* coreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7E817E74BF900E7B644 /* coreData.xcdatamodeld */; };
-		ADBCA7ED17E74CB900E7B644 /* User+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EC17E74CB900E7B644 /* User+Twitter.m */; };
-		ADBCA7F017E74CC500E7B644 /* Tweet+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EF17E74CC500E7B644 /* Tweet+Twitter.m */; };
+		ADBCA7ED17E74CB900E7B644 /* MTUser+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EC17E74CB900E7B644 /* MTUser+Twitter.m */; };
+		ADBCA7F017E74CC500E7B644 /* MTTweet+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EF17E74CC500E7B644 /* MTTweet+Twitter.m */; };
 		ADBCA7FF17E74F9C00E7B644 /* MTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7FE17E74F9C00E7B644 /* MTUser.m */; };
 		ADBCA80417E74FBA00E7B644 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBCA80317E74FBA00E7B644 /* CoreData.framework */; };
 		ADBCA80717E8215A00E7B644 /* MTCoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA80617E8215A00E7B644 /* MTCoreDataTableViewController.m */; };
 		ADBCA81017E83BD900E7B644 /* HomeTimeLine+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA80F17E83BD900E7B644 /* HomeTimeLine+Twitter.m */; };
-		ADBCA81617E8460700E7B644 /* HomeTimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA81517E8460700E7B644 /* HomeTimeLine.m */; };
-		ADBCA81917E8462900E7B644 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA81817E8462900E7B644 /* Tweet.m */; };
+		ADBCA81617E8460700E7B644 /* MTHomeTimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA81517E8460700E7B644 /* MTHomeTimeLine.m */; };
+		ADBCA81917E8462900E7B644 /* MTTweet.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA81817E8462900E7B644 /* MTTweet.m */; };
 		ADE4EB7B17D6F5190097987A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7A17D6F5190097987A /* UIKit.framework */; };
 		ADE4EB7D17D6F5190097987A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7C17D6F5190097987A /* Foundation.framework */; };
 		ADE4EB7F17D6F5190097987A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7E17D6F5190097987A /* CoreGraphics.framework */; };
@@ -146,10 +146,10 @@
 		AD5405B217E2F9910059677A /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		AD5405B317E2F9920059677A /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		ADBCA7E917E74BF900E7B644 /* coreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coreData.xcdatamodel; sourceTree = "<group>"; };
-		ADBCA7EB17E74CB900E7B644 /* User+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+Twitter.h"; sourceTree = "<group>"; };
-		ADBCA7EC17E74CB900E7B644 /* User+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+Twitter.m"; sourceTree = "<group>"; };
-		ADBCA7EE17E74CC500E7B644 /* Tweet+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tweet+Twitter.h"; sourceTree = "<group>"; };
-		ADBCA7EF17E74CC500E7B644 /* Tweet+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tweet+Twitter.m"; sourceTree = "<group>"; };
+		ADBCA7EB17E74CB900E7B644 /* MTUser+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MTUser+Twitter.h"; sourceTree = "<group>"; };
+		ADBCA7EC17E74CB900E7B644 /* MTUser+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MTUser+Twitter.m"; sourceTree = "<group>"; };
+		ADBCA7EE17E74CC500E7B644 /* MTTweet+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MTTweet+Twitter.h"; sourceTree = "<group>"; };
+		ADBCA7EF17E74CC500E7B644 /* MTTweet+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MTTweet+Twitter.m"; sourceTree = "<group>"; };
 		ADBCA7FD17E74F9C00E7B644 /* MTUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTUser.h; sourceTree = "<group>"; };
 		ADBCA7FE17E74F9C00E7B644 /* MTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTUser.m; sourceTree = "<group>"; };
 		ADBCA80317E74FBA00E7B644 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -157,10 +157,10 @@
 		ADBCA80617E8215A00E7B644 /* MTCoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTCoreDataTableViewController.m; sourceTree = "<group>"; };
 		ADBCA80E17E83BD800E7B644 /* HomeTimeLine+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HomeTimeLine+Twitter.h"; sourceTree = "<group>"; };
 		ADBCA80F17E83BD900E7B644 /* HomeTimeLine+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HomeTimeLine+Twitter.m"; sourceTree = "<group>"; };
-		ADBCA81417E8460600E7B644 /* HomeTimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTimeLine.h; sourceTree = "<group>"; };
-		ADBCA81517E8460700E7B644 /* HomeTimeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTimeLine.m; sourceTree = "<group>"; };
-		ADBCA81717E8462800E7B644 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
-		ADBCA81817E8462900E7B644 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		ADBCA81417E8460600E7B644 /* MTHomeTimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHomeTimeLine.h; sourceTree = "<group>"; };
+		ADBCA81517E8460700E7B644 /* MTHomeTimeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHomeTimeLine.m; sourceTree = "<group>"; };
+		ADBCA81717E8462800E7B644 /* MTTweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTweet.h; sourceTree = "<group>"; };
+		ADBCA81817E8462900E7B644 /* MTTweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTweet.m; sourceTree = "<group>"; };
 		ADE4EB7717D6F5190097987A /* Mini Twitter For iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Twitter For iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADE4EB7A17D6F5190097987A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ADE4EB7C17D6F5190097987A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -273,14 +273,14 @@
 			children = (
 				ADBCA80517E8215A00E7B644 /* MTCoreDataTableViewController.h */,
 				ADBCA80617E8215A00E7B644 /* MTCoreDataTableViewController.m */,
-				ADBCA7EB17E74CB900E7B644 /* User+Twitter.h */,
-				ADBCA7EC17E74CB900E7B644 /* User+Twitter.m */,
-				ADBCA7EE17E74CC500E7B644 /* Tweet+Twitter.h */,
-				ADBCA7EF17E74CC500E7B644 /* Tweet+Twitter.m */,
-				ADBCA81417E8460600E7B644 /* HomeTimeLine.h */,
-				ADBCA81517E8460700E7B644 /* HomeTimeLine.m */,
-				ADBCA81717E8462800E7B644 /* Tweet.h */,
-				ADBCA81817E8462900E7B644 /* Tweet.m */,
+				ADBCA7EB17E74CB900E7B644 /* MTUser+Twitter.h */,
+				ADBCA7EC17E74CB900E7B644 /* MTUser+Twitter.m */,
+				ADBCA7EE17E74CC500E7B644 /* MTTweet+Twitter.h */,
+				ADBCA7EF17E74CC500E7B644 /* MTTweet+Twitter.m */,
+				ADBCA81417E8460600E7B644 /* MTHomeTimeLine.h */,
+				ADBCA81517E8460700E7B644 /* MTHomeTimeLine.m */,
+				ADBCA81717E8462800E7B644 /* MTTweet.h */,
+				ADBCA81817E8462900E7B644 /* MTTweet.m */,
 				ADBCA7E817E74BF900E7B644 /* coreData.xcdatamodeld */,
 				ADBCA7FD17E74F9C00E7B644 /* MTUser.h */,
 				ADBCA7FE17E74F9C00E7B644 /* MTUser.m */,
@@ -485,13 +485,13 @@
 				AD5405AE17E2F0910059677A /* MTUserFollowersViewController.m in Sources */,
 				AD5405B417E2F9930059677A /* UserCell.m in Sources */,
 				ADBCA7EA17E74BF900E7B644 /* coreData.xcdatamodeld in Sources */,
-				ADBCA7ED17E74CB900E7B644 /* User+Twitter.m in Sources */,
-				ADBCA7F017E74CC500E7B644 /* Tweet+Twitter.m in Sources */,
+				ADBCA7ED17E74CB900E7B644 /* MTUser+Twitter.m in Sources */,
+				ADBCA7F017E74CC500E7B644 /* MTTweet+Twitter.m in Sources */,
 				ADBCA7FF17E74F9C00E7B644 /* MTUser.m in Sources */,
 				ADBCA80717E8215A00E7B644 /* MTCoreDataTableViewController.m in Sources */,
 				ADBCA81017E83BD900E7B644 /* HomeTimeLine+Twitter.m in Sources */,
-				ADBCA81617E8460700E7B644 /* HomeTimeLine.m in Sources */,
-				ADBCA81917E8462900E7B644 /* Tweet.m in Sources */,
+				ADBCA81617E8460700E7B644 /* MTHomeTimeLine.m in Sources */,
+				ADBCA81917E8462900E7B644 /* MTTweet.m in Sources */,
 				AD28ACA617EAE75C001A3C34 /* FHSTwitterEngine.m in Sources */,
 				AD28ACBD17EB0342001A3C34 /* AFHTTPClient.m in Sources */,
 				AD28ACBE17EB0342001A3C34 /* AFHTTPRequestOperation.m in Sources */,

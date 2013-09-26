@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "Tweet+Twitter.h"
-#import "User+Twitter.h"
+#import "MTTweet+Twitter.h"
+#import "MTUser+Twitter.h"
 #import "Utils.h"
 #import "TweeterFetcher.h"
 
-@implementation Tweet (Twitter)
-+(Tweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData{
-    Tweet *tweet = nil;
+@implementation MTTweet (TwitterAdditions)
++(MTTweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData{
+    MTTweet *tweet = nil;
     
-    tweet= [[Tweet alloc] init];
+    tweet= [[MTTweet alloc] init];
     tweet.tweetTimestamp = [Utils convertTweetDateStringToTweetNSDate: [tweetTwitterData objectForKey:TWITTER_TWEET_TIMESTAMP]];
     tweet.tweetMessage = [tweetTwitterData objectForKey:TWITTER_TWEET_MESSAGE];
     tweet.tweetId = [tweetTwitterData objectForKey:TWITTER_TWEET_ID];
@@ -24,10 +24,10 @@
     
     return tweet;
 }
-+(Tweet*) tweetWithTwitterData:(NSDictionary *)tweetTwitterData inManagedObjectContext:(NSManagedObjectContext *)context {
-    Tweet *tweet = nil;
++(MTTweet*) tweetWithTwitterData:(NSDictionary *)tweetTwitterData inManagedObjectContext:(NSManagedObjectContext *)context {
+    MTTweet *tweet = nil;
 
-    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Tweet"];
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"MTTweet"];
     
     request.predicate = [NSPredicate predicateWithFormat:@"tweetId = %@", [tweetTwitterData valueForKey:TWITTER_TWEET_ID_STR]];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"tweetTimestamp" ascending:YES];
@@ -39,7 +39,7 @@
     if (!matches || ([matches count] > 1)) {
         // handle error
     } else if ([matches count] == 0) {
-        tweet = [NSEntityDescription insertNewObjectForEntityForName:@"Tweet" inManagedObjectContext:context];
+        tweet = [NSEntityDescription insertNewObjectForEntityForName:@"MTTweet" inManagedObjectContext:context];
         tweet.tweetTimestamp = [Utils convertTweetDateStringToTweetNSDate: [tweetTwitterData objectForKey:TWITTER_TWEET_TIMESTAMP]];
         tweet.tweetMessage = [tweetTwitterData objectForKey:TWITTER_TWEET_MESSAGE];
         tweet.tweetId = [tweetTwitterData objectForKey:TWITTER_TWEET_ID_STR];

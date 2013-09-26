@@ -46,19 +46,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/Tweet.h"
-         timestampString = "400422008.011928"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "15"
-         endingLineNumber = "15"
-         landmarkName = "@interface Tweet"
-         landmarkType = "2">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Mini Twitter For iOS/HomeTimelineViewController.m"
          timestampString = "401196215.108253"
          startingColumnNumber = "9223372036854775807"

@@ -7,7 +7,7 @@
 //
 
 #import "MTHomeTimelineViewController.h"
-#import "User+Twitter.h"
+#import "MTUser+Twitter.h"
 
 @interface MTHomeTimelineViewController ()
 //@property (nonatomic, strong) NSArray* tweetsToShow;
@@ -70,7 +70,7 @@
         NSString* tweetId = [key valueForKey:TWITTER_TWEET_ID_STR];
         [self changeIdsForTweetId:tweetId];
         
-        [HomeTimeLine insertFeedWithFeedData:key inHomeTimeLineUserName:self.currentUser.userName inManagedObjectContext:self.currentUser.managedObjectContext];
+        [MTHomeTimeLine insertFeedWithFeedData:key inHomeTimeLineUserName:self.currentUser.userName inManagedObjectContext:self.currentUser.managedObjectContext];
     }
 
 }
@@ -133,7 +133,7 @@
                                                                                    cacheName:nil];
 }
 
--(TweetCell*) setTweetData:(Tweet *) tweet OnCell:(TweetCell*) cell {
+-(TweetCell*) setTweetData:(MTTweet *) tweet OnCell:(TweetCell*) cell {
     
     [self changeIdsForTweetId:tweet.tweetId];
 
@@ -162,7 +162,7 @@
         cell = [[TweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
     
-    Tweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    MTTweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     cell = [self setTweetData:tweetToShow OnCell:cell];
     
@@ -171,7 +171,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Tweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    MTTweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     id tweetMessage = tweet.tweetMessage;
     CGSize constraint = CGSizeMake(320 - (CELL_MARGIN_LEFT + CELL_MARGIN_RIGHT), 20000.0f);
@@ -198,7 +198,7 @@
 }
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [segue.identifier isEqualToString:@"Home Timeline Tweet To Show Tweet"]){
-        Tweet* tweet = (Tweet*)sender;
+        MTTweet* tweet = (MTTweet*)sender;
         [segue.destinationViewController setTweet:tweet];
     }
 }

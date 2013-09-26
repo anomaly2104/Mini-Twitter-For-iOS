@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Tweet, MTUser;
+@class MTTweet, MTUser;
 
 @interface MTUser : NSManagedObject
 
@@ -27,8 +27,8 @@
 
 @interface MTUser (CoreDataGeneratedAccessors)
 
-- (void)addTweetObject:(Tweet *)value;
-- (void)removeTweetObject:(Tweet *)value;
+- (void)addTweetObject:(MTTweet *)value;
+- (void)removeTweetObject:(MTTweet *)value;
 - (void)addTweet:(NSSet *)values;
 - (void)removeTweet:(NSSet *)values;
 

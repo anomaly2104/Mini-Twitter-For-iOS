@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Tweet.h"
+#import "MTTweet.h"
 #import "Utils.h"
 #import "MTUserTweetsViewController.h"
 
 @interface MTTweetViewController : UITableViewController
-@property (nonatomic, strong) Tweet* tweet;
+@property (nonatomic, strong) MTTweet* tweet;
 @end

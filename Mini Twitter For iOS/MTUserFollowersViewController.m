@@ -7,7 +7,7 @@
 //
 
 #import "MTUserFollowersViewController.h"
-#import "User+Twitter.h"
+#import "MTUser+Twitter.h"
 
 @interface MTUserFollowersViewController ()
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;

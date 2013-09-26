@@ -7,7 +7,7 @@
 //
 
 #import "MTUserFollowingViewController.h"
-#import "User+Twitter.h"
+#import "MTUser+Twitter.h"
 
 @interface MTUserFollowingViewController ()
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;

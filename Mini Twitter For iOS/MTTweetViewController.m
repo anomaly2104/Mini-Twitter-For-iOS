@@ -7,7 +7,7 @@
 //
 
 #import "MTTweetViewController.h"
-#import "User+Twitter.h"
+#import "MTUser+Twitter.h"
 
 @interface MTTweetViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *tweetedByProfileImage;

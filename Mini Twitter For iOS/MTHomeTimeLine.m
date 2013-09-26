@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "HomeTimeLine.h"
-#import "Tweet.h"
+#import "MTHomeTimeLine.h"
+#import "MTTweet.h"
 
 
-@implementation HomeTimeLine
+@implementation MTHomeTimeLine
 
 @dynamic userName;
 @dynamic feeds;
