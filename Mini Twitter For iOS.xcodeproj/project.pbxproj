@@ -199,6 +199,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD28867C17F5CB3A003F6457 /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				AD49F8AA17D861460030F0FD /* NSDateTimeAgo.bundle */,
+				AD49F8A417D85E330030F0FD /* NSDate+TimeAgo.h */,
+				AD49F8A517D85E330030F0FD /* NSDate+TimeAgo.m */,
+				AD54059117E096F40059677A /* AnimatedGif.h */,
+				AD54059217E096F40059677A /* AnimatedGif.m */,
+				AD28ACA417EAE75C001A3C34 /* FHSTwitterEngine.h */,
+				AD28ACA517EAE75C001A3C34 /* FHSTwitterEngine.m */,
+				AD28ACA917EB0342001A3C34 /* AFNetworking */,
+			);
+			name = "Third Party";
+			sourceTree = "<group>";
+		};
 		AD28ACA917EB0342001A3C34 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,19 +379,12 @@
 		ADE4EB8117D6F5190097987A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AD28ACA917EB0342001A3C34 /* AFNetworking */,
-				AD28ACA417EAE75C001A3C34 /* FHSTwitterEngine.h */,
-				AD28ACA517EAE75C001A3C34 /* FHSTwitterEngine.m */,
+				AD28867C17F5CB3A003F6457 /* Third Party */,
 				ADE4EB8917D6F5190097987A /* minitwitterAppDelegate.h */,
 				ADE4EB8A17D6F5190097987A /* minitwitterAppDelegate.m */,
-				AD54059117E096F40059677A /* AnimatedGif.h */,
-				AD54059217E096F40059677A /* AnimatedGif.m */,
 				AD54058517E087450059677A /* images */,
 				AD49F89517D6F9BD0030F0FD /* TweeterFetcher.h */,
 				AD49F89617D6F9BD0030F0FD /* TweeterFetcher.m */,
-				AD49F8AA17D861460030F0FD /* NSDateTimeAgo.bundle */,
-				AD49F8A417D85E330030F0FD /* NSDate+TimeAgo.h */,
-				AD49F8A517D85E330030F0FD /* NSDate+TimeAgo.m */,
 				ADE4EB8217D6F5190097987A /* Mini Twitter For iOS-Info.plist */,
 				ADE4EB8317D6F5190097987A /* InfoPlist.strings */,
 				ADE4EB8617D6F5190097987A /* main.m */,
