@@ -51,6 +51,7 @@
         NSString* userInfo= [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
         NSString* currentUserName = [Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
         
+        dispatch_async(GCDBackgroundThread, <#^(void)block#>)
         APICompletionBlock fetchUserDetails = ^(NSDictionary* userDetails){
             self.currentUser = [MTUser userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];
             [self performSegueWithIdentifier:@"Show Root VIew Controller" sender:self];

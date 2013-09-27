@@ -17,6 +17,5 @@
 #import "MTCoreDataTableViewController.h"
 
 @interface MTUserTweetsViewController : MTCoreDataTableViewController
-
 @property (nonatomic, strong) MTUser* user;
 @end
