@@ -10,6 +10,6 @@
 #import "MTTweet+Twitter.h"
 @interface MTHomeTimeLine (Twitter)
 +(MTHomeTimeLine*) insertFeedWithFeedData:(NSDictionary*) feedData
-inHomeTimeLineUserName:(NSString*)userName
-inManagedObjectContext:(NSManagedObjectContext*) context;
+                   inHomeTimeLineUserName:(NSString*)userName
+                   inManagedObjectContext:(NSManagedObjectContext*) context;
 @end

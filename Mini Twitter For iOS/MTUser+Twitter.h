@@ -12,8 +12,6 @@
 -(NSURL*) profileUrl;
 +(MTUser*) userWithTwitterData:(NSDictionary*) userTwitterData;
 +(MTUser*) userWithTwitterData:(NSDictionary*) userTwitterData
-inManagedObjectContext:(NSManagedObjectContext*) context;
+        inManagedObjectContext:(NSManagedObjectContext*) context;
 +(MTUser*) userWithACAccount:(ACAccount*) acAccount;
-//+(User*) userWithACAccount:(ACAccount*) acAccount
-//inManagedObjectContext:(NSManagedObjectContext*) context;
 @end
