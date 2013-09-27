@@ -52,8 +52,15 @@
         NSString* currentUserName = [Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
         
         APICompletionBlock fetchUserDetails = ^(NSDictionary* userDetails){
-            self.currentUser = [User userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];
-            [self performSegueWithIdentifier:@"Show Root VIew Controller" sender:self];
+
+            [self.twitterDatabase.managedObjectContext performBlock:^{
+                self.currentUser = [User userWithTwitterData:userDetails inManagedObjectContext:self.twitterDatabase.managedObjectContext];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self performSegueWithIdentifier:@"Show Root VIew Controller" sender:self];                    
+                });
+
+                
+            }];
          //   [self dismissViewControllerAnimated:NO completion:^{
                 
            // }];
