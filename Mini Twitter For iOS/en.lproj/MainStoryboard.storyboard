@@ -339,7 +339,7 @@
                             <tableViewSection id="Jh8-81-OP0">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="172" id="jO8-qu-d41">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="174"/>
+                                        <rect key="frame" x="0.0" y="10" width="320" height="173"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="171"/>
@@ -427,7 +427,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fc0-ho-PQB" imageView="Usk-yf-KNR" style="IBUITableViewCellStyleDefault" id="WwE-UV-UMY">
-                                        <rect key="frame" x="0.0" y="55" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
@@ -650,7 +650,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="72" id="vvY-MI-tKU">
-                                        <rect key="frame" x="0.0" y="281" width="320" height="73"/>
+                                        <rect key="frame" x="0.0" y="281" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="71"/>
@@ -743,10 +743,10 @@
             </objects>
             <point key="canvasLocation" x="-160" y="363"/>
         </scene>
-        <!--Mini Twitter Root View Controller-->
+        <!--Root View Controller-->
         <scene sceneID="J6d-wh-7Qg">
             <objects>
-                <tabBarController id="ij1-Xl-pbT" customClass="MiniTwitterRootViewController" sceneMemberID="viewController">
+                <tabBarController id="ij1-Xl-pbT" customClass="MTRootViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="aLD-qU-vfR"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -839,7 +839,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="wRg-dL-ULy"/>
         <segue reference="27I-nb-DAp"/>
+        <segue reference="5A5-c8-zxu"/>
     </inferredMetricsTieBreakers>
 </document>

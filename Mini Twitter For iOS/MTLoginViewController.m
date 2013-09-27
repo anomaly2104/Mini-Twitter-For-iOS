@@ -7,7 +7,7 @@
 //
 
 #import "MTLoginViewController.h"
-#import "MiniTwitterRootViewController.h"
+#import "MTRootViewController.h"
 #import "MTUser+Twitter.h"
 @interface MTLoginViewController ()
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;

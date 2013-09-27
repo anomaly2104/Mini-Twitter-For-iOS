@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MTUser.h"
 #import "MTHomeTimelineViewController.h"
-@interface MiniTwitterRootViewController : UITabBarController <UITabBarControllerDelegate>
+@interface MTRootViewController : UITabBarController <UITabBarControllerDelegate>
 @property (nonatomic, strong) MTUser* currentUser;
 @end

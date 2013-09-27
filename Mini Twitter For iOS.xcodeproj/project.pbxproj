@@ -27,7 +27,7 @@
 		AD28ACDC17EC24F9001A3C34 /* twitter-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = AD28ACDB17EC24F9001A3C34 /* twitter-bird.png */; };
 		AD36A6DA17E05A3400AB6769 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = AD36A6D917E05A3400AB6769 /* home.png */; };
 		AD36A6DC17E05AE000AB6769 /* man.png in Resources */ = {isa = PBXBuildFile; fileRef = AD36A6DB17E05AE000AB6769 /* man.png */; };
-		AD36A6DF17E071A300AB6769 /* MiniTwitterRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */; };
+		AD36A6DF17E071A300AB6769 /* MTRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD36A6DE17E071A300AB6769 /* MTRootViewController.m */; };
 		AD49F89217D6F8250030F0FD /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD49F89117D6F8250030F0FD /* Twitter.framework */; };
 		AD49F89417D6F82D0030F0FD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD49F89317D6F82D0030F0FD /* Accounts.framework */; };
 		AD49F89717D6F9BD0030F0FD /* TweeterFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = AD49F89617D6F9BD0030F0FD /* TweeterFetcher.m */; };
@@ -106,8 +106,8 @@
 		AD28ACDB17EC24F9001A3C34 /* twitter-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-bird.png"; sourceTree = "<group>"; };
 		AD36A6D917E05A3400AB6769 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		AD36A6DB17E05AE000AB6769 /* man.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = man.png; sourceTree = "<group>"; };
-		AD36A6DD17E071A200AB6769 /* MiniTwitterRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniTwitterRootViewController.h; sourceTree = "<group>"; };
-		AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiniTwitterRootViewController.m; sourceTree = "<group>"; };
+		AD36A6DD17E071A200AB6769 /* MTRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRootViewController.h; sourceTree = "<group>"; };
+		AD36A6DE17E071A300AB6769 /* MTRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRootViewController.m; sourceTree = "<group>"; };
 		AD49F89117D6F8250030F0FD /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		AD49F89317D6F82D0030F0FD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		AD49F89517D6F9BD0030F0FD /* TweeterFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweeterFetcher.h; sourceTree = "<group>"; };
@@ -297,8 +297,8 @@
 				AD49F89C17D72E3A0030F0FD /* MTUserTweetsViewController.m */,
 				AD49F8AC17D874F00030F0FD /* MTTweetViewController.h */,
 				AD49F8AD17D874F00030F0FD /* MTTweetViewController.m */,
-				AD36A6DD17E071A200AB6769 /* MiniTwitterRootViewController.h */,
-				AD36A6DE17E071A300AB6769 /* MiniTwitterRootViewController.m */,
+				AD36A6DD17E071A200AB6769 /* MTRootViewController.h */,
+				AD36A6DE17E071A300AB6769 /* MTRootViewController.m */,
 				AD54058017E084C40059677A /* MTLoginViewController.h */,
 				AD54058117E084C40059677A /* MTLoginViewController.m */,
 				AD54059D17E1C5BB0059677A /* MTCreateTweetViewController.h */,
@@ -476,7 +476,7 @@
 				AD49F8A617D85E330030F0FD /* NSDate+TimeAgo.m in Sources */,
 				AD49F8A917D85F570030F0FD /* Utils.m in Sources */,
 				AD49F8AE17D874F00030F0FD /* MTTweetViewController.m in Sources */,
-				AD36A6DF17E071A300AB6769 /* MiniTwitterRootViewController.m in Sources */,
+				AD36A6DF17E071A300AB6769 /* MTRootViewController.m in Sources */,
 				AD54058217E084C40059677A /* MTLoginViewController.m in Sources */,
 				AD54059317E096F40059677A /* AnimatedGif.m in Sources */,
 				AD54059F17E1C5BC0059677A /* MTCreateTweetViewController.m in Sources */,

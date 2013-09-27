@@ -8,7 +8,7 @@
 
 #import "MTCreateTweetViewController.h"
 #import "MTTweet+Twitter.h"
-#import "MiniTwitterRootViewController.h"
+#import "MTRootViewController.h"
 
 @interface MTCreateTweetViewController ()
 
@@ -117,7 +117,7 @@
     [self disableTweetPosting];
     
     APICompletionBlock postTweetCompletionBlock = ^(NSDictionary * responseData){
-        MiniTwitterRootViewController* tabBarController = (MiniTwitterRootViewController*)self.tabBarController;
+        MTRootViewController* tabBarController = (MTRootViewController*)self.tabBarController;
         
         [MTTweet tweetWithTwitterData:responseData inManagedObjectContext:tabBarController.currentUser.managedObjectContext];
         [self tweetSuccess];

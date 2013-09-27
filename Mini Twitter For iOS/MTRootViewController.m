@@ -6,16 +6,16 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "MiniTwitterRootViewController.h"
+#import "MTRootViewController.h"
 #import "MTTweetCell.h"
 #import "MTUserTweetsViewController.h"
 #import "TweeterFetcher.h"
 
-@interface MiniTwitterRootViewController ()
+@interface MTRootViewController ()
 
 @end
 
-@implementation MiniTwitterRootViewController
+@implementation MTRootViewController
 @synthesize currentUser = _currentUser;
 
 -(MTUser*) currentUser{
