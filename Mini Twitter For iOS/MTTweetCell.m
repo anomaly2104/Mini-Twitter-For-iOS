@@ -18,20 +18,22 @@
     CGFloat boundsX = contentRect.origin.x;
     CGRect frame;
     
-    frame= CGRectMake(boundsX+CELL_MARGIN_LEFT ,CELL_MARGIN_TOP, PROFILE_PICTURE_WIDTH, PROFILE_PICTURE_HEIGHT);
+    frame = CGRectMake(boundsX+CELL_MARGIN_LEFT,
+                      CELL_MARGIN_TOP,
+                      PROFILE_PICTURE_WIDTH,
+                      PROFILE_PICTURE_HEIGHT);
     tweetedByProileImage.frame = frame;
 
-    frame= CGRectMake(boundsX+CELL_MARGIN_LEFT + PROFILE_PICTURE_WIDTH + CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT ,5, 150, 20);
+    frame = CGRectMake(boundsX+CELL_MARGIN_LEFT + PROFILE_PICTURE_WIDTH + CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT, 5, 150, 20);
     tweetedByName.frame = frame;
 
-    frame = CGRectMake(boundsX+220 ,5, 100, 20);
+    frame = CGRectMake(boundsX+220, 5, 100, 20);
     tweetTime.frame = frame;
 
-    frame = CGRectMake(boundsX+CELL_MARGIN_LEFT + PROFILE_PICTURE_WIDTH + CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT ,30, 250, 15);
+    frame = CGRectMake(boundsX+CELL_MARGIN_LEFT + PROFILE_PICTURE_WIDTH + CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT , 30, 250, 15);
     tweetMessage.frame = frame;
 
     [tweetMessage sizeToFit];
-    
 }
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
@@ -63,21 +65,7 @@
     return self;
 }
 
-
-/*- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-*/
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
-
 @end

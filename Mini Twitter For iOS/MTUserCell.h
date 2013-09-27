@@ -21,8 +21,7 @@
 #define PROFILE_PICTURE_WIDTH 50
 
 @interface MTUserCell : UITableViewCell
-
-@property(nonatomic,strong)UILabel *userName;
-@property(nonatomic,strong)UILabel *userUserName;
-@property(nonatomic,strong)UIImageView *userProileImage;
+@property (nonatomic,strong)UILabel *userName;
+@property (nonatomic,strong)UILabel *userUserName;
+@property (nonatomic,strong)UIImageView *userProileImage;
 @end

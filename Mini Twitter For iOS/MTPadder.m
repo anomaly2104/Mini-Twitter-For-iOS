@@ -10,8 +10,7 @@
 
 @implementation MTPadder
 
-- (id)initWithWidth:(CGFloat)width
-{
+- (id)initWithWidth:(CGFloat)width {
     CGRect frame = CGRectMake(0, 0, width, 10);
     self = [super initWithFrame:frame];
     if (self) {
@@ -22,14 +21,11 @@
     return self;
 }
 
-
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
     }
     return self;
 }
-
 @end

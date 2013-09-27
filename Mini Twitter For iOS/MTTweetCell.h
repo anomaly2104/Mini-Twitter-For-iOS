@@ -23,8 +23,8 @@
 #define PROFILE_PICTURE_WIDTH 50
 
 @interface MTTweetCell : UITableViewCell
-@property(nonatomic,strong)UILabel *tweetedByName;
-@property(nonatomic,strong)UILabel *tweetTime;
-@property(nonatomic,strong)UILabel *tweetMessage;
-@property(nonatomic,strong)UIImageView *tweetedByProileImage;
+@property (nonatomic,strong)UILabel *tweetedByName;
+@property (nonatomic,strong)UILabel *tweetTime;
+@property (nonatomic,strong)UILabel *tweetMessage;
+@property (nonatomic,strong)UIImageView *tweetedByProileImage;
 @end
