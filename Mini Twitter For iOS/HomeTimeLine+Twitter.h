@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 udit.ag. All rights reserved.
 //
 
-#import "HomeTimeLine.h"
-#import "Tweet+Twitter.h"
-@interface HomeTimeLine (Twitter)
-+(HomeTimeLine*) insertFeedWithFeedData:(NSDictionary*) feedData
-inHomeTimeLineUserName:(NSString*)userName
-inManagedObjectContext:(NSManagedObjectContext*) context;
+#import "MTHomeTimeLine.h"
+#import "MTTweet+Twitter.h"
+@interface MTHomeTimeLine (Twitter)
++(MTHomeTimeLine*) insertFeedWithFeedData:(NSDictionary*) feedData
+                   inHomeTimeLineUserName:(NSString*)userName
+                   inManagedObjectContext:(NSManagedObjectContext*) context;
 @end

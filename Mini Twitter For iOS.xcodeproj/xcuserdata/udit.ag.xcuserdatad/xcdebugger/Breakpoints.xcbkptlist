@@ -1027,7 +1027,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "235"
          endingLineNumber = "235"
-         landmarkName = "-fetchHomeTimelineForCurrentUserCompletionBlock:dispatcherQueue:maxId:"
+         landmarkName = "-fetchDetailsForUser:completionBlock:dispatcherQueue:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1271,9 +1271,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "305"
-         endingLineNumber = "305"
-         landmarkName = "-fetchFollowingForUser:completionBlock:dispatcherQueue:nextCursor:"
-         landmarkType = "5">
+         endingLineNumber = "305">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1284,9 +1282,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "307"
-         endingLineNumber = "307"
-         landmarkName = "-fetchFollowingForUser:completionBlock:dispatcherQueue:nextCursor:"
-         landmarkType = "5">
+         endingLineNumber = "307">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1297,9 +1293,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "306"
-         endingLineNumber = "306"
-         landmarkName = "-fetchFollowingForUser:completionBlock:dispatcherQueue:nextCursor:"
-         landmarkType = "5">
+         endingLineNumber = "306">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1310,9 +1304,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "308"
-         endingLineNumber = "308"
-         landmarkName = "-fetchFollowingForUser:completionBlock:dispatcherQueue:nextCursor:"
-         landmarkType = "5">
+         endingLineNumber = "308">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1363,8 +1355,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "57"
          endingLineNumber = "57"
-         landmarkName = "-loginUserViewController:CompletionBlock:dispatcherQueue:"
-         landmarkType = "5">
+         landmarkName = "@implementation TweeterFetcher"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1376,7 +1368,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "58"
          endingLineNumber = "58"
-         landmarkName = "-loginUserViewController:CompletionBlock:dispatcherQueue:"
+         landmarkName = "-logoutUserViewController:CompletionBlock:dispatcherQueue:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1402,7 +1394,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "36"
          endingLineNumber = "36"
-         landmarkName = "-loadAccessToken"
+         landmarkName = "-storeAccessToken:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1415,7 +1407,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "38"
          endingLineNumber = "38"
-         landmarkName = "-loadAccessToken"
+         landmarkName = "-storeAccessToken:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1441,7 +1433,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "37"
          endingLineNumber = "37"
-         landmarkName = "-loadAccessToken"
+         landmarkName = "-storeAccessToken:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1454,8 +1446,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "40"
          endingLineNumber = "40"
-         landmarkName = "-storeAccessToken:"
-         landmarkType = "5">
+         landmarkName = "@implementation TweeterFetcher"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1467,7 +1459,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "43"
          endingLineNumber = "43"
-         landmarkName = "-storeAccessToken:"
+         landmarkName = "-loginUserViewController:CompletionBlock:dispatcherQueue:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1480,7 +1472,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "42"
          endingLineNumber = "42"
-         landmarkName = "-storeAccessToken:"
+         landmarkName = "-loginUserViewController:CompletionBlock:dispatcherQueue:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

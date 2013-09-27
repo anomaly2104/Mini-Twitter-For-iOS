@@ -8,29 +8,26 @@
 
 #import "HomeTimeLine+Twitter.h"
 
-@implementation HomeTimeLine (Twitter)
-+(HomeTimeLine*) insertFeedWithFeedData:(NSDictionary*) feedData
-inHomeTimeLineUserName:(NSString*)userName
-inManagedObjectContext:(NSManagedObjectContext*) context{
-    HomeTimeLine* homeTimeLine = nil;
-    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"HomeTimeLine"];
-    
+@implementation MTHomeTimeLine (Twitter)
++(MTHomeTimeLine*) insertFeedWithFeedData:(NSDictionary*) feedData
+                   inHomeTimeLineUserName:(NSString*)userName
+                   inManagedObjectContext:(NSManagedObjectContext*) context{
+    MTHomeTimeLine* homeTimeLine = nil;
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"MTHomeTimeLine"];
     request.predicate = [NSPredicate predicateWithFormat:@"userName = %@", userName];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"userName" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
-    
     if (!matches || ([matches count] > 1)) {
         // handle error
     } else if ([matches count] == 0) {
-        homeTimeLine = [NSEntityDescription insertNewObjectForEntityForName:@"HomeTimeLine" inManagedObjectContext:context];
+        homeTimeLine = [NSEntityDescription insertNewObjectForEntityForName:@"MTHomeTimeLine" inManagedObjectContext:context];
         homeTimeLine.userName = userName;
-        [homeTimeLine addFeedsObject:[Tweet tweetWithTwitterData:feedData inManagedObjectContext:context]];
+        [homeTimeLine addFeedsObject:[MTTweet tweetWithTwitterData:feedData inManagedObjectContext:context]];
     } else {
         homeTimeLine = [matches lastObject];
-        [homeTimeLine addFeedsObject:[Tweet tweetWithTwitterData:feedData inManagedObjectContext:context]];
+        [homeTimeLine addFeedsObject:[MTTweet tweetWithTwitterData:feedData inManagedObjectContext:context]];
     }
     return homeTimeLine;
 }

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="HomeTimeLine" representedClassName="HomeTimeLine" syncable="YES">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="MTHomeTimeLine" representedClassName="MTHomeTimeLine" syncable="YES">
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="feeds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="inHomeTimeLine" inverseEntity="Tweet" syncable="YES"/>
+        <relationship name="feeds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTTweet" inverseName="inHomeTimeLine" inverseEntity="MTTweet" syncable="YES"/>
     </entity>
-    <entity name="Tweet" representedClassName="Tweet" syncable="YES">
+    <entity name="MTTweet" representedClassName="MTTweet" syncable="YES">
         <attribute name="tweetId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tweetMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tweetTimestamp" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="inHomeTimeLine" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HomeTimeLine" inverseName="feeds" inverseEntity="HomeTimeLine" syncable="YES"/>
-        <relationship name="tweetedBy" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="tweet" inverseEntity="User" syncable="YES"/>
+        <relationship name="inHomeTimeLine" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTHomeTimeLine" inverseName="feeds" inverseEntity="MTHomeTimeLine" syncable="YES"/>
+        <relationship name="tweetedBy" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="MTUser" inverseName="tweet" inverseEntity="MTUser" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES">
+    <entity name="MTUser" representedClassName="MTUser" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberFollowers" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="numberFollowing" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -19,13 +19,13 @@
         <attribute name="profileUrlString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="followings" inverseEntity="User" syncable="YES"/>
-        <relationship name="followings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="followers" inverseEntity="User" syncable="YES"/>
-        <relationship name="tweet" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tweet" inverseName="tweetedBy" inverseEntity="Tweet" syncable="YES"/>
+        <relationship name="followers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTUser" inverseName="followings" inverseEntity="MTUser" syncable="YES"/>
+        <relationship name="followings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTUser" inverseName="followers" inverseEntity="MTUser" syncable="YES"/>
+        <relationship name="tweet" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MTTweet" inverseName="tweetedBy" inverseEntity="MTTweet" syncable="YES"/>
     </entity>
     <elements>
-        <element name="HomeTimeLine" positionX="603" positionY="207" width="128" height="73"/>
-        <element name="Tweet" positionX="342" positionY="-0" width="128" height="118"/>
-        <element name="User" positionX="153" positionY="50" width="128" height="193"/>
+        <element name="MTHomeTimeLine" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MTTweet" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MTUser" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
