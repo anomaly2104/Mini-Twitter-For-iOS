@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTSettingsViewController : UITableViewController
+@interface MTSettingsViewController : UITableViewController <UIAlertViewDelegate>
 
 @end

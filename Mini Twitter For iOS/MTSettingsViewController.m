@@ -29,22 +29,25 @@
 }
 
 #pragma mark - Table view delegate
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"sign out"]) {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ( cell.tag == 1 ) {
         LogoutCompletionBlock logoutCompletionBlock = ^(BOOL success){
             if (success) {
                 UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Log Out"
                                                                   message:@"Logged out successfully."
-                                                                 delegate:nil
+                                                                 delegate:self
                                                         cancelButtonTitle:@"Exit"
                                                         otherButtonTitles:nil];
                 [message show];
-
-                exit(0);
+                
             }
         };
         [self.tweeterFetcher logoutUserViewController:self CompletionBlock:logoutCompletionBlock dispatcherQueue:dispatch_get_main_queue()];
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    exit(0);
 }
 @end
