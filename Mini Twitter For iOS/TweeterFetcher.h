@@ -15,7 +15,7 @@
 #import "MTUser.h"
 #import "Utils.h"
 
-#define TWITTER_DEFALT_ACCESS_TOKEN @"access_token"
+#define TWITTER_DEFALT_USER_ACCESS_INFORMATION @"user_access_information"
 #define TWITTER_ACCESS_TOKEN_KEY @"oauth_token"
 #define TWITTER_ACCESS_TOKEN_SECRET @"oauth_token_secret"
 #define TWITTER_ACCESS_TOKEN_USER_ID @"user_id"

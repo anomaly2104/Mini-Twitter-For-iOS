@@ -46,7 +46,7 @@
     [self.view addSubview:spinnerImage];
     
     LoginCompletionBlock loginCompletionBlock = ^(BOOL success) {
-        NSString* userInfo= [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
+        NSString* userInfo= [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_USER_ACCESS_INFORMATION];
         NSString* currentUserName = [Utils extractValueForKey:@"screen_name" fromHTTPBody:userInfo];
         
         APICompletionBlock fetchUserDetails = ^(NSDictionary* userDetails) {

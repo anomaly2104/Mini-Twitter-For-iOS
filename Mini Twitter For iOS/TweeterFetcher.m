@@ -28,17 +28,17 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     [[FHSTwitterEngine sharedEngine]setDelegate:self];
     return self;
 }
-- (NSString*) loadAccessToken {
-    NSString* accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
+- (NSString*)loadAccessToken {
+    NSString* accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:TWITTER_DEFALT_USER_ACCESS_INFORMATION];
     return accessToken;
 }
 
 - (void)storeAccessToken:(NSString *)accessToken {
-    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:TWITTER_DEFALT_ACCESS_TOKEN];
+    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:TWITTER_DEFALT_USER_ACCESS_INFORMATION];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void) loginUserViewController:(UIViewController *)sender
+- (void)loginUserViewController:(UIViewController *)sender
                 CompletionBlock:(LoginCompletionBlock)loginCompletionBlock
                  dispatcherQueue:(dispatch_queue_t)dispatcherQueue {
     if ([self loadAccessToken].length > 0) {
@@ -58,11 +58,10 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
 - (void)logoutUserViewController:(UIViewController *)sender
                 CompletionBlock:(LogoutCompletionBlock)logoutCompletionBlock
                 dispatcherQueue:(dispatch_queue_t)dispatcherQueue {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:TWITTER_DEFALT_ACCESS_TOKEN];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:TWITTER_DEFALT_USER_ACCESS_INFORMATION];
     dispatch_async(dispatcherQueue, ^{
         logoutCompletionBlock(YES);
     });
-
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -73,7 +72,7 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     [[FHSTwitterEngine sharedEngine] signRequest:request withToken:tokenKey tokenSecret:tokenSecret verifier:nil];
 }
 
-- (void)sendRequest: (NSURLRequest *) request
+- (void)sendRequest:(NSURLRequest *) request
     completionBlock:(APICompletionBlock)apiCompletionBlock
     dispatcherQueue:(dispatch_queue_t)dispatcherQueue {
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
