@@ -81,8 +81,6 @@
     else{
         self.navigationItem.rightBarButtonItems = @[self.tweetTextLengthBarItem];
     }
-    
-    
 }
 
 -(void) enableTweetPosting {
@@ -114,6 +112,20 @@
     [self enableTweetPosting];
 }
 - (IBAction)postTweet:(id)sender {
+    
+    NSString* tweetText = self.tweetMessageTextBox.text;
+    NSString* trimmedTweetText = [tweetText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSUInteger currentTweetLength = trimmedTweetText.length;
+    if(currentTweetLength == 0){
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Empty Tweet"
+                                                          message:@"Empty tweet cannot be created."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Try Again"
+                                                otherButtonTitles:nil];
+        [message show];
+        return;
+    }
+    
     [self disableTweetPosting];
     
     APICompletionBlock postTweetCompletionBlock = ^(NSDictionary * responseData){
