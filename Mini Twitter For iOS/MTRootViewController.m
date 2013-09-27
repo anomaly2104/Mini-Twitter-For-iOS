@@ -32,9 +32,9 @@
     return self;
 }
 
--(void) setHomeCurrentUser{
+/*-(void) setHomeCurrentUser{
     
-}
+}*/
 
 -(void) setTabBarViewControllersCurrentUsers{
     NSMutableArray* newViewControllers = [self.viewControllers mutableCopy];
@@ -53,35 +53,12 @@
     if ( self.viewControllers != newViewControllers ) {
         self.viewControllers = newViewControllers;
     }
-
-   /*
-    UINavigationController* userTweetsNavigationViewController = [self.viewControllers objectAtIndex:1];
-    //    NSLog(@"Class of object at 1: %@",[userTweetsNavigationViewController class]);
-    
-    UserTweetsViewController *userTweetsViewController = [userTweetsNavigationViewController.viewControllers lastObject];
-    //  NSLog(@"Class of object at 1: %@",[userTweetsViewController class]);
-    
-    if([userTweetsViewController isKindOfClass:[UserTweetsViewController class]]){
-        [userTweetsViewController setUser:self.currentUser];
-        userTweetsNavigationViewController.viewControllers = [NSArray arrayWithObject:userTweetsViewController];
-        
-        NSMutableArray* newViewControllers = [self.viewControllers mutableCopy];
-        [newViewControllers setObject:userTweetsNavigationViewController atIndexedSubscript:1];
-        self.viewControllers = newViewControllers;
-    }
-*/
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.delegate = self;
     [self setTabBarViewControllersCurrentUsers];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -92,7 +69,6 @@
     if([viewController isKindOfClass:[UINavigationController class]]){
         [viewController performSelector:@selector(popToRootViewControllerAnimated:) ];
     }
-//    NSLog(@"Class of selected object: %@",[viewController class]);
 }
 
 @end
