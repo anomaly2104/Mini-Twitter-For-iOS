@@ -127,7 +127,8 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
       dispatcherQueue:dispatcherQueue];
 }
 
-- (void)fetchGetFromApi:(NSString *)api withParams:(NSDictionary *)params
+- (void)fetchGetFromApi:(NSString *)api
+             withParams:(NSDictionary *)params
           completionBlock:(APICompletionBlock)apiCompletionBlock
           dispatcherQueue:(dispatch_queue_t)dispatcherQueue {
     NSURL *url = [NSURL URLWithString:[baseApiUrl stringByAppendingString:api]];
@@ -148,7 +149,8 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
       dispatcherQueue:dispatcherQueue];
 }
 
-- (void)fetchFromApi:(NSString *)api withParams:(NSDictionary *)params
+- (void)fetchFromApi:(NSString *)api
+          withParams:(NSDictionary *)params
      completionBlock:(APICompletionBlock)apiCompletionBlock
      dispatcherQueue:(dispatch_queue_t)dispatcherQueue
        requestMethod:(SLRequestMethod)requestMethod {
@@ -179,7 +181,8 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     if (![maxId isEqualToString: @"-1"]) {
         params[@"max_id"] = maxId;
     }
-    [self fetchFromApi:api withParams:params
+    [self fetchFromApi:api
+            withParams:params
        completionBlock:apiCompletionBlock
        dispatcherQueue:dispatcherQueue
          requestMethod:SLRequestMethodGET];
