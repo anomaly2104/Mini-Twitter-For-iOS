@@ -65,7 +65,6 @@
         // does not exist on disk, so create it
         [self.twitterDatabase saveToURL:self.twitterDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
             [self getCurrentLoggedInUser];
-            
         }];
     } else if (self.twitterDatabase.documentState == UIDocumentStateClosed) {
         // exists on disk, but we need to open it
@@ -76,7 +75,6 @@
         // already open and ready to use
         [self getCurrentLoggedInUser];
     }
-   
 }
 
 - (void)setTwitterDatabase:(UIManagedDocument *)twitterDatabase {
