@@ -149,25 +149,6 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
       dispatcherQueue:dispatcherQueue];
 }
 
-- (void)fetchFromApi:(NSString *)api
-          withParams:(NSDictionary *)params
-     completionBlock:(APICompletionBlock)apiCompletionBlock
-     dispatcherQueue:(dispatch_queue_t)dispatcherQueue
-       requestMethod:(SLRequestMethod)requestMethod {
-    if (requestMethod == SLRequestMethodGET) {
-        [self fetchGetFromApi:api
-                   withParams:params
-              completionBlock:apiCompletionBlock
-              dispatcherQueue:dispatcherQueue];
-    }
-    else if (requestMethod == SLRequestMethodPOST) {
-        [self fetchPostFromApi:api
-                    withParams:params
-               completionBlock:apiCompletionBlock
-               dispatcherQueue:dispatcherQueue];
-    }
-}
-
 - (void)fetchTimelineForUser:(NSString *)username
              completionBlock:(APICompletionBlock)apiCompletionBlock
              dispatcherQueue:(dispatch_queue_t)dispatcherQueue
@@ -181,11 +162,10 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     if (![maxId isEqualToString: @"-1"]) {
         params[@"max_id"] = maxId;
     }
-    [self fetchFromApi:api
+    [self fetchGetFromApi:api
             withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue
-         requestMethod:SLRequestMethodGET];
+       dispatcherQueue:dispatcherQueue];
 }
 
 - (void)fetchTimelineForUser:(NSString *)username
@@ -199,10 +179,10 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     if (![sinceId isEqualToString: @"-1"]) {
         params[@"since_id"] = sinceId;
     }
-    [self fetchFromApi:api withParams:params
+    [self fetchGetFromApi:api
+            withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue
-         requestMethod:SLRequestMethodGET];
+       dispatcherQueue:dispatcherQueue];
 }
 
 - (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
@@ -216,10 +196,10 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
         params[@"max_id"] = maxId;
     }
     
-    [self fetchFromApi:api withParams:params
+    [self fetchGetFromApi:api
+               withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue
-         requestMethod:SLRequestMethodGET];
+       dispatcherQueue:dispatcherQueue];
 }
 
 - (void)fetchHomeTimelineForCurrentUserCompletionBlock:(APICompletionBlock)apiCompletionBlock
@@ -233,10 +213,10 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
         params[@"since_id"] = sinceId;
     }
     
-    [self fetchFromApi:api withParams:params
+    [self fetchGetFromApi:api
+               withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue
-         requestMethod:SLRequestMethodGET];
+       dispatcherQueue:dispatcherQueue];
 }
 
 - (void)postTweet:(NSString*)tweet
@@ -244,10 +224,10 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
   dispatcherQueue:(dispatch_queue_t)dispatcherQueue {
     NSString *api = @"statuses/update.json";
     NSDictionary *params = @{ @"status" : tweet };
-    [self fetchFromApi:api withParams:params
+    [self fetchPostFromApi:api
+                withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue
-         requestMethod:SLRequestMethodPOST];
+       dispatcherQueue:dispatcherQueue];
 }
 
 - (void)fetchDetailsForUser:(NSString *)username
@@ -255,10 +235,10 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
             dispatcherQueue:(dispatch_queue_t)dispatcherQueue {
     NSString *api = @"users/show.json";
     NSDictionary *params = @{ @"screen_name" : username };
-    [self fetchFromApi:api withParams:params
+    [self fetchGetFromApi:api
+            withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue
-         requestMethod:SLRequestMethodGET];
+       dispatcherQueue:dispatcherQueue];
 }
 
 - (void)fetchFollowersForUser:(NSString *)username
@@ -268,10 +248,10 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     NSString *api = @"followers/list.json";
     NSDictionary *params = @{ @"screen_name" : username,
                              @"cursor": nextCursor };
-    [self fetchFromApi:api withParams:params
+    [self fetchGetFromApi:api
+            withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue
-         requestMethod:SLRequestMethodGET];
+       dispatcherQueue:dispatcherQueue];
 }
 
 - (void)fetchFollowingForUser:(NSString *)username
@@ -281,9 +261,9 @@ NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
     NSString *api = @"friends/list.json";
     NSDictionary *params = @{ @"screen_name" : username,
                              @"cursor": nextCursor };
-    [self fetchFromApi:api withParams:params
+    [self fetchGetFromApi:api
+               withParams:params
        completionBlock:apiCompletionBlock
-       dispatcherQueue:dispatcherQueue
-         requestMethod:SLRequestMethodGET];
+       dispatcherQueue:dispatcherQueue];
 }
 @end
