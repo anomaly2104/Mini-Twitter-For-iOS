@@ -27,12 +27,12 @@
 @synthesize tweetMessage = _tweetMessage;
 @synthesize utils = _utils;
 
--(Utils*)utils{
+- (Utils*)utils {
     if(!_utils) _utils = [[Utils alloc] init];
     return _utils;
 }
 
--(void) viewDidLoad{
+- (void)viewDidLoad {
     self.tweetedByName.text = self.tweet.tweetedBy.name;
     self.tweetedByUserName.text = [NSString stringWithFormat:@"@%@", self.tweet.tweetedBy.userName];
     self.tweetMessage.text = self.tweet.tweetMessage;
@@ -48,11 +48,9 @@
             self.tweetedByProfileImage.image = tmpImage;
         });
     });
-
-//    self.tweetedByProfileImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:self.tweetedByProfileImage]];
 }
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"Tweet To User"]){
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Tweet To User"]) {
         [segue.destinationViewController setUser:self.tweet.tweetedBy];
     }
 }

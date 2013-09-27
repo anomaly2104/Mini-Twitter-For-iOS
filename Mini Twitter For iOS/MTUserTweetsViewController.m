@@ -11,16 +11,16 @@
 #import "MTUser+Twitter.h"
 
 @interface MTUserTweetsViewController ()
-@property(weak, nonatomic) IBOutlet UIImageView *userProfileImage;
-@property(weak, nonatomic) IBOutlet UILabel *userName;
-@property(weak, nonatomic) IBOutlet UILabel *userUserName;
-@property(weak, nonatomic) IBOutlet UILabel *tweetsCount;
-@property(weak, nonatomic) IBOutlet UILabel *followingCount;
-@property(weak, nonatomic) IBOutlet UILabel *followersCount;
-@property(nonatomic, strong) TweeterFetcher *tweeterFetcher;
-@property(strong, nonatomic) NSString *maxId;
-@property(strong, nonatomic) NSString *sinceId;
-@property(nonatomic) BOOL isFetching;
+@property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *userUserName;
+@property (weak, nonatomic) IBOutlet UILabel *tweetsCount;
+@property (weak, nonatomic) IBOutlet UILabel *followingCount;
+@property (weak, nonatomic) IBOutlet UILabel *followersCount;
+@property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
+@property (strong, nonatomic) NSString *maxId;
+@property (strong, nonatomic) NSString *sinceId;
+@property (nonatomic) BOOL isFetching;
 @end
 
 @implementation MTUserTweetsViewController
