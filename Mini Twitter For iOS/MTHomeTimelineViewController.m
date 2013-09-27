@@ -10,9 +10,8 @@
 #import "MTUser+Twitter.h"
 
 @interface MTHomeTimelineViewController ()
-//@property (nonatomic, strong) NSArray* tweetsToShow;
+
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (strong, nonatomic) NSString *maxId;
 @property (strong, nonatomic) NSString *sinceId;
 @property (nonatomic) BOOL isFetching;
@@ -32,7 +31,6 @@
 @synthesize sinceId = _sinceId;
 @synthesize currentUser = _currentUser;
 @synthesize tweeterFetcher = _tweeterFetcher;
-@synthesize refreshButton = _refreshButton;
 
 - (TweeterFetcher *) tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];

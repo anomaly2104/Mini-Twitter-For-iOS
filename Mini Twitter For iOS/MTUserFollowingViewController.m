@@ -10,7 +10,7 @@
 #import "MTUser+Twitter.h"
 
 @interface MTUserFollowingViewController ()
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
+
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (strong, nonatomic) NSString* nextCursor;
 @property (nonatomic) BOOL isFetching;
@@ -20,21 +20,15 @@
 
 @synthesize nextCursor = _nextCursor;
 @synthesize tweeterFetcher = _tweeterFetcher;
-@synthesize refreshButton = _refreshButton;
 
-
-- (TweeterFetcher *) tweeterFetcher {
+- (TweeterFetcher *)tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
     return _tweeterFetcher;
 }
 
--(void) setupFetchedResultsController{
+- (void)setupFetchedResultsController {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MTUser"];
     request.sortDescriptors = @[];
-//    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
-  //                                                                                   ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)
-    //                                                    ]];
-    
     request.predicate = [NSPredicate predicateWithFormat:@"any followers.userName = %@", self.user.userName];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
@@ -43,7 +37,7 @@
                                                                                    cacheName:nil];
 }
 
--(void)setUser:(MTUser *)user{
+- (void)setUser:(MTUser *)user {
     _user = user;
     [self setupFetchedResultsController];
     self.title = @"Following";
@@ -52,17 +46,17 @@
     [self fetchUserFollowing];
 }
 
--(void) disableRefresh{
+- (void)disableRefresh {
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] init];
     [spinner startAnimating];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
 }
 
--(void) enableRefresh{
+- (void)enableRefresh {
     self.navigationItem.rightBarButtonItem = nil;
 }
 
--(void) fetchUserFollowing{
+- (void) fetchUserFollowing {
     if(self.isFetching){
         return;
     }
@@ -76,8 +70,6 @@
     APICompletionBlock refreshUserFollowingBlock = ^(NSDictionary * followData){
         [self enableRefresh];
         self.nextCursor = [NSString stringWithFormat:@"%@", [followData valueForKey:TWITTER_FOLLOW_CURSOR_NEXT] ];
-        NSLog(@"Next Cursor: %@", self.nextCursor);
-//        NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
             [self.user addFollowingsObject:[MTUser userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
@@ -93,8 +85,7 @@
 
 }
 
-
--(MTUserCell*) setUserData:(MTUser *) user OnCell:(MTUserCell*) cell {
+-(MTUserCell*)setUserData:(MTUser *) user OnCell:(MTUserCell *) cell {
     
     cell.userName.text = user.name;    
     cell.userUserName.text =[ NSString stringWithFormat:@"@%@",user.userName ];
@@ -111,8 +102,7 @@
     });
     return cell;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Following User ";
     MTUserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil){
@@ -127,20 +117,18 @@
 }
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"Cell selected %ld, %ld", (long)indexPath.section, (long)indexPath.row);
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self performSegueWithIdentifier:@"Following To User" sender:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [segue.identifier isEqualToString:@"Following To User"]){
         MTUser* user = (MTUser*)sender;
         [segue.destinationViewController setUser:user];
     }
 }
 
--(void) scrollViewDidScroll:(UIScrollView *)aScrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
     CGPoint offset = aScrollView.contentOffset;
     CGRect bounds = aScrollView.bounds;
     CGSize size = aScrollView.contentSize;

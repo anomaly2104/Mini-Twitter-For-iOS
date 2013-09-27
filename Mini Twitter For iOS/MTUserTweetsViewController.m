@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *followersCount;
 
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic) BOOL isFetching;
 @property (strong, nonatomic) NSString *maxId;
 @property (strong, nonatomic) NSString *sinceId;
@@ -38,7 +37,6 @@
 @synthesize maxId = _maxId;
 @synthesize sinceId = _sinceId;
 @synthesize tweeterFetcher = _tweeterFetcher;
-@synthesize refreshButton = _refreshButton;
 @synthesize user = _user;
 
 - (TweeterFetcher *) tweeterFetcher {

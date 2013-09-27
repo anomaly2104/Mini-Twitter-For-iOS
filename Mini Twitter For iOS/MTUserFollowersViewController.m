@@ -10,7 +10,6 @@
 #import "MTUser+Twitter.h"
 
 @interface MTUserFollowersViewController ()
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (strong, nonatomic) NSString* nextCursor;
 @property (nonatomic) BOOL isFetching;
@@ -21,14 +20,10 @@
 
 @synthesize nextCursor = _nextCursor;
 @synthesize tweeterFetcher = _tweeterFetcher;
-@synthesize refreshButton = _refreshButton;
 
 -(void) setupFetchedResultsController{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MTUser"];
-    request.sortDescriptors = @[];//[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
-                                    //                                                 ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)
-                                      //                  ]];
-    
+    request.sortDescriptors = @[];
     request.predicate = [NSPredicate predicateWithFormat:@"any followings.userName = %@", self.user.userName];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
@@ -77,7 +72,6 @@
         [self enableRefresh];
         self.nextCursor = [NSString stringWithFormat:@"%@", [followData valueForKey:TWITTER_FOLLOW_CURSOR_NEXT] ];
 
-//        NSMutableArray *usersToShow = [[NSMutableArray alloc] init];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
             [self.user addFollowersObject:[MTUser userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];

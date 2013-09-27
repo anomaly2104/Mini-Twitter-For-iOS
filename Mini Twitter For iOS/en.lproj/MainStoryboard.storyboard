@@ -209,18 +209,11 @@
                             <outlet property="delegate" destination="lJc-gT-i3k" id="G9u-o7-F19"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Me" id="Ekc-9I-HyY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="WB4-K4-Wex">
-                            <connections>
-                                <action selector="refreshUserTimeline:" destination="lJc-gT-i3k" id="RSO-qa-XGC"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Me" id="Ekc-9I-HyY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="followersCount" destination="wsK-hL-h0O" id="Eb1-l5-a09"/>
                         <outlet property="followingCount" destination="nYR-2P-MRX" id="jts-8g-GGO"/>
-                        <outlet property="refreshButton" destination="WB4-K4-Wex" id="we4-Ht-dqS"/>
                         <outlet property="tweetsCount" destination="SEU-1C-Ygs" id="FQS-LB-1X8"/>
                         <outlet property="userName" destination="yJC-TP-eyd" id="048-pW-e9J"/>
                         <outlet property="userProfileImage" destination="SS7-Qu-BOj" id="7NM-ja-Mf5"/>
@@ -268,17 +261,8 @@
                             <outlet property="delegate" destination="OXc-gc-TJf" id="2FS-SC-NdX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Following" id="gXX-SL-Gbi">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="c6R-qd-PB2">
-                            <connections>
-                                <action selector="refreshFollowing:" destination="OXc-gc-TJf" id="SX2-Kb-iA1"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Following" id="gXX-SL-Gbi"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="refreshButton" destination="c6R-qd-PB2" id="Yc1-dw-vSU"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xm5-rH-pBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -311,21 +295,12 @@
                             <outlet property="delegate" destination="AlB-Rz-MQm" id="qEQ-h3-RGv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Followers" id="yRY-Dm-xMN">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4gp-4g-bZC">
-                            <connections>
-                                <action selector="refreshFollowers:" destination="AlB-Rz-MQm" id="TzM-Pw-8fD"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Followers" id="yRY-Dm-xMN"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="refreshButton" destination="4gp-4g-bZC" id="RYt-P7-vP2"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciW-B1-fz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2120" y="1653"/>
+            <point key="canvasLocation" x="1795" y="1658"/>
         </scene>
         <!--Create Tweet View Controller - Compose-->
         <scene sceneID="wed-wM-zv2">
@@ -427,7 +402,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fc0-ho-PQB" imageView="Usk-yf-KNR" style="IBUITableViewCellStyleDefault" id="WwE-UV-UMY">
-                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
@@ -552,17 +527,8 @@
                             <outlet property="delegate" destination="vJI-87-NKx" id="ass-Oe-mar"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="a76-wO-0sf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="OZT-da-a5Q">
-                            <connections>
-                                <action selector="refreshHomeTimeline:" destination="vJI-87-NKx" id="SWq-6V-4eT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Home" id="a76-wO-0sf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="refreshButton" destination="OZT-da-a5Q" id="nDx-gC-uEU"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XyO-qg-RVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -573,7 +539,7 @@
             <objects>
                 <tableViewController id="55e-0i-MQ7" customClass="MTTweetViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="9kS-SP-e3r">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
@@ -833,13 +799,87 @@
         <image name="twitter-bird.png" width="300" height="300"/>
         <image name="twitter.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="MTCoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTCoreDataTableViewController.h"/>
+        </class>
+        <class className="MTCreateTweetViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTCreateTweetViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="postTweet:"/>
+                <relationship kind="outlet" name="tweetButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tweetMessageTextBox" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="MTHomeTimelineViewController" superclassName="MTCoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTHomeTimelineViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshHomeTimeline:"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MTLoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTLoginViewController.h"/>
+        </class>
+        <class className="MTRootViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTRootViewController.h"/>
+        </class>
+        <class className="MTSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTSettingsViewController.h"/>
+        </class>
+        <class className="MTTweetCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTTweetCell.h"/>
+        </class>
+        <class className="MTTweetViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTTweetViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tweetMessage" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tweetTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tweetedByName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tweetedByProfileImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tweetedByUserName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MTUserCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTUserCell.h"/>
+        </class>
+        <class className="MTUserFollowersViewController" superclassName="MTCoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTUserFollowersViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshFollower:"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MTUserFollowingViewController" superclassName="MTCoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTUserFollowingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshFollowing:"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="MTUserTweetsViewController" superclassName="MTCoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MTUserTweetsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshUserTimeline:"/>
+                <relationship kind="outlet" name="followersCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="followingCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tweetsCount" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userProfileImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="userUserName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="27I-nb-DAp"/>
         <segue reference="5A5-c8-zxu"/>
+        <segue reference="YGQ-No-ygl"/>
     </inferredMetricsTieBreakers>
 </document>
