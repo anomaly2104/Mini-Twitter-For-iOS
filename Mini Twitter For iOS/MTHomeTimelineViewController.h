@@ -15,6 +15,7 @@
 #import "MTTweetViewController.h"
 #import "MTCoreDataTableViewController.h"
 #import "HomeTimeLine+Twitter.h"
+
 @interface MTHomeTimelineViewController : MTCoreDataTableViewController
 @property (nonatomic,strong) MTUser* currentUser;
 @end

@@ -10,14 +10,12 @@
 #import "MTUser+Twitter.h"
 
 @interface MTUserFollowingViewController ()
-
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (strong, nonatomic) NSString* nextCursor;
 @property (nonatomic) BOOL isFetching;
 @end
 
 @implementation MTUserFollowingViewController
-
 @synthesize nextCursor = _nextCursor;
 @synthesize tweeterFetcher = _tweeterFetcher;
 
@@ -30,7 +28,6 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MTUser"];
     request.sortDescriptors = @[];
     request.predicate = [NSPredicate predicateWithFormat:@"any followers.userName = %@", self.user.userName];
-    
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.user.managedObjectContext
                                                                           sectionNameKeyPath:nil
@@ -56,28 +53,32 @@
     self.navigationItem.rightBarButtonItem = nil;
 }
 
-- (void) fetchUserFollowing {
-    if(self.isFetching){
+- (void)fetchUserFollowing {
+    if (self.isFetching) {
         return;
     }
     self.isFetching = YES;
     
     [self disableRefresh];
-    if(!self.tweeterFetcher){
+    if (!self.tweeterFetcher) {
         NSLog(@"Fetcher Nil");
     }
     
-    APICompletionBlock refreshUserFollowingBlock = ^(NSDictionary * followData){
+    APICompletionBlock refreshUserFollowingBlock = ^(NSDictionary * followData) {
         [self enableRefresh];
         self.nextCursor = [NSString stringWithFormat:@"%@", [followData valueForKey:TWITTER_FOLLOW_CURSOR_NEXT] ];
         NSDictionary *userData = [followData objectForKey:TWITTER_FOLLOW_USERS];
         for (NSDictionary* key in userData) {
-            [self.user addFollowingsObject:[MTUser userWithTwitterData:key inManagedObjectContext:self.user.managedObjectContext]];
+            [self.user addFollowingsObject:[MTUser userWithTwitterData:key
+                                                inManagedObjectContext:self.user.managedObjectContext]];
         }
         self.isFetching = NO;
 
     };
-    [self.tweeterFetcher fetchFollowingForUser:self.user.userName completionBlock:refreshUserFollowingBlock dispatcherQueue:dispatch_get_main_queue() nextCursor:self.nextCursor];
+    [self.tweeterFetcher fetchFollowingForUser:self.user.userName
+                               completionBlock:refreshUserFollowingBlock
+                               dispatcherQueue:dispatch_get_main_queue()
+                                    nextCursor:self.nextCursor];
 }
 
 - (IBAction)refreshFollowing:(id)sender {
@@ -85,44 +86,40 @@
 
 }
 
--(MTUserCell*)setUserData:(MTUser *) user OnCell:(MTUserCell *) cell {
-    
+- (MTUserCell *)setUserData:(MTUser *)user OnCell:(MTUserCell *)cell {
     cell.userName.text = user.name;    
     cell.userUserName.text =[ NSString stringWithFormat:@"@%@",user.userName ];
-    
     dispatch_queue_t downloadQueue = dispatch_queue_create("Twitter Downloader", NULL);
     dispatch_async(downloadQueue, ^{
-        
         NSData *data = [[NSData alloc] initWithContentsOfURL:user.profileUrl];
         UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             cell.userProileImage.image = tmpImage;
         });
     });
     return cell;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Following User ";
     MTUserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if(cell == nil){
+    if (cell == nil) {
         cell = [[MTUserCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
     }
-    
     MTUser *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
     cell = [self setUserData:userToShow OnCell:cell];
-    
     return cell;
 }
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"Following To User" sender:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+    [self performSegueWithIdentifier:@"Following To User"
+                              sender:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if( [segue.identifier isEqualToString:@"Following To User"]){
+    if ([segue.identifier isEqualToString:@"Following To User"]) {
         MTUser* user = (MTUser*)sender;
         [segue.destinationViewController setUser:user];
     }
@@ -137,9 +134,8 @@
     float h = size.height;
     
     float reload_distance = -400;
-    if(y > h + reload_distance) {
+    if (y > h+reload_distance) {
         [self fetchUserFollowing];
     }
 }
-
 @end
