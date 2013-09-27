@@ -29,7 +29,7 @@
 }
 
 -(void) setupFetchedResultsController{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MTUser"];
     request.sortDescriptors = @[];
 //    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
   //                                                                                   ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)

@@ -146,7 +146,7 @@
 }
 
 -(void) setupFetchedResultsController{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Tweet"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MTTweet"];
     request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"tweetTimestamp"
                                                                                      ascending:NO
                                                         ]];
