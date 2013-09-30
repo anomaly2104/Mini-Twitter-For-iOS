@@ -1021,19 +1021,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "235"
-         endingLineNumber = "235"
-         landmarkName = "-fetchDetailsForUser:completionBlock:dispatcherQueue:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Mini Twitter For iOS/UserTweetsViewController.h"
          timestampString = "401116201.432997"
          startingColumnNumber = "9223372036854775807"
@@ -1267,44 +1254,44 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
+         timestampString = "402215673.950468"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "305"
-         endingLineNumber = "305">
+         startingLineNumber = "333"
+         endingLineNumber = "333">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
+         timestampString = "402215673.950468"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "307"
-         endingLineNumber = "307">
+         startingLineNumber = "335"
+         endingLineNumber = "335">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
+         timestampString = "402215673.950468"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "306"
-         endingLineNumber = "306">
+         startingLineNumber = "334"
+         endingLineNumber = "334">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
+         timestampString = "402215673.950468"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "308"
-         endingLineNumber = "308">
+         startingLineNumber = "336"
+         endingLineNumber = "336">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1343,136 +1330,6 @@
          startingLineNumber = "163"
          endingLineNumber = "163"
          landmarkName = "-viewWillAppear:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "57"
-         endingLineNumber = "57"
-         landmarkName = "@implementation TweeterFetcher"
-         landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "58"
-         endingLineNumber = "58"
-         landmarkName = "-logoutUserViewController:CompletionBlock:dispatcherQueue:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
-         landmarkName = "-loginUserViewController:CompletionBlock:dispatcherQueue:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401354858.133732"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "36"
-         endingLineNumber = "36"
-         landmarkName = "-storeAccessToken:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401354858.133732"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "38"
-         endingLineNumber = "38"
-         landmarkName = "-storeAccessToken:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401354858.133732"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "39"
-         endingLineNumber = "39"
-         landmarkName = "-storeAccessToken:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401354858.133732"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "37"
-         endingLineNumber = "37"
-         landmarkName = "-storeAccessToken:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "40"
-         endingLineNumber = "40"
-         landmarkName = "@implementation TweeterFetcher"
-         landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "43"
-         endingLineNumber = "43"
-         landmarkName = "-loginUserViewController:CompletionBlock:dispatcherQueue:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Mini Twitter For iOS/TweeterFetcher.m"
-         timestampString = "401355387.425495"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "42"
-         endingLineNumber = "42"
-         landmarkName = "-loginUserViewController:CompletionBlock:dispatcherQueue:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint

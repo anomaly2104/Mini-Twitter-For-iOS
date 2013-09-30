@@ -15,32 +15,33 @@
 #import "MTUser.h"
 #import "Utils.h"
 
-#define TWITTER_DEFALT_USER_ACCESS_INFORMATION @"user_access_information"
-#define TWITTER_ACCESS_TOKEN_KEY @"oauth_token"
-#define TWITTER_ACCESS_TOKEN_SECRET @"oauth_token_secret"
-#define TWITTER_ACCESS_TOKEN_USER_ID @"user_id"
-#define TWITTER_ACCESS_TOKEN_SCREEN_NAME @"screen_name"
+extern NSString  * const TWITTER_DEFALT_USER_ACCESS_INFORMATION;
 
-#define TWITTER_TWEET_MESSAGE @"text"
-#define TWITTER_TWEET_TIMESTAMP @"created_at"
-#define TWITTER_TWEET_USER @"user"
-#define TWITTER_TWEET_ID @"id"
-#define TWITTER_TWEET_ID_STR @"id_str"
+extern NSString  * const TWITTER_ACCESS_TOKEN_KEY;// @"oauth_token";
+extern NSString  * const TWITTER_ACCESS_TOKEN_SECRET;// @"oauth_token_secret"
+extern NSString  * const TWITTER_ACCESS_TOKEN_USER_ID;// @"user_id"
+extern NSString  * const TWITTER_ACCESS_TOKEN_SCREEN_NAME;// @"screen_name"
 
-#define TWITTER_FOLLOW_USERS @"users"
-#define TWITTER_FOLLOW_CURSOR_PREVIOUS @"previous_cursor"
-#define TWITTER_FOLLOW_CURSOR_PREVIOUS_STR @"previous_cursor_str"
-#define TWITTER_FOLLOW_CURSOR_NEXT @"next_cursor"
+extern NSString  * const TWITTER_TWEET_MESSAGE;// @"text";
+extern NSString  * const TWITTER_TWEET_TIMESTAMP;// @"created_at";
+extern NSString  * const TWITTER_TWEET_USER;// @"user";
+extern NSString  * const TWITTER_TWEET_ID;// @"id";
+extern NSString  * const TWITTER_TWEET_ID_STR;// @"id_str";
 
-#define TWITTER_USER_NAME @"name"
-#define TWITTER_USER_USERNAME @"screen_name"
-#define TWITTER_USER_ID @"id"
-#define TWITTER_USER_FOLLOWING @"following"
-#define TWITTER_USER_ID_STR @"id_str"
-#define TWITTER_USER_PROFILE_IMAGE_URL @"profile_image_url"
-#define TWITTER_USER_FOLLOWERS_COUNT @"followers_count"
-#define TWITTER_USER_FOLLOWING_COUNT @"friends_count"
-#define TWITTER_USER_TWEETS_COUNT @"statuses_count"
+extern NSString  * const TWITTER_FOLLOW_USERS;// @"users"
+extern NSString  * const TWITTER_FOLLOW_CURSOR_PREVIOUS;// @"previous_cursor"
+extern NSString  * const TWITTER_FOLLOW_CURSOR_PREVIOUS_STR;// @"previous_cursor_str"
+extern NSString  * const TWITTER_FOLLOW_CURSOR_NEXT;// @"next_cursor"
+
+extern NSString  * const TWITTER_USER_NAME;// @"name";
+extern NSString  * const TWITTER_USER_USERNAME;// @"screen_name";
+extern NSString  * const TWITTER_USER_ID;// @"id";
+extern NSString  * const TWITTER_USER_FOLLOWING;// @"following";
+extern NSString  * const TWITTER_USER_ID_STR;// @"id_str";
+extern NSString  * const TWITTER_USER_PROFILE_IMAGE_URL;// @"profile_image_url";
+extern NSString  * const TWITTER_USER_FOLLOWERS_COUNT;// @"followers_count";
+extern NSString  * const TWITTER_USER_FOLLOWING_COUNT;// @"friends_count";
+extern NSString  * const TWITTER_USER_TWEETS_COUNT;// @"statuses_count";
 
 typedef void (^APICompletionBlock)(NSDictionary *);
 typedef void (^LoginCompletionBlock)(BOOL);

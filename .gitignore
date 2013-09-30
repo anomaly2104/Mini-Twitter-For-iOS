@@ -16,3 +16,5 @@ Resources/Conf.plist
 Resources/InfoPlist.h
 Resources/en.lproj/Localizable.strings
 coverage/
+
+*.xcbkptlist

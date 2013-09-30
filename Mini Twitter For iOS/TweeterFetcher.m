@@ -15,9 +15,37 @@
 @end
 
 @implementation TweeterFetcher
-NSString* baseApiUrl = @"https://api.twitter.com/1.1/";
-NSString* consumerKey = @"BhnnJQsTflOlwJpGkh9SA";
-NSString* consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
+NSString  * const TWITTER_DEFALT_USER_ACCESS_INFORMATION = @"user_access_information";
+
+NSString  * const TWITTER_ACCESS_TOKEN_KEY = @"oauth_token";
+NSString  * const TWITTER_ACCESS_TOKEN_SECRET = @"oauth_token_secret";
+NSString  * const TWITTER_ACCESS_TOKEN_USER_ID = @"user_id";
+NSString  * const TWITTER_ACCESS_TOKEN_SCREEN_NAME = @"screen_name";
+
+NSString  * const TWITTER_TWEET_MESSAGE = @"text";
+NSString  * const TWITTER_TWEET_TIMESTAMP = @"created_at";
+NSString  * const TWITTER_TWEET_USER = @"user";
+NSString  * const TWITTER_TWEET_ID = @"id";
+NSString  * const TWITTER_TWEET_ID_STR = @"id_str";
+
+NSString  * const TWITTER_FOLLOW_USERS = @"users";
+NSString  * const TWITTER_FOLLOW_CURSOR_PREVIOUS = @"previous_cursor";
+NSString  * const TWITTER_FOLLOW_CURSOR_PREVIOUS_STR = @"previous_cursor_str";
+NSString  * const TWITTER_FOLLOW_CURSOR_NEXT = @"next_cursor";
+
+NSString  * const TWITTER_USER_NAME = @"name";
+NSString  * const TWITTER_USER_USERNAME = @"screen_name";
+NSString  * const TWITTER_USER_ID = @"id";
+NSString  * const TWITTER_USER_FOLLOWING = @"following";
+NSString  * const TWITTER_USER_ID_STR = @"id_str";
+NSString  * const TWITTER_USER_PROFILE_IMAGE_URL = @"profile_image_url";
+NSString  * const TWITTER_USER_FOLLOWERS_COUNT = @"followers_count";
+NSString  * const TWITTER_USER_FOLLOWING_COUNT = @"friends_count";
+NSString  * const TWITTER_USER_TWEETS_COUNT = @"statuses_count";
+
+NSString const *baseApiUrl = @"https://api.twitter.com/1.1/";
+NSString const *consumerKey = @"BhnnJQsTflOlwJpGkh9SA";
+NSString const *consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
 
 - (id)init {
     self = [super init];
