@@ -21,6 +21,9 @@
 @property (strong, nonatomic) NSString *maxId;
 @property (strong, nonatomic) NSString *sinceId;
 @property (nonatomic) BOOL isFetching;
+@property (nonatomic, strong) NSMutableDictionary *userNameToUIImage;
+@property (nonatomic, strong) NSMutableDictionary *userNameToImageLoadOperation;
+@property (nonatomic, strong) NSOperationQueue *queue;
 @end
 
 @implementation MTUserTweetsViewController
@@ -35,6 +38,9 @@
 @synthesize sinceId = _sinceId;
 @synthesize tweeterFetcher = _tweeterFetcher;
 @synthesize user = _user;
+@synthesize userNameToUIImage = _userNameToUIImage;
+@synthesize userNameToImageLoadOperation = _userNameToImageLoadOperation;
+@synthesize queue = _queue;
 
 - (TweeterFetcher *)tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
@@ -49,6 +55,24 @@
     self.maxId = @"-1";
     self.sinceId = @"-1";
     [self fetchUserTweets];
+}
+
+- (NSOperationQueue *)queue {
+    if (!_queue) _queue = [[NSOperationQueue alloc] init];
+    
+    return _queue;
+}
+
+- (NSMutableDictionary *)userNameToUIImage {
+    if (!_userNameToUIImage) _userNameToUIImage = [[NSMutableDictionary alloc] init];
+    return _userNameToUIImage;
+}
+
+- (NSMutableDictionary *)userNameToImageLoadOperation {
+    if (!_userNameToImageLoadOperation) {
+        _userNameToImageLoadOperation = [[NSMutableDictionary alloc] init];
+    }
+    return _userNameToImageLoadOperation;
 }
 
 - (void)viewDidLoad {
@@ -175,14 +199,20 @@
     cell.tweetTime.text = [Utils convertTweetNSDateToTimeAgo:tweet.tweetTimestamp];
     cell.tweetMessage.text = tweet.tweetMessage;
     
-    dispatch_queue_t downloadQueue = dispatch_queue_create("Twitter Downloader", NULL);
-    dispatch_async(downloadQueue, ^{
-        NSData *data = [[NSData alloc] initWithContentsOfURL:tweet.tweetedBy.profileUrl];
-        UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.tweetedByProileImage.image = tmpImage;
-        });
-    });
+    if([self.userNameToUIImage objectForKey:tweet.tweetedBy.userName]){
+        cell.tweetedByProileImage.image = [self.userNameToUIImage objectForKey:tweet.tweetedBy.userName];
+    } else {
+        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+            NSData *data = [[NSData alloc] initWithContentsOfURL:tweet.tweetedBy.profileUrl];
+            UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+            [self.userNameToUIImage setObject:tmpImage forKey:tweet.tweetedBy.userName];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                cell.tweetedByProileImage.image = tmpImage;
+            }];
+        }];
+        [self.userNameToImageLoadOperation setObject:operation forKey:tweet.tweetedBy.userName];
+        [self.queue addOperation:operation];
+    }
     return cell;
 }
 
@@ -195,6 +225,15 @@
     MTTweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell = [self setTweetData:tweetToShow OnCell:cell];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    MTTweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSOperation *operation = [self.userNameToImageLoadOperation objectForKey:tweet.tweetedBy.userName];
+    if (operation) {
+        [operation cancel];
+        [self.userNameToImageLoadOperation removeObjectForKey:tweet.tweetedBy.userName];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
