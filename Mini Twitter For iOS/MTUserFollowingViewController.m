@@ -13,11 +13,17 @@
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
 @property (strong, nonatomic) NSString* nextCursor;
 @property (nonatomic) BOOL isFetching;
+@property (nonatomic, strong) NSMutableDictionary *userNameToUIImage;
+@property (nonatomic, strong) NSMutableDictionary *userNameToImageLoadOperation;
+@property (nonatomic, strong) NSOperationQueue *queue;
 @end
 
 @implementation MTUserFollowingViewController
 @synthesize nextCursor = _nextCursor;
 @synthesize tweeterFetcher = _tweeterFetcher;
+@synthesize userNameToUIImage = _userNameToUIImage;
+@synthesize userNameToImageLoadOperation = _userNameToImageLoadOperation;
+@synthesize queue = _queue;
 
 - (TweeterFetcher *)tweeterFetcher {
     if(!_tweeterFetcher) _tweeterFetcher = [[TweeterFetcher alloc] init];
@@ -41,6 +47,24 @@
     self.nextCursor = @"-1";
     self.isFetching = NO;
     [self fetchUserFollowing];
+}
+
+- (NSOperationQueue *)queue {
+    if (!_queue) _queue = [[NSOperationQueue alloc] init];
+    
+    return _queue;
+}
+
+- (NSMutableDictionary *)userNameToUIImage {
+    if (!_userNameToUIImage) _userNameToUIImage = [[NSMutableDictionary alloc] init];
+    return _userNameToUIImage;
+}
+
+- (NSMutableDictionary *)userNameToImageLoadOperation {
+    if (!_userNameToImageLoadOperation) {
+        _userNameToImageLoadOperation = [[NSMutableDictionary alloc] init];
+    }
+    return _userNameToImageLoadOperation;
 }
 
 - (void)disableRefresh {
@@ -89,14 +113,21 @@
 - (MTUserCell *)setUserData:(MTUser *)user OnCell:(MTUserCell *)cell {
     cell.userName.text = user.name;    
     cell.userUserName.text =[ NSString stringWithFormat:@"@%@",user.userName ];
-    dispatch_queue_t downloadQueue = dispatch_queue_create("Twitter Downloader", NULL);
-    dispatch_async(downloadQueue, ^{
-        NSData *data = [[NSData alloc] initWithContentsOfURL:user.profileUrl];
-        UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            cell.userProileImage.image = tmpImage;
-        });
-    });
+    if([self.userNameToUIImage objectForKey:user.userName]){
+        cell.userProileImage.image = [self.userNameToUIImage objectForKey:user.userName];
+    } else {
+        NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
+            NSData *data = [[NSData alloc] initWithContentsOfURL:user.profileUrl];
+            UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+            [self.userNameToUIImage setObject:tmpImage forKey:user.userName];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                cell.userProileImage.image = tmpImage;
+            }];
+        }];
+        [self.userNameToImageLoadOperation setObject:operation forKey:user.userName];
+        [self.queue addOperation:operation];
+    }
+
     return cell;
 }
 
@@ -109,6 +140,15 @@
     MTUser *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell = [self setUserData:userToShow OnCell:cell];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    MTUser *user = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSOperation *operation = [self.userNameToImageLoadOperation objectForKey:user.userName];
+    if (operation) {
+        [operation cancel];
+        [self.userNameToImageLoadOperation removeObjectForKey:user.userName];
+    }
 }
 
 #pragma mark - Table view delegate
