@@ -206,7 +206,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if( [segue.identifier isEqualToString:@"Home Timeline Tweet To Show Tweet"]){
         MTTweet* tweet = (MTTweet*)sender;
-        [segue.destinationViewController setTweet:tweet];
+        [(MTTweetViewController *)segue.destinationViewController setTweet:tweet];
     }
 }
 
