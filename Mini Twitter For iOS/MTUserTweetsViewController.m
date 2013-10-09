@@ -191,7 +191,7 @@
     [self setUserProfileData];
 }
 
-- (MTTweetCell*)setTweetData:(MTTweet *)tweet OnCell:(MTTweetCell*)cell {
+- (MTTweetCell*)setTweetData:(MTTweet *)tweet onCell:(MTTweetCell*)cell {
 
     [self changeIdsForTweetId:tweet.tweetId];
     
@@ -217,13 +217,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"User Tweet";
-    MTTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *cellIdentifier = @"User Tweet";
+    MTTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[MTTweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
+        cell = [[MTTweetCell alloc] init];
     }
     MTTweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell = [self setTweetData:tweetToShow OnCell:cell];
+    cell = [self setTweetData:tweetToShow onCell:cell];
     return cell;
 }
 

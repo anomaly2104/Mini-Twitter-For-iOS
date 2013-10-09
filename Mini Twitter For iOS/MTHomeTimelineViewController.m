@@ -173,7 +173,8 @@
     static NSString *CellIdentifier = @"Home Timeline Tweet";
     MTTweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[MTTweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
+        cell = [[MTTweetCell alloc] init];
+//        cell = [[MTTweetCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
     }
     MTTweet *tweetToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell = [self setTweetData:tweetToShow OnCell:cell];

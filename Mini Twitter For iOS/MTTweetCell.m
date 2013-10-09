@@ -118,27 +118,22 @@
     [self assignTweetTimeConstraints];
 }
 
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
-    
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+- (id)init {
+    if (self = [super init]) {
         // Initialization code
         tweetMessage = [[UILabel alloc]init];
-        tweetMessage.textAlignment = UITextAlignmentLeft;
         tweetMessage.font = [UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT];
-
+        
         [tweetMessage setNumberOfLines:0];
         [tweetMessage setLineBreakMode:NSLineBreakByWordWrapping];
         
         tweetedByName = [[UILabel alloc]init];
-        tweetedByName.textAlignment = UITextAlignmentLeft;
         tweetedByName.font = [UIFont systemFontOfSize:TWEETED_BY_NAME_UILABEL_FONT];
         
         tweetTime = [[UILabel alloc]init];
-        tweetTime.textAlignment = UITextAlignmentRight;
         tweetTime.font = [UIFont systemFontOfSize:TWEET_TIMESTAMP_UILABEL_FONT];
         
         tweetedByProileImage = [[UIImageView alloc]init];
-
         
         [self.contentView addSubview:tweetMessage];
         [self.contentView addSubview:tweetedByName];
