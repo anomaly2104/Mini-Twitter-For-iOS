@@ -12,15 +12,6 @@
 #import "TweeterFetcher.h"
 
 @implementation MTTweet (TwitterAdditions)
-+ (MTTweet *)tweetWithTwitterData:(NSDictionary*) tweetTwitterData {
-    MTTweet *tweet = nil;
-    tweet= [[MTTweet alloc] init];
-    tweet.tweetTimestamp = [Utils convertTweetDateStringToTweetNSDate: [tweetTwitterData objectForKey:TWITTER_TWEET_TIMESTAMP]];
-    tweet.tweetMessage = [tweetTwitterData objectForKey:TWITTER_TWEET_MESSAGE];
-    tweet.tweetId = [tweetTwitterData objectForKey:TWITTER_TWEET_ID];
-    tweet.tweetedBy = [MTUser userWithTwitterData:[tweetTwitterData objectForKey:TWITTER_TWEET_USER]];
-    return tweet;
-}
 
 + (MTTweet *)tweetWithTwitterData:(NSDictionary *)tweetTwitterData
            inManagedObjectContext:(NSManagedObjectContext *)context {

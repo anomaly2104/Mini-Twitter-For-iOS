@@ -25,7 +25,6 @@
     NSDateFormatter *dateToStringFormatter = [[NSDateFormatter alloc] init];
     [dateToStringFormatter setDateFormat: @"dd-MM-yyyy HH:mm"];
     NSString* convertedString = [dateToStringFormatter stringFromDate:date];
-    NSLog(@"String date: %@", convertedString);
     return convertedString;
 }
 

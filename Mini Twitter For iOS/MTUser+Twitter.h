@@ -10,8 +10,6 @@
 #import <Accounts/ACAccount.h>
 @interface MTUser (TwitterAdditions)
 -(NSURL*) profileUrl;
-+(MTUser*) userWithTwitterData:(NSDictionary*) userTwitterData;
 +(MTUser*) userWithTwitterData:(NSDictionary*) userTwitterData
         inManagedObjectContext:(NSManagedObjectContext*) context;
-+(MTUser*) userWithACAccount:(ACAccount*) acAccount;
 @end

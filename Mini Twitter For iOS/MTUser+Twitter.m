@@ -10,9 +10,11 @@
 #import "TweeterFetcher.h"
 
 @implementation MTUser (TwitterAdditions)
+
 - (NSURL *)profileUrl {
     return [NSURL URLWithString:self.profileUrlString];
 }
+
 + (MTUser *)userWithTwitterData:(NSDictionary *)userTwitterData
          inManagedObjectContext:(NSManagedObjectContext *)context {
     MTUser* user = nil;

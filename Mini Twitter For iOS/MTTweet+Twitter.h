@@ -9,7 +9,6 @@
 #import "MTTweet.h"
 
 @interface MTTweet (TwitterAdditions)
-+(MTTweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData;
 +(MTTweet*) tweetWithTwitterData:(NSDictionary*) tweetTwitterData
           inManagedObjectContext:(NSManagedObjectContext*) context;
 @end
