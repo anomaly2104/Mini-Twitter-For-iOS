@@ -42,7 +42,7 @@
     UIImageView* spinnerImage = [AnimatedGif getAnimationForGifAtUrl:spinnerImageURL];
     CGFloat spinnerHeight = 100.0;
     CGFloat spinnerWidth = 100.0;
-    spinnerImage.frame = CGRectMake(self.view.frame.size.width/2-spinnerWidth/2.0,150,spinnerWidth,spinnerHeight);
+    spinnerImage.frame = CGRectMake(self.view.bounds.size.width/2-spinnerWidth/2.0,150,spinnerWidth,spinnerHeight);
     [self.view addSubview:spinnerImage];
     
     LoginCompletionBlock loginCompletionBlock = ^(BOOL success) {
