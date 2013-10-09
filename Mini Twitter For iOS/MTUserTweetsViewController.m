@@ -253,11 +253,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ( [segue.identifier isEqualToString:@"User Tweet To Show Tweet"]) {
         MTTweet* tweet = (MTTweet*)sender;
-        [segue.destinationViewController setTweet:tweet];
+        [(MTTweetViewController *)segue.destinationViewController setTweet:tweet];
     } else if ( [segue.identifier isEqualToString:@"User To Following"]) {
-        [segue.destinationViewController setUser:self.user];
+        [(MTUserFollowingViewController *)segue.destinationViewController setUser:self.user];
     } else if ( [segue.identifier isEqualToString:@"User To Followers"]) {
-        [segue.destinationViewController setUser:self.user];
+        [(MTUserFollowersViewController *)segue.destinationViewController setUser:self.user];
     }
 }
 

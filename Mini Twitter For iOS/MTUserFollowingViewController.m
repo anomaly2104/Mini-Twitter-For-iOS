@@ -7,6 +7,7 @@
 //
 
 #import "MTUserFollowingViewController.h"
+#import "MTUserTweetsViewController.h"
 #import "MTUser+Twitter.h"
 
 @interface MTUserFollowingViewController ()
@@ -161,7 +162,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Following To User"]) {
         MTUser* user = (MTUser*)sender;
-        [segue.destinationViewController setUser:user];
+        [(MTUserTweetsViewController *)segue.destinationViewController setUser:user];
     }
 }
 

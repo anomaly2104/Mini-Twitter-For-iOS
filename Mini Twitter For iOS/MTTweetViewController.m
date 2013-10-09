@@ -51,7 +51,7 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Tweet To User"]) {
-        [segue.destinationViewController setUser:self.tweet.tweetedBy];
+        [(MTUserTweetsViewController *)segue.destinationViewController setUser:self.tweet.tweetedBy];
     }
 }
 

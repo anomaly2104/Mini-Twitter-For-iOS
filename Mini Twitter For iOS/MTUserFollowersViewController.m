@@ -8,6 +8,7 @@
 
 #import "MTUserFollowersViewController.h"
 #import "MTUser+Twitter.h"
+#import "MTUserTweetsViewController.h"
 
 @interface MTUserFollowersViewController ()
 @property (nonatomic, strong) TweeterFetcher *tweeterFetcher;
@@ -153,7 +154,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Follower To User"]) {
         MTUser* user = (MTUser*)sender;
-        [segue.destinationViewController setUser:user];
+        [(MTUserTweetsViewController *)segue.destinationViewController setUser:user];
     }
 }
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
