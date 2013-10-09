@@ -12,31 +12,114 @@
 @implementation MTTweetCell
 @synthesize tweetedByName,tweetedByProileImage,tweetMessage,tweetTime;
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    CGRect contentRect = self.contentView.bounds;
-    CGFloat boundsX = contentRect.origin.x;
-    CGRect frame;
+- (void)assignProfileImageConstraints {
+    tweetedByProileImage.translatesAutoresizingMaskIntoConstraints = NO;
+    [tweetedByProileImage sizeToFit];
+    NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:tweetedByProileImage
+                                                                                    attribute:NSLayoutAttributeLeft
+                                                                                    relatedBy:NSLayoutRelationEqual
+                                                                                       toItem:self
+                                                                                    attribute:NSLayoutAttributeLeft
+                                                                                   multiplier:1.0
+                                                                                     constant:CELL_MARGIN_LEFT];
+
+    NSLayoutConstraint *constraintTop = [NSLayoutConstraint constraintWithItem:tweetedByProileImage
+                                                                                   attribute:NSLayoutAttributeTop
+                                                                                   relatedBy:NSLayoutRelationEqual
+                                                                                      toItem:self
+                                                                                   attribute:NSLayoutAttributeTop
+                                                                                  multiplier:1.0
+                                                                                    constant:CELL_MARGIN_TOP];
     
-    frame = CGRectMake(boundsX+CELL_MARGIN_LEFT,
-                      CELL_MARGIN_TOP,
-                      PROFILE_PICTURE_WIDTH,
-                      PROFILE_PICTURE_HEIGHT);
-    tweetedByProileImage.frame = frame;
+    NSDictionary *viewsDictionary = @{ @"profileImage": tweetedByProileImage };
+    [self addConstraints:@[ constraintLeft, constraintTop]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[profileImage(50)]"
+                                                                 options:NSLayoutFormatAlignAllLeading
+                                                                 metrics:nil
+                                                                   views:viewsDictionary]];
+}
 
-    frame = CGRectMake(boundsX+CELL_MARGIN_LEFT + PROFILE_PICTURE_WIDTH + CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT, 5, 150, 20);
-    tweetedByName.frame = frame;
-
-    frame = CGRectMake(boundsX+220, 5, 100, 20);
-    tweetTime.frame = frame;
-
-    frame = CGRectMake(boundsX+CELL_MARGIN_LEFT + PROFILE_PICTURE_WIDTH + CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT , 30, 250, 15);
-    tweetMessage.frame = frame;
-
+- (void)assignTweetMessageConstraints {
+    tweetMessage.translatesAutoresizingMaskIntoConstraints = NO;
     [tweetMessage sizeToFit];
+    NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:tweetMessage
+                                                                                    attribute:NSLayoutAttributeLeft
+                                                                                    relatedBy:NSLayoutRelationEqual
+                                                                                       toItem:tweetedByProileImage
+                                                                                    attribute:NSLayoutAttributeRight
+                                                                                   multiplier:1.0
+                                                                                     constant:CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT];
+    
+    NSLayoutConstraint *constraintRight = [NSLayoutConstraint constraintWithItem:tweetMessage
+                                                                      attribute:NSLayoutAttributeRight
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:self
+                                                                      attribute:NSLayoutAttributeRight
+                                                                     multiplier:1.0
+                                                                       constant:-CELL_MARGIN_RIGHT];
+    
+    NSLayoutConstraint *constraintTop = [NSLayoutConstraint constraintWithItem:tweetMessage
+                                                                                   attribute:NSLayoutAttributeTop
+                                                                                   relatedBy:NSLayoutRelationEqual
+                                                                                      toItem:tweetedByName
+                                                                                   attribute:NSLayoutAttributeBottom
+                                                                                  multiplier:1.0
+                                                                                    constant:CELL_MARGIN_TOP];
+    [self addConstraints:@[ constraintLeft, constraintRight, constraintTop]];
+}
+
+- (void)assignTweetedByNameConstraints {
+    tweetedByName.translatesAutoresizingMaskIntoConstraints = NO;
+    [tweetedByName sizeToFit];
+    NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:tweetedByName
+                                                                      attribute:NSLayoutAttributeLeft
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:tweetedByProileImage
+                                                                      attribute:NSLayoutAttributeRight
+                                                                     multiplier:1.0
+                                                                       constant:CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT];
+    
+    NSLayoutConstraint *constraintTop = [NSLayoutConstraint constraintWithItem:tweetedByName
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self
+                                                                     attribute:NSLayoutAttributeTop
+                                                                    multiplier:1.0
+                                                                      constant:CELL_MARGIN_TOP];
+    [self addConstraints:@[ constraintLeft, constraintTop]];
+
+}
+
+- (void)assignTweetTimeConstraints {
+    tweetTime.translatesAutoresizingMaskIntoConstraints = NO;
+    [tweetTime sizeToFit];
+    NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:tweetTime
+                                                                      attribute:NSLayoutAttributeRight
+                                                                      relatedBy:NSLayoutRelationEqual
+                                                                         toItem:self
+                                                                      attribute:NSLayoutAttributeRight
+                                                                     multiplier:1.0
+                                                                       constant:-CELL_MARGIN_RIGHT];
+    
+    NSLayoutConstraint *constraintTop = [NSLayoutConstraint constraintWithItem:tweetTime
+                                                                     attribute:NSLayoutAttributeTop
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self
+                                                                     attribute:NSLayoutAttributeTop
+                                                                    multiplier:1.0
+                                                                      constant:CELL_MARGIN_TOP];
+    [self addConstraints:@[ constraintLeft, constraintTop]];
+}
+
+- (void)assignConstraints {
+    [self assignProfileImageConstraints];
+    [self assignTweetedByNameConstraints];
+    [self assignTweetMessageConstraints];
+    [self assignTweetTimeConstraints];
 }
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
+    
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         // Initialization code
         tweetMessage = [[UILabel alloc]init];
@@ -56,11 +139,12 @@
         
         tweetedByProileImage = [[UIImageView alloc]init];
 
+        
         [self.contentView addSubview:tweetMessage];
         [self.contentView addSubview:tweetedByName];
         [self.contentView addSubview:tweetTime];
         [self.contentView addSubview:tweetedByProileImage];
-        
+        [self assignConstraints];
     }
     return self;
 }
