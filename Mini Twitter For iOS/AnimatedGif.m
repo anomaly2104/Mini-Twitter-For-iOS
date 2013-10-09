@@ -436,7 +436,7 @@ static AnimatedGif * instance;
     
 	if ([GIF_pointer length] >= dataPointer + length) // Don't read across the edge of the file..
     {
-		GIF_buffer = [GIF_pointer subdataWithRange:NSMakeRange(dataPointer, length)] ;
+		GIF_buffer = [[GIF_pointer subdataWithRange:NSMakeRange(dataPointer, length)] mutableCopy] ;
         dataPointer += length;
 		return YES;
 	}
