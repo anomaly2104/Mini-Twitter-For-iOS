@@ -129,7 +129,7 @@
     static NSString *CellIdentifier = @"Follower User ";
     MTUserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[MTUserCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier ];
+        cell = [[MTUserCell alloc] init];
     }
     MTUser *userToShow = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell = [self setUserData:userToShow OnCell:cell];

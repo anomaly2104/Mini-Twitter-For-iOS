@@ -32,15 +32,15 @@
     [userUserName sizeToFit];
 }
 
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+- (id)init {
+    if (self = [super init]) {
         // Initialization code
         userUserName = [[UILabel alloc]init];
-        userUserName.textAlignment = UITextAlignmentLeft;
+        userUserName.textAlignment = NSTextAlignmentLeft;
         userUserName.font = [UIFont systemFontOfSize:USER_USERNAME_UILABEL_FONT];
         
         userName = [[UILabel alloc]init];
-        userName.textAlignment = UITextAlignmentLeft;
+        userName.textAlignment = NSTextAlignmentLeft;
         userName.font = [UIFont systemFontOfSize:USER_NAME_UILABEL_FONT];
         
         userProileImage = [[UIImageView alloc]init];
