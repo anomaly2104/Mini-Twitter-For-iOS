@@ -238,9 +238,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     MTTweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    CGSize constraint = CGSizeMake(320 - (CELL_MARGIN_LEFT + CELL_MARGIN_RIGHT), 20000.0f);
-    CGSize size = [tweet.tweetMessage sizeWithFont:[UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
-    [self.tableView setContentSize:CGSizeMake(320, self.tableView.contentSize.height + 55 + size.height)];
+    id tweetMessage = tweet.tweetMessage;
+    CGSize constraint = CGSizeMake(self.view.bounds.size.width - (CELL_MARGIN_LEFT + CELL_MARGIN_RIGHT), 20000.0f);
+    CGSize size = [tweetMessage sizeWithFont:[UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
     return (55+size.height);
 }
 
