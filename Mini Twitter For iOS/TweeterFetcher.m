@@ -43,9 +43,9 @@ NSString  * const TWITTER_USER_FOLLOWERS_COUNT = @"followers_count";
 NSString  * const TWITTER_USER_FOLLOWING_COUNT = @"friends_count";
 NSString  * const TWITTER_USER_TWEETS_COUNT = @"statuses_count";
 
-NSString const *baseApiUrl = @"https://api.twitter.com/1.1/";
-NSString const *consumerKey = @"BhnnJQsTflOlwJpGkh9SA";
-NSString const *consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
+NSString * const baseApiUrl = @"https://api.twitter.com/1.1/";
+NSString * const consumerKey = @"BhnnJQsTflOlwJpGkh9SA";
+NSString * const consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
 
 - (id)init {
     self = [super init];
@@ -154,6 +154,15 @@ NSString const *consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
       dispatcherQueue:dispatcherQueue];
 }
 
+- (NSString *)mt_url_remove_params:(NSURL *)url {
+    if (url.absoluteString.length == 0) {
+        return nil;
+    }
+    
+    NSArray *parts = [url.absoluteString componentsSeparatedByString:@"?"];
+    return (parts.count == 0)?nil:parts[0];
+}
+
 - (void)fetchGetFromApi:(NSString *)api
              withParams:(NSDictionary *)params
           completionBlock:(APICompletionBlock)apiCompletionBlock
@@ -165,7 +174,8 @@ NSString const *consumerSecret = @"Fl6eBHtJyBkOZnVRcAG5atqOBRFMdkNZ6bu86CfjgCc";
             NSString *paramPair = [NSString stringWithFormat:@"%@=%@",[key fhs_URLEncode],[params[key] fhs_URLEncode]];
             [paramPairs addObject:paramPair];
         }
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",fhs_url_remove_params(url), [paramPairs componentsJoinedByString:@"&"]]];
+        NSString *urlWithOutParams = [self mt_url_remove_params:url];
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",urlWithOutParams, [paramPairs componentsJoinedByString:@"&"]]];
     }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"GET"];

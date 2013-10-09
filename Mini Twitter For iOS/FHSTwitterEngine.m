@@ -122,7 +122,7 @@ static NSString * const url_friends_ids = @"https://api.twitter.com/1.1/friends/
 static NSString * const url_friends_list = @"https://api.twitter.com/1.1/friends/list.json";
 
 
-NSString * fhs_url_remove_params(NSURL *url) {
+NSString *fhs_url_remove_params(NSURL *url) {
     if (url.absoluteString.length == 0) {
         return nil;
     }

@@ -127,7 +127,7 @@
         tweetMessage.font = [UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT];
 
         [tweetMessage setNumberOfLines:0];
-        [tweetMessage setLineBreakMode:UILineBreakModeWordWrap];
+        [tweetMessage setLineBreakMode:NSLineBreakByWordWrapping];
         
         tweetedByName = [[UILabel alloc]init];
         tweetedByName.textAlignment = UITextAlignmentLeft;
