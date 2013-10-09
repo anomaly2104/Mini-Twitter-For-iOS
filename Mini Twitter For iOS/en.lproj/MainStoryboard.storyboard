@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="ZAJ-6k-WpX">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="190"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SS7-Qu-BOj">
@@ -206,7 +206,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="User Tweet Cell" id="u4c-yi-sRy" customClass="MTTweetCell">
-                                <rect key="frame" x="0.0" y="212" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="276" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u4c-yi-sRy" id="9Kp-Pd-iZN">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -416,7 +416,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fc0-ho-PQB">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="About Us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fc0-ho-PQB">
                                                     <rect key="frame" x="60" y="0.0" width="225" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -447,7 +447,7 @@
             </objects>
             <point key="canvasLocation" x="-371" y="-1165"/>
         </scene>
-        <!--View Controller - Mini Twitter-->
+        <!--View Controller - About Us-->
         <scene sceneID="uGe-e3-1Fl">
             <objects>
                 <viewController id="mMS-fK-LH6" sceneMemberID="viewController">
@@ -455,12 +455,37 @@
                         <viewControllerLayoutGuide type="top" id="nVx-sR-RJS"/>
                         <viewControllerLayoutGuide type="bottom" id="hYq-w6-seb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OmC-xy-dRL">
+                    <view key="view" contentMode="scaleToFill" id="OmC-xy-dRL" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mini Twitter for iOS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeh-jg-0YH">
-                                <rect key="frame" x="73" y="20" width="175" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" image="twitter-bird.png" translatesAutoresizingMaskIntoConstraints="NO" id="mdk-IS-L2U">
+                                <rect key="frame" x="101" y="100" width="119" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="119" id="AqI-Ig-jTV"/>
+                                    <constraint firstAttribute="height" constant="110" id="lbs-r8-VNZ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Version: 0.0.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-hP-nPS">
+                                <rect key="frame" x="108" y="218" width="104" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="2013 Mini Twitter Inc." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFr-Wn-Roe">
+                                <rect key="frame" x="78" y="247" width="164" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="All rights reserved" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWF-i5-A4m">
+                                <rect key="frame" x="91" y="268" width="138" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" ambiguous="YES" text="Mini Twitter for iOS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeh-jg-0YH">
+                                <rect key="frame" x="73" y="76" width="175" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="2Yk-XY-NhG"/>
                                     <constraint firstAttribute="width" constant="175" id="6b3-ax-zz9"/>
@@ -469,47 +494,10 @@
                                 <color key="textColor" red="0.090196080505847931" green="0.458823561668396" blue="0.10196079313755035" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Version: 0.0.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-hP-nPS">
-                                <rect key="frame" x="108" y="49" width="104" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2013 Mini Twitter Inc." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFr-Wn-Roe">
-                                <rect key="frame" x="73" y="196" width="164" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="twitter-bird.png" translatesAutoresizingMaskIntoConstraints="NO" id="mdk-IS-L2U">
-                                <rect key="frame" x="95" y="78" width="119" height="110"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="119" id="AqI-Ig-jTV"/>
-                                    <constraint firstAttribute="height" constant="110" id="lbs-r8-VNZ"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="All rights reserved" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWF-i5-A4m">
-                                <rect key="frame" x="86" y="225" width="138" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="mdk-IS-L2U" firstAttribute="top" secondItem="nA0-hP-nPS" secondAttribute="bottom" constant="8" symbolic="YES" id="ArX-CO-rxb"/>
-                            <constraint firstItem="mdk-IS-L2U" firstAttribute="leading" secondItem="OmC-xy-dRL" secondAttribute="leading" constant="95" id="CUT-eN-xVZ"/>
-                            <constraint firstItem="xeh-jg-0YH" firstAttribute="top" secondItem="OmC-xy-dRL" secondAttribute="top" constant="20" symbolic="YES" id="Mle-dV-UiW"/>
-                            <constraint firstItem="uWF-i5-A4m" firstAttribute="centerX" secondItem="WFr-Wn-Roe" secondAttribute="centerX" id="SH3-hS-sN4"/>
-                            <constraint firstItem="WFr-Wn-Roe" firstAttribute="top" secondItem="mdk-IS-L2U" secondAttribute="bottom" constant="8" symbolic="YES" id="b8y-uj-tuk"/>
-                            <constraint firstItem="xeh-jg-0YH" firstAttribute="centerX" secondItem="OmC-xy-dRL" secondAttribute="centerX" id="fcL-yj-QcO"/>
-                            <constraint firstItem="uWF-i5-A4m" firstAttribute="top" secondItem="WFr-Wn-Roe" secondAttribute="bottom" constant="8" symbolic="YES" id="gnn-9u-ofZ"/>
-                            <constraint firstItem="nA0-hP-nPS" firstAttribute="top" secondItem="xeh-jg-0YH" secondAttribute="bottom" constant="8" symbolic="YES" id="jBV-FZ-EaA"/>
-                            <constraint firstItem="mdk-IS-L2U" firstAttribute="centerX" secondItem="WFr-Wn-Roe" secondAttribute="centerX" id="jKG-cg-YUs"/>
-                            <constraint firstItem="xeh-jg-0YH" firstAttribute="centerX" secondItem="nA0-hP-nPS" secondAttribute="centerX" id="n77-H9-9Zf"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Mini Twitter" id="8Zc-e0-h6r"/>
+                    <navigationItem key="navigationItem" title="About Us" id="8Zc-e0-h6r"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2gM-td-b4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -561,7 +549,7 @@
                             <tableViewSection id="ddg-Mn-nzf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="128" id="Pjt-PL-he5">
-                                        <rect key="frame" x="0.0" y="35" width="320" height="128"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pjt-PL-he5" id="Hhx-eU-eTC">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="128"/>
@@ -609,7 +597,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="142" id="sL6-lz-fwE">
-                                        <rect key="frame" x="0.0" y="163" width="320" height="142"/>
+                                        <rect key="frame" x="0.0" y="227" width="320" height="142"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sL6-lz-fwE" id="pQ3-yj-OK0">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
@@ -633,7 +621,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="72" id="vvY-MI-tKU">
-                                        <rect key="frame" x="0.0" y="305" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="369" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vvY-MI-tKU" id="Y0R-xC-STX">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -827,7 +815,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YGQ-No-ygl"/>
-        <segue reference="5A5-c8-zxu"/>
+        <segue reference="6XP-0B-zgC"/>
+        <segue reference="27I-nb-DAp"/>
     </inferredMetricsTieBreakers>
 </document>

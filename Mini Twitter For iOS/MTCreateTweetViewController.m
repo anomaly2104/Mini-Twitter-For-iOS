@@ -37,8 +37,7 @@
         _tweetTextLength = [[UILabel alloc] initWithFrame:CGRectMake(0,0,30,16)];
         _tweetTextLength.opaque = NO;
         _tweetTextLength.font = [UIFont systemFontOfSize:14];
-        _tweetTextLength.textAlignment = UITextAlignmentCenter;
-        _tweetTextLength.textColor = [UIColor whiteColor];
+        _tweetTextLength.textColor = [UIColor blackColor];
         _tweetTextLength.backgroundColor = [UIColor colorWithRed:0.0
                                                            green:0.0
                                                             blue:0.0
