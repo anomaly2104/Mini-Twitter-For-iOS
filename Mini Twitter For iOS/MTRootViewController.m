@@ -45,10 +45,30 @@
         self.viewControllers = newViewControllers;
     }
 }
+
+- (void)setTabBarViewControllersBarTintColors {
+    NSMutableArray* newViewControllers = [self.viewControllers mutableCopy];
+    for (UINavigationController* navigationController in newViewControllers) {
+        if ( [navigationController isKindOfClass:[UINavigationController class]]) {
+            navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.64
+                                                                              green:0.16
+                                                                               blue:0.16
+                                                                              alpha:1.0];
+            navigationController.navigationBar.tintColor = [UIColor whiteColor];
+            self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : [UIColor whiteColor]};
+        }
+    }
+    
+    if ( self.viewControllers != newViewControllers ) {
+        self.viewControllers = newViewControllers;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
     [self setTabBarViewControllersCurrentUsers];
+    [self setTabBarViewControllersBarTintColors];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
