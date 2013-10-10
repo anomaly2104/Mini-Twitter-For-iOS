@@ -51,6 +51,7 @@
 		AD5405AB17E2F0710059677A /* MTUserFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AA17E2F0700059677A /* MTUserFollowingViewController.m */; };
 		AD5405AE17E2F0910059677A /* MTUserFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AD17E2F0900059677A /* MTUserFollowersViewController.m */; };
 		AD5405B417E2F9930059677A /* MTUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405B317E2F9920059677A /* MTUserCell.m */; };
+		AD75F8AF1806884700700AD6 /* MTAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD75F8AE1806884700700AD6 /* MTAboutUsViewController.m */; };
 		ADBCA7EA17E74BF900E7B644 /* coreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7E817E74BF900E7B644 /* coreData.xcdatamodeld */; };
 		ADBCA7ED17E74CB900E7B644 /* MTUser+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EC17E74CB900E7B644 /* MTUser+Twitter.m */; };
 		ADBCA7F017E74CC500E7B644 /* MTTweet+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EF17E74CC500E7B644 /* MTTweet+Twitter.m */; };
@@ -145,6 +146,8 @@
 		AD5405AD17E2F0900059677A /* MTUserFollowersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTUserFollowersViewController.m; sourceTree = "<group>"; };
 		AD5405B217E2F9910059677A /* MTUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTUserCell.h; sourceTree = "<group>"; };
 		AD5405B317E2F9920059677A /* MTUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTUserCell.m; sourceTree = "<group>"; };
+		AD75F8AD1806884700700AD6 /* MTAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAboutUsViewController.h; sourceTree = "<group>"; };
+		AD75F8AE1806884700700AD6 /* MTAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAboutUsViewController.m; sourceTree = "<group>"; };
 		ADBCA7E917E74BF900E7B644 /* coreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coreData.xcdatamodel; sourceTree = "<group>"; };
 		ADBCA7EB17E74CB900E7B644 /* MTUser+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MTUser+Twitter.h"; sourceTree = "<group>"; };
 		ADBCA7EC17E74CB900E7B644 /* MTUser+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MTUser+Twitter.m"; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				AD49F89F17D73D410030F0FD /* MTHomeTimelineViewController.m */,
 				AD28ACD217EC2124001A3C34 /* MTSettingsViewController.h */,
 				AD28ACD317EC2124001A3C34 /* MTSettingsViewController.m */,
+				AD75F8AD1806884700700AD6 /* MTAboutUsViewController.h */,
+				AD75F8AE1806884700700AD6 /* MTAboutUsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -483,6 +488,7 @@
 				AD49F8A317D74E2D0030F0FD /* MTTweetCell.m in Sources */,
 				AD49F8A617D85E330030F0FD /* NSDate+TimeAgo.m in Sources */,
 				AD49F8A917D85F570030F0FD /* Utils.m in Sources */,
+				AD75F8AF1806884700700AD6 /* MTAboutUsViewController.m in Sources */,
 				AD49F8AE17D874F00030F0FD /* MTTweetViewController.m in Sources */,
 				AD36A6DF17E071A300AB6769 /* MTRootViewController.m in Sources */,
 				AD54058217E084C40059677A /* MTLoginViewController.m in Sources */,

@@ -382,10 +382,11 @@
         <scene sceneID="spW-5a-xkM">
             <objects>
                 <tableViewController title="Settings" id="ld2-VS-zcc" customClass="MTSettingsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="static" style="grouped" sectionIndexMinimumDisplayRowCount="1" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Pxe-Es-5iV">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="static" style="grouped" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Pxe-Es-5iV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.65365010058095752" green="0.82703536309093506" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="smP-JJ-L1x">
                                 <cells>
@@ -393,17 +394,17 @@
                                         <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hBf-K3-C3S" id="psJ-0k-2tO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sign Out" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tqp-nP-Fpt">
-                                                    <rect key="frame" x="60" y="0.0" width="245" height="43"/>
+                                                    <rect key="frame" x="60" y="0.0" width="245" height="44"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="lock.png" id="HZW-bA-YgC">
-                                                    <rect key="frame" x="15" y="6" width="30" height="30"/>
+                                                    <rect key="frame" x="15" y="7" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -413,18 +414,18 @@
                                         <rect key="frame" x="0.0" y="143" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WwE-UV-UMY" id="uQ5-Io-6Ln">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="About Us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fc0-ho-PQB">
-                                                    <rect key="frame" x="60" y="0.0" width="225" height="43"/>
+                                                    <rect key="frame" x="60" y="0.0" width="225" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="twitter.png" id="Usk-yf-KNR">
-                                                    <rect key="frame" x="15" y="6" width="30" height="30"/>
+                                                    <rect key="frame" x="15" y="7" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -447,10 +448,10 @@
             </objects>
             <point key="canvasLocation" x="-371" y="-1165"/>
         </scene>
-        <!--View Controller - About Us-->
+        <!--About Us View Controller - About Us-->
         <scene sceneID="uGe-e3-1Fl">
             <objects>
-                <viewController id="mMS-fK-LH6" sceneMemberID="viewController">
+                <viewController id="mMS-fK-LH6" customClass="MTAboutUsViewController" colorLabel="IBBuiltInLabel-Red" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nVx-sR-RJS"/>
                         <viewControllerLayoutGuide type="bottom" id="hYq-w6-seb"/>
@@ -460,14 +461,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" image="twitter-bird.png" translatesAutoresizingMaskIntoConstraints="NO" id="mdk-IS-L2U">
-                                <rect key="frame" x="11" y="111" width="300" height="300"/>
+                                <rect key="frame" x="129" y="111" width="64" height="54"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="AqI-Ig-jTV"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="lbs-r8-VNZ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="AqI-Ig-jTV"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="lbs-r8-VNZ"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Version: 0.0.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-hP-nPS">
-                                <rect key="frame" x="108" y="419" width="104" height="21"/>
+                                <rect key="frame" x="108" y="173" width="104" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="104" id="0Ir-jx-yJV"/>
                                 </constraints>
@@ -476,13 +477,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2013 Mini Twitter Inc." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFr-Wn-Roe">
-                                <rect key="frame" x="78" y="448" width="164" height="21"/>
+                                <rect key="frame" x="78" y="202" width="164" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="All rights reserved" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWF-i5-A4m">
-                                <rect key="frame" x="91" y="477" width="138" height="21"/>
+                                <rect key="frame" x="91" y="231" width="138" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -509,8 +510,10 @@
                             <constraint firstItem="nA0-hP-nPS" firstAttribute="centerX" secondItem="mdk-IS-L2U" secondAttribute="centerX" constant="-1" id="zH1-Rb-SAa"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="About Us" id="8Zc-e0-h6r"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <navigationItem key="navigationItem" title="About Us" id="8Zc-e0-h6r" colorLabel="IBBuiltInLabel-Red"/>
+                    <connections>
+                        <outlet property="twitterBird" destination="mdk-IS-L2U" id="994-Dv-Nlj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2gM-td-b4q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -796,7 +799,7 @@
         <!--Navigation Controller - Settings-->
         <scene sceneID="xhc-kC-Y1V">
             <objects>
-                <navigationController id="5Hz-DW-KEi" sceneMemberID="viewController">
+                <navigationController modalTransitionStyle="flipHorizontal" id="5Hz-DW-KEi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="gear.png" id="4UW-P3-nAN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RDX-xC-GtO">
@@ -819,7 +822,7 @@
         <image name="lock.png" width="30" height="30"/>
         <image name="man.png" width="30" height="30"/>
         <image name="pencil.png" width="30" height="30"/>
-        <image name="twitter-bird.png" width="300" height="300"/>
+        <image name="twitter-bird.png" width="64" height="54"/>
         <image name="twitter.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
