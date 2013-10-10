@@ -55,7 +55,14 @@
                                                                                blue:0.16
                                                                               alpha:1.0];
             navigationController.navigationBar.tintColor = [UIColor whiteColor];
-            self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : [UIColor whiteColor]};
+
+            NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIColor whiteColor], UITextAttributeTextColor,
+                                                       [UIColor blackColor], UITextAttributeTextShadowColor,
+                                                       [NSValue valueWithUIOffset:UIOffsetMake(-1, 0)], UITextAttributeTextShadowOffset, nil];
+            
+            [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+            
         }
     }
     
