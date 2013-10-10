@@ -9,6 +9,8 @@
 #import "MTRootViewController.h"
 #import "MTTweetCell.h"
 #import "MTUserTweetsViewController.h"
+#import "MTCreateTweetViewController.h"
+#import "MTSettingsViewController.h"
 #import "TweeterFetcher.h"
 
 @implementation MTRootViewController
@@ -47,28 +49,38 @@
 }
 
 - (void)setTabBarViewControllersBarTintColors {
-    NSMutableArray* newViewControllers = [self.viewControllers mutableCopy];
-    for (UINavigationController* navigationController in newViewControllers) {
+    for (UINavigationController* navigationController in self.viewControllers) {
         if ( [navigationController isKindOfClass:[UINavigationController class]]) {
-            navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.64
-                                                                              green:0.16
-                                                                               blue:0.16
-                                                                              alpha:1.0];
-            navigationController.navigationBar.tintColor = [UIColor whiteColor];
-
-            NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                       [UIColor whiteColor], UITextAttributeTextColor,
-                                                       [UIColor blackColor], UITextAttributeTextShadowColor,
-                                                       [NSValue valueWithUIOffset:UIOffsetMake(-1, 0)], UITextAttributeTextShadowOffset, nil];
+            if ([[navigationController.viewControllers lastObject] isKindOfClass:[MTUserTweetsViewController class]]) {
+                navigationController.navigationBar.barTintColor = [UIColor blueColor];
+            } else if ([[navigationController.viewControllers lastObject] isKindOfClass:[MTHomeTimelineViewController class]]) {
+                navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.64
+                                                                                  green:0.16
+                                                                                   blue:0.16
+                                                                                  alpha:1.0];
+            } else if ([[navigationController.viewControllers lastObject] isKindOfClass:[MTCreateTweetViewController class]]) {
+                navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.0
+                                                                                  green:0.39
+                                                                                   blue:0.0
+                                                                                  alpha:1.0];
+            } else if ([[navigationController.viewControllers lastObject] isKindOfClass:[MTSettingsViewController class]]) {
+                navigationController.navigationBar.barTintColor = [UIColor brownColor];
+            }
             
-            [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+            navigationController.navigationBar.tintColor = [UIColor whiteColor];
+            
             
         }
     }
     
-    if ( self.viewControllers != newViewControllers ) {
-        self.viewControllers = newViewControllers;
-    }
+    NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                               [UIColor whiteColor], UITextAttributeTextColor,
+                                               [UIColor blackColor], UITextAttributeTextShadowColor,
+                                               [NSValue valueWithUIOffset:UIOffsetMake(-1, 0)], UITextAttributeTextShadowOffset, nil];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
+
+    
 }
 
 - (void)viewDidLoad {
