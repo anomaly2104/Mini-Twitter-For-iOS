@@ -9,6 +9,9 @@
 #import "MTTweetCell.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface MTTweetCell ()
+- (void)preferredContentSizeChanged:(NSNotification *)notification;
+@end
 @implementation MTTweetCell
 @synthesize tweetedByName,tweetedByProileImage,tweetMessage,tweetTime;
 
@@ -86,7 +89,24 @@
                                                                      attribute:NSLayoutAttributeTop
                                                                     multiplier:1.0
                                                                       constant:CELL_MARGIN_TOP];
-    [self addConstraints:@[ constraintLeft, constraintTop]];
+
+    NSLayoutConstraint *constraintWithTimestamp = [NSLayoutConstraint constraintWithItem:tweetedByName
+                                                                     attribute:NSLayoutAttributeTrailing
+                                                                     relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                        toItem:tweetTime
+                                                                     attribute:NSLayoutAttributeLeading
+                                                                    multiplier:1.0
+                                                                      constant:10];
+
+    
+    [self addConstraints:@[ constraintLeft, constraintTop, constraintWithTimestamp]];
+
+    NSDictionary *viewsDictionary = @{ @"tweetedByName": tweetedByName };
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[tweetedByName(>=50)]"
+                                                                 options:NSLayoutFormatAlignAllLeading
+                                                                 metrics:nil
+                                                                   views:viewsDictionary]];
+
 
 }
 
@@ -118,22 +138,24 @@
     [self assignTweetTimeConstraints];
 }
 
+- (void)calculateAndSetFonts {
+    tweetMessage.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [tweetMessage setNumberOfLines:0];
+    [tweetMessage setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    tweetedByName.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    tweetTime.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+}
+
 - (id)init {
     if (self = [super init]) {
         // Initialization code
         tweetMessage = [[UILabel alloc]init];
-        tweetMessage.font = [UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT];
-        
-        [tweetMessage setNumberOfLines:0];
-        [tweetMessage setLineBreakMode:NSLineBreakByWordWrapping];
-        
         tweetedByName = [[UILabel alloc]init];
-        tweetedByName.font = [UIFont systemFontOfSize:TWEETED_BY_NAME_UILABEL_FONT];
-        
         tweetTime = [[UILabel alloc]init];
-        tweetTime.font = [UIFont systemFontOfSize:TWEET_TIMESTAMP_UILABEL_FONT];
-        
         tweetedByProileImage = [[UIImageView alloc]init];
+        
+        [self calculateAndSetFonts];
         
         [self.contentView addSubview:tweetMessage];
         [self.contentView addSubview:tweetedByName];
