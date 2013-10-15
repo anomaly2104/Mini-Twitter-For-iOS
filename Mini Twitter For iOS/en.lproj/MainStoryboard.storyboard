@@ -618,6 +618,23 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sL6-lz-fwE" id="pQ3-yj-OK0">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SDu-sE-koy">
+                                                    <rect key="frame" x="20" y="20" width="280" height="102"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SDu-sE-koy" firstAttribute="leading" secondItem="pQ3-yj-OK0" secondAttribute="leading" constant="20" symbolic="YES" id="1aO-Sa-6k0"/>
+                                                <constraint firstItem="SDu-sE-koy" firstAttribute="top" secondItem="pQ3-yj-OK0" secondAttribute="top" constant="20" symbolic="YES" id="AfD-Zp-PN0"/>
+                                                <constraint firstAttribute="bottom" secondItem="SDu-sE-koy" secondAttribute="bottom" constant="20" symbolic="YES" id="cAs-Ep-1rv"/>
+                                                <constraint firstAttribute="trailing" secondItem="SDu-sE-koy" secondAttribute="trailing" constant="20" symbolic="YES" id="lNT-wX-DcF"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="72" id="vvY-MI-tKU">
@@ -656,6 +673,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
+                        <outlet property="tweetMessage" destination="SDu-sE-koy" id="Urm-mn-ya1"/>
                         <outlet property="tweetTime" destination="B44-C0-9DZ" id="H8o-3D-Mxi"/>
                         <outlet property="tweetedByName" destination="vBS-5L-h6y" id="t8P-1F-ffA"/>
                         <outlet property="tweetedByProfileImage" destination="4wb-N5-BKp" id="LkG-Pb-IE1"/>
