@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cCR-2K-qUl">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="ZAJ-6k-WpX" userLabel="User Profile">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="190"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SS7-Qu-BOj">
@@ -205,7 +205,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="User Tweet Cell" id="u4c-yi-sRy" customClass="MTTweetCell">
-                                <rect key="frame" x="0.0" y="212" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="276" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u4c-yi-sRy" id="9Kp-Pd-iZN">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -236,21 +236,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eCj-ZV-dXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="ofT-bM-qxo">
                     <connections>
-                        <segue destination="OXc-gc-TJf" kind="push" identifier="User To Following" id="cqK-MO-UXa"/>
+                        <action selector="handleTapOnFollowing:" destination="lJc-gT-i3k" id="JOK-7J-mEK"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="Im9-xS-mlw">
                     <connections>
-                        <segue destination="AlB-Rz-MQm" kind="push" identifier="User To Followers" id="CvL-6r-nei"/>
+                        <action selector="handleTapOnFollower:" destination="lJc-gT-i3k" id="kMr-uK-du9"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="19" y="315"/>
+            <point key="canvasLocation" x="877" y="707"/>
         </scene>
         <!--User Following View Controller - Following-->
         <scene sceneID="WFK-r3-21e">
             <objects>
-                <tableViewController id="OXc-gc-TJf" customClass="MTUserFollowingViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="followingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OXc-gc-TJf" customClass="MTUserFollowingViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="ksy-tH-usY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -278,12 +278,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xm5-rH-pBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="219"/>
+            <point key="canvasLocation" x="-127" y="767"/>
         </scene>
         <!--User Followers View Controller - Followers-->
         <scene sceneID="lNH-eE-PZG">
             <objects>
-                <tableViewController id="AlB-Rz-MQm" customClass="MTUserFollowersViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="followersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AlB-Rz-MQm" customClass="MTUserFollowersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="bXj-YW-EWi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -311,7 +311,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciW-B1-fz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1093" y="912"/>
+            <point key="canvasLocation" x="255" y="1224"/>
         </scene>
         <!--Create Tweet View Controller - Compose-->
         <scene sceneID="wed-wM-zv2">
@@ -565,7 +565,7 @@
                             <tableViewSection id="ddg-Mn-nzf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="128" id="Pjt-PL-he5">
-                                        <rect key="frame" x="0.0" y="35" width="320" height="128"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pjt-PL-he5" id="Hhx-eU-eTC">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="128"/>
@@ -613,7 +613,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="142" id="sL6-lz-fwE">
-                                        <rect key="frame" x="0.0" y="163" width="320" height="142"/>
+                                        <rect key="frame" x="0.0" y="227" width="320" height="142"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sL6-lz-fwE" id="pQ3-yj-OK0">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
@@ -637,7 +637,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="72" id="vvY-MI-tKU">
-                                        <rect key="frame" x="0.0" y="305" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="369" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vvY-MI-tKU" id="Y0R-xC-STX">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -776,7 +776,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9O-Rt-7VB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-520" y="315"/>
+            <point key="canvasLocation" x="-504" y="227"/>
         </scene>
         <!--Navigation Controller - Tweet-->
         <scene sceneID="UXc-uD-MVQ">
@@ -832,7 +832,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="5A5-c8-zxu"/>
         <segue reference="YGQ-No-ygl"/>
-        <segue reference="6XP-0B-zgC"/>
     </inferredMetricsTieBreakers>
 </document>
