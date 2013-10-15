@@ -68,6 +68,10 @@
     [self fetchHomeTimeline];
 }
 
+- (void)preferredContentSizeChanged:(NSNotification *)notification {
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad {
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to get new Tweets"];
@@ -75,6 +79,8 @@
                 action:@selector(fetchNewHomeTimeLineTweets:)
       forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+
 }
 
 - (void)changeIdsForTweetId:(NSString*)tweetId {
@@ -193,9 +199,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     MTTweet *tweet = [self.fetchedResultsController objectAtIndexPath:indexPath];
     id tweetMessage = tweet.tweetMessage;
-    CGSize constraint = CGSizeMake(self.view.bounds.size.width - (CELL_MARGIN_LEFT + CELL_MARGIN_RIGHT), 20000.0f);
-    CGSize size = [tweetMessage sizeWithFont:[UIFont systemFontOfSize:TWEET_MESSAGE_UILABEL_FONT] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-    return (55+size.height);
+    CGSize constraint = CGSizeMake(self.view.bounds.size.width - (CELL_MARGIN_LEFT + CELL_MARGIN_BETWEEN_PROFILE_PIC_AND_RIGHT_CONTENT + PROFILE_PICTURE_WIDTH + CELL_MARGIN_RIGHT), 20000.0f);
+    
+    CGSize tweetMessageSize = [tweetMessage sizeWithFont:[UIFont preferredFontForTextStyle:UIFontTextStyleBody] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    
+    CGSize tweetedBySize = [tweet.tweetedBy.name sizeWithFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    
+    return (CELL_MARGIN_TOP*2 + CELL_MARGIN_BOTTOM + tweetedBySize.height + tweetMessageSize.height);
 }
 
 #pragma mark - Table view delegate
