@@ -16,6 +16,6 @@
 #import "MTUserFollowingViewController.h"
 #import "MTCoreDataTableViewController.h"
 
-@interface MTUserTweetsViewController : MTCoreDataTableViewController
+@interface MTUserTweetsViewController : MTCoreDataTableViewController <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) MTUser* user;
 @end

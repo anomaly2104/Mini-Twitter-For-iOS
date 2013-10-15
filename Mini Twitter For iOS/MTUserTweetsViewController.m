@@ -9,6 +9,7 @@
 #import "MTUserTweetsViewController.h"
 #import "MTTweet+Twitter.h"
 #import "MTUser+Twitter.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface MTUserTweetsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *userProfileImage;
@@ -154,9 +155,12 @@
         self.userName.text = user.name;
         self.userUserName.text = [NSString stringWithFormat:@"@%@", user.userName ];
         self.tweetsCount.text = [NSString stringWithFormat:@"%@", user.numberTweets];
+        self.tweetsCount.textColor = [UIColor blueColor];
         self.followersCount.text = [NSString stringWithFormat:@"%@", user.numberFollowers];
+        self.followersCount.textColor = [UIColor blueColor];
+
         self.followingCount.text = [NSString stringWithFormat:@"%@", user.numberFollowing];
-        
+        self.followingCount.textColor = [UIColor blueColor];
         dispatch_queue_t downloadQueue = dispatch_queue_create("Twitter Downloader", NULL);
         dispatch_async(downloadQueue, ^{
             
@@ -259,6 +263,45 @@
     } else if ( [segue.identifier isEqualToString:@"User To Followers"]) {
         [(MTUserFollowersViewController *)segue.destinationViewController setUser:self.user];
     }
+}
+
+- (IBAction)handleTapOnFollower:(id)sender {
+    self.followersCount.backgroundColor = [UIColor lightGrayColor];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, .05 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            self.followersCount.backgroundColor = [UIColor whiteColor];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        MTUserFollowersViewController *nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"followersViewController"];
+        nextViewController.user = self.user;
+        [UIView  beginAnimations:nil context:NULL];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.75];
+        [self.navigationController pushViewController:nextViewController animated:NO];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+        [UIView commitAnimations];
+    });
+}
+
+- (IBAction)handleTapOnFollowing:(id)sender {
+    self.followingCount.backgroundColor = [UIColor lightGrayColor];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, .05 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.followingCount.backgroundColor = [UIColor whiteColor];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        MTUserFollowingViewController *nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"followingViewController"];
+        nextViewController.user = self.user;
+        
+        [UIView  beginAnimations:nil context:NULL];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.75];
+        [self.navigationController pushViewController:nextViewController animated:NO];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+        [UIView commitAnimations];
+    });
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)aScrollView {
