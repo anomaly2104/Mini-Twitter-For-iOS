@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="ZAJ-6k-WpX" userLabel="User Profile">
-                            <rect key="frame" x="0.0" y="64" width="320" height="190"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SS7-Qu-BOj">
@@ -205,7 +205,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="User Tweet Cell" id="u4c-yi-sRy" customClass="MTTweetCell">
-                                <rect key="frame" x="0.0" y="276" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="212" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u4c-yi-sRy" id="9Kp-Pd-iZN">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -565,7 +565,7 @@
                             <tableViewSection id="ddg-Mn-nzf">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="128" id="Pjt-PL-he5">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="128"/>
+                                        <rect key="frame" x="0.0" y="35" width="320" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pjt-PL-he5" id="Hhx-eU-eTC">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="128"/>
@@ -613,31 +613,15 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="142" id="sL6-lz-fwE">
-                                        <rect key="frame" x="0.0" y="227" width="320" height="142"/>
+                                        <rect key="frame" x="0.0" y="163" width="320" height="142"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sL6-lz-fwE" id="pQ3-yj-OK0">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="Utp-LH-YMT">
-                                                    <rect key="frame" x="30" y="20" width="260" height="101"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="260" id="KUj-1s-OVa"/>
-                                                        <constraint firstAttribute="height" constant="101" id="eN4-dV-sRT"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstItem="Utp-LH-YMT" firstAttribute="centerX" secondItem="sL6-lz-fwE" secondAttribute="centerX" id="6qC-qL-AAA"/>
-                                            <constraint firstItem="Utp-LH-YMT" firstAttribute="top" secondItem="sL6-lz-fwE" secondAttribute="top" constant="20" id="EAs-x7-71d"/>
-                                        </constraints>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="72" id="vvY-MI-tKU">
-                                        <rect key="frame" x="0.0" y="369" width="320" height="72"/>
+                                        <rect key="frame" x="0.0" y="305" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vvY-MI-tKU" id="Y0R-xC-STX">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
@@ -672,7 +656,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="tweetMessage" destination="Utp-LH-YMT" id="L4o-Lz-rqg"/>
                         <outlet property="tweetTime" destination="B44-C0-9DZ" id="H8o-3D-Mxi"/>
                         <outlet property="tweetedByName" destination="vBS-5L-h6y" id="t8P-1F-ffA"/>
                         <outlet property="tweetedByProfileImage" destination="4wb-N5-BKp" id="LkG-Pb-IE1"/>
@@ -832,7 +815,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5A5-c8-zxu"/>
+        <segue reference="6XP-0B-zgC"/>
         <segue reference="YGQ-No-ygl"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -12,7 +12,7 @@
 @interface MTTweetViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *tweetedByProfileImage;
 @property (weak, nonatomic) IBOutlet UILabel *tweetedByName;
-@property (weak, nonatomic) IBOutlet UILabel *tweetMessage;
+@property (weak, nonatomic) IBOutlet UITextView *tweetMessage;
 @property (weak, nonatomic) IBOutlet UILabel *tweetTime;
 @property (weak, nonatomic) IBOutlet UILabel *tweetedByUserName;
 @property (nonatomic, strong) Utils* utils;
