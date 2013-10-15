@@ -159,6 +159,10 @@
                               sender:[self.fetchedResultsController objectAtIndexPath:indexPath]];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 75;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Following To User"]) {
         MTUser* user = (MTUser*)sender;
