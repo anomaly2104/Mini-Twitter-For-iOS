@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface MTTweetCell ()
-- (void)preferredContentSizeChanged:(NSNotification *)notification;
 @end
 @implementation MTTweetCell
 @synthesize tweetedByName,tweetedByProileImage,tweetMessage,tweetTime;
@@ -73,7 +72,6 @@
 
 - (void)assignTweetedByNameConstraints {
     tweetedByName.translatesAutoresizingMaskIntoConstraints = NO;
-    [tweetedByName sizeToFit];
     NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:tweetedByName
                                                                       attribute:NSLayoutAttributeLeft
                                                                       relatedBy:NSLayoutRelationEqual
@@ -90,30 +88,16 @@
                                                                     multiplier:1.0
                                                                       constant:CELL_MARGIN_TOP];
 
-    NSLayoutConstraint *constraintWithTimestamp = [NSLayoutConstraint constraintWithItem:tweetedByName
-                                                                     attribute:NSLayoutAttributeTrailing
-                                                                     relatedBy:NSLayoutRelationGreaterThanOrEqual
-                                                                        toItem:tweetTime
-                                                                     attribute:NSLayoutAttributeLeading
-                                                                    multiplier:1.0
-                                                                      constant:10];
 
     
-    [self addConstraints:@[ constraintLeft, constraintTop, constraintWithTimestamp]];
-
-    NSDictionary *viewsDictionary = @{ @"tweetedByName": tweetedByName };
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[tweetedByName(>=50)]"
-                                                                 options:NSLayoutFormatAlignAllLeading
-                                                                 metrics:nil
-                                                                   views:viewsDictionary]];
-
-
+    [self addConstraints:@[ constraintLeft, constraintTop]];
+    [tweetedByName setContentCompressionResistancePriority:500 forAxis:UILayoutConstraintAxisHorizontal];
 }
 
 - (void)assignTweetTimeConstraints {
     tweetTime.translatesAutoresizingMaskIntoConstraints = NO;
     [tweetTime sizeToFit];
-    NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:tweetTime
+    NSLayoutConstraint *constraintRight = [NSLayoutConstraint constraintWithItem:tweetTime
                                                                       attribute:NSLayoutAttributeRight
                                                                       relatedBy:NSLayoutRelationEqual
                                                                          toItem:self
@@ -128,7 +112,16 @@
                                                                      attribute:NSLayoutAttributeTop
                                                                     multiplier:1.0
                                                                       constant:CELL_MARGIN_TOP];
-    [self addConstraints:@[ constraintLeft, constraintTop]];
+
+    NSLayoutConstraint *constraintLeft = [NSLayoutConstraint constraintWithItem:tweetTime
+                                                                       attribute:NSLayoutAttributeLeft
+                                                                       relatedBy:NSLayoutRelationGreaterThanOrEqual
+                                                                          toItem:tweetedByName
+                                                                       attribute:NSLayoutAttributeRight
+                                                                      multiplier:1.0
+                                                                        constant:CELL_MARGIN_RIGHT];
+    [tweetTime setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisHorizontal];
+    [self addConstraints:@[ constraintRight, constraintTop, constraintLeft]];
 }
 
 - (void)assignConstraints {
