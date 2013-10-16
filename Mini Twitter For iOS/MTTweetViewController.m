@@ -57,14 +57,14 @@
     return attributedTweetMessage;
 }
 
-- (void)setFonts{
+- (void)setFonts {
     self.tweetedByName.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     self.tweetedByUserName.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     self.tweetMessage.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     self.tweetTime.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
 }
 
-- (void)viewDidLoad {
+- (void)setTweetValues {
     self.tweetedByName.text = self.tweet.tweetedBy.name;
     self.tweetedByUserName.text = [NSString stringWithFormat:@"@%@", self.tweet.tweetedBy.userName];
     self.tweetMessage.attributedText = [self attributedMessageFromMessage:self.tweet.tweetMessage];
@@ -81,6 +81,11 @@
             self.tweetedByProfileImage.image = tmpImage;
         });
     });
+}
+
+- (void)viewDidLoad {
+    [self setTweetValues];
+    [self setFonts];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Tweet To User"]) {
