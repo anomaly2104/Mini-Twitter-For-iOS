@@ -32,11 +32,44 @@
     return _utils;
 }
 
+- (NSAttributedString *)attributedMessageFromMessage:(NSString *)tweetMessage {
+    NSArray* messageWords = [tweetMessage componentsSeparatedByString: @" "];
+    NSMutableAttributedString *attributedTweetMessage = [[NSMutableAttributedString alloc] initWithString:@""];
+    
+    for (NSString *word in messageWords) {
+        NSDictionary * attributes;
+        if([word characterAtIndex:0] == '@'){
+            attributes = [NSDictionary dictionaryWithObject:[UIColor redColor] forKey:NSForegroundColorAttributeName];
+        } else if([word characterAtIndex:0] == '#'){
+            attributes = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:0.180392
+                                                                            green:0.545098
+                                                                             blue:0.341176
+                                                                            alpha:1.0]
+                                                     forKey:NSForegroundColorAttributeName];
+        } else {
+            attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
+        }
+        NSAttributedString * subString = [[NSAttributedString alloc]
+                                          initWithString:[NSString stringWithFormat:@"%@ ",word]
+                                          attributes:attributes];
+        [attributedTweetMessage appendAttributedString:subString];
+    }
+    return attributedTweetMessage;
+}
+
+- (void)setFonts{
+    self.tweetedByName.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    self.tweetedByUserName.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+    self.tweetMessage.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.tweetTime.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+}
+
 - (void)viewDidLoad {
     self.tweetedByName.text = self.tweet.tweetedBy.name;
     self.tweetedByUserName.text = [NSString stringWithFormat:@"@%@", self.tweet.tweetedBy.userName];
-    self.tweetMessage.text = self.tweet.tweetMessage;
+    self.tweetMessage.attributedText = [self attributedMessageFromMessage:self.tweet.tweetMessage];
     NSString* tweetTimeToShow = [self.utils convertTweetDateToStringTimeStamp: self.tweet.tweetTimestamp];
+    
     self.tweetTime.text =  tweetTimeToShow;
     dispatch_queue_t downloadQueue = dispatch_queue_create("Twitter Downloader", NULL);
     dispatch_async(downloadQueue, ^{
