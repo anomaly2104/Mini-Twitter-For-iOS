@@ -73,7 +73,13 @@ NSString * const tweetWordType = @"TweetWordType";
     NSDictionary *userData = @{@"screen_name": userName};
     MTUser *newUser = [MTUser userWithTwitterData:userData inManagedObjectContext:self.tweet.managedObjectContext];
     nextViewController.user = newUser;
-    [self.navigationController pushViewController:nextViewController animated:YES];
+    
+    [UIView  beginAnimations:nil context:NULL];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:1.0];
+    [self.navigationController pushViewController:nextViewController animated:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
+    [UIView commitAnimations];
 }
 
 - (IBAction)tweetMessageTapped:(UITapGestureRecognizer *)recognizer {
