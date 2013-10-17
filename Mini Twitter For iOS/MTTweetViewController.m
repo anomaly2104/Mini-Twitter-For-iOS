@@ -66,6 +66,16 @@ NSString * const tweetWordType = @"TweetWordType";
     }
     return attributedTweetMessage;
 }
+
+- (void)openViewControllerForUserName:(NSString *)userName {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    MTUserTweetsViewController *nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"MTUserTweetsViewController"];
+    NSDictionary *userData = @{@"screen_name": userName};
+    MTUser *newUser = [MTUser userWithTwitterData:userData inManagedObjectContext:self.tweet.managedObjectContext];
+    nextViewController.user = newUser;
+    [self.navigationController pushViewController:nextViewController animated:YES];
+}
+
 - (IBAction)tweetMessageTapped:(UITapGestureRecognizer *)recognizer {
         UITextView *textView = (UITextView *)recognizer.view;
         
@@ -80,20 +90,18 @@ NSString * const tweetWordType = @"TweetWordType";
         if (characterIndex < textView.textStorage.length) {
             
             NSRange range;
-            id value = [textView.attributedText attribute:tweetWordType atIndex:characterIndex effectiveRange:&range];
+            id wordType = [textView.attributedText attribute:tweetWordType
+                                                  atIndex:characterIndex
+                                           effectiveRange:&range];
             
-            if([value isEqualToString:userNameKey]){
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-                MTUserTweetsViewController *nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"MTUserTweetsViewController"];
-                NSDictionary *userData = @{@"screen_name": [textView.attributedText attribute:userNameKey atIndex:characterIndex effectiveRange:&range]};
-                MTUser *newUser = [MTUser userWithTwitterData:userData inManagedObjectContext:self.tweet.managedObjectContext];
-                nextViewController.user = newUser;
-                [self.navigationController pushViewController:nextViewController animated:YES];
-            } else if([value isEqualToString:hashTagKey]){
+            if([wordType isEqualToString:userNameKey]){
+                NSString *userName = [textView.attributedText attribute:userNameKey
+                                                                atIndex:characterIndex
+                                                         effectiveRange:&range];
+                [self openViewControllerForUserName:userName];
+            } else if([wordType isEqualToString:hashTagKey]){
                 // TODO: Segue to hashtag controller once it is in place.
             }
-            NSLog(@"%@, %d, %d", value, range.location, range.length);
-            
         }
 }
 
