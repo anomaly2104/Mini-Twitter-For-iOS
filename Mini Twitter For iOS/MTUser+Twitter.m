@@ -15,18 +15,60 @@
     return [NSURL URLWithString:self.profileUrlString];
 }
 
++ (NSPredicate *)predicateForUserName:(NSString *)userName userId:(NSString *)userId {
+    if (userName && userId) {
+        return [NSPredicate predicateWithFormat:@"(userName = %@) OR (userId = %@)", userName, userId];
+    } else if (userName) {
+        return [NSPredicate predicateWithFormat:@"(userName = %@)", userName];
+    } else if (userId) {
+        return [NSPredicate predicateWithFormat:@"(userId = %@)", userId];
+    } else {
+        return nil;
+    }
+}
+
++ (void)populateUser:(MTUser *)user withUserData:(NSDictionary *)userTwitterData {
+    if ([userTwitterData valueForKey:TWITTER_USER_PROFILE_IMAGE_URL]) {
+        user.profileUrlString = [userTwitterData valueForKey:TWITTER_USER_PROFILE_IMAGE_URL];
+    }
+    if ([userTwitterData valueForKey:TWITTER_USER_NAME]) {
+        user.name = [userTwitterData valueForKey:TWITTER_USER_NAME];
+    }
+    if ([userTwitterData valueForKey:TWITTER_USER_ID_STR]) {
+        user.userId = [userTwitterData valueForKey:TWITTER_USER_ID_STR];
+    }
+    if ([userTwitterData valueForKey:TWITTER_USER_USERNAME]) {
+        user.userName = [userTwitterData valueForKey:TWITTER_USER_USERNAME];
+    }
+    if ([userTwitterData valueForKey:TWITTER_USER_TWEETS_COUNT]) {
+        user.numberTweets = [userTwitterData valueForKey:TWITTER_USER_TWEETS_COUNT];
+    }
+    if ([userTwitterData valueForKey:TWITTER_USER_FOLLOWERS_COUNT]) {
+        user.numberFollowers = [userTwitterData valueForKey:TWITTER_USER_FOLLOWERS_COUNT];
+    }
+    if ([userTwitterData valueForKey:TWITTER_USER_FOLLOWING_COUNT]) {
+        user.numberFollowing = [userTwitterData valueForKey:TWITTER_USER_FOLLOWING_COUNT];
+    }
+}
+
 + (MTUser *)userWithTwitterData:(NSDictionary *)userTwitterData
          inManagedObjectContext:(NSManagedObjectContext *)context {
-    MTUser* user = nil;
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"MTUser"];
-    request.predicate = [NSPredicate predicateWithFormat:@"(userName = %@) OR (userId = %@)",
-                         [userTwitterData valueForKey:TWITTER_USER_USERNAME],
-                         [userTwitterData valueForKey:TWITTER_USER_ID_STR]];
+    
+    NSPredicate *predicate = [self predicateForUserName:[userTwitterData valueForKey:TWITTER_USER_USERNAME] userId:[userTwitterData valueForKey:TWITTER_USER_ID_STR]];
+
+    if (predicate) {
+        request.predicate = predicate;
+    } else {
+        return nil;
+    }
+    
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
-    
+
+    MTUser* user = nil;
     if (!matches || ([matches count] > 1)) {
         // handle error
     } else {
@@ -35,13 +77,7 @@
         } else {
             user = [matches lastObject];
         }
-        user.profileUrlString = [userTwitterData valueForKey:TWITTER_USER_PROFILE_IMAGE_URL];
-        user.name = [userTwitterData valueForKey:TWITTER_USER_NAME];
-        user.userId = [userTwitterData valueForKey:TWITTER_USER_ID_STR];
-        user.userName = [userTwitterData valueForKey:TWITTER_USER_USERNAME];
-        user.numberTweets = [userTwitterData valueForKey:TWITTER_USER_TWEETS_COUNT];
-        user.numberFollowers = [userTwitterData valueForKey:TWITTER_USER_FOLLOWERS_COUNT];
-        user.numberFollowing = [userTwitterData valueForKey:TWITTER_USER_FOLLOWING_COUNT];
+        [self populateUser:user withUserData:userTwitterData];
     }
     return user;
 }
