@@ -27,6 +27,11 @@
 @synthesize tweetMessage = _tweetMessage;
 @synthesize utils = _utils;
 
+NSString * const hashTagKey = @"HashTag";
+NSString * const userNameKey = @"UserName";
+NSString * const normalKey = @"NormalKey";
+NSString * const tweetWordType = @"TweetWordType";
+
 - (Utils*)utils {
     if(!_utils) _utils = [[Utils alloc] init];
     return _utils;
@@ -39,15 +44,20 @@
     for (NSString *word in messageWords) {
         NSDictionary * attributes;
         if([word characterAtIndex:0] == '@'){
-            attributes = [NSDictionary dictionaryWithObject:[UIColor redColor] forKey:NSForegroundColorAttributeName];
+            attributes = @{NSForegroundColorAttributeName:[UIColor redColor],
+                           tweetWordType: userNameKey,
+                           userNameKey:[word substringFromIndex:1]};
+            
         } else if([word characterAtIndex:0] == '#'){
-            attributes = [NSDictionary dictionaryWithObject:[UIColor colorWithRed:0.180392
-                                                                            green:0.545098
-                                                                             blue:0.341176
-                                                                            alpha:1.0]
-                                                     forKey:NSForegroundColorAttributeName];
+            attributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.180392
+                                                                          green:0.545098
+                                                                           blue:0.341176
+                                                                          alpha:1.0],
+                           tweetWordType: hashTagKey,
+                           hashTagKey:[word substringFromIndex:1]};
+
         } else {
-            attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
+            attributes = @{NSForegroundColorAttributeName:[UIColor blackColor], tweetWordType: normalKey};
         }
         NSAttributedString * subString = [[NSAttributedString alloc]
                                           initWithString:[NSString stringWithFormat:@"%@ ",word]
@@ -56,12 +66,42 @@
     }
     return attributedTweetMessage;
 }
+- (IBAction)tweetMessageTapped:(UITapGestureRecognizer *)recognizer {
+        UITextView *textView = (UITextView *)recognizer.view;
+        
+        NSLayoutManager *layoutManager = textView.layoutManager;
+        CGPoint location = [recognizer locationInView:textView];
+        
+        NSUInteger characterIndex;
+        characterIndex = [layoutManager characterIndexForPoint:location
+                                               inTextContainer:textView.textContainer
+                      fractionOfDistanceBetweenInsertionPoints:NULL];
+        
+        if (characterIndex < textView.textStorage.length) {
+            
+            NSRange range;
+            id value = [textView.attributedText attribute:tweetWordType atIndex:characterIndex effectiveRange:&range];
+            
+            if([value isEqualToString:userNameKey]){
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+                MTUserTweetsViewController *nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"MTUserTweetsViewController"];
+                NSDictionary *userData = @{@"screen_name": [textView.attributedText attribute:userNameKey atIndex:characterIndex effectiveRange:&range]};
+                MTUser *newUser = [MTUser userWithTwitterData:userData inManagedObjectContext:self.tweet.managedObjectContext];
+                nextViewController.user = newUser;
+                [self.navigationController pushViewController:nextViewController animated:YES];
+            } else if([value isEqualToString:hashTagKey]){
+                // TODO: Segue to hashtag controller once it is in place.
+            }
+            NSLog(@"%@, %d, %d", value, range.location, range.length);
+            
+        }
+}
 
 - (void)setFonts {
     self.tweetedByName.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     self.tweetedByUserName.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
     self.tweetMessage.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    self.tweetTime.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.tweetTime.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
 }
 
 - (void)setTweetValues {

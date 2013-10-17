@@ -8,12 +8,12 @@
         <!--User Tweets View Controller - Me-->
         <scene sceneID="DUA-S4-Oq6">
             <objects>
-                <tableViewController id="lJc-gT-i3k" customClass="MTUserTweetsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MTUserTweetsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lJc-gT-i3k" customClass="MTUserTweetsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qLY-8y-iWp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="ZAJ-6k-WpX" userLabel="User Profile">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="ZAJ-6k-WpX" userLabel="User Profile" customClass="UIImageView">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -623,10 +623,14 @@
                                                     <rect key="frame" x="20" y="20" width="280" height="102"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <gestureRecognizers/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="leQ-g9-nka" appends="YES" id="VFe-Br-RNR"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -681,6 +685,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3aU-Ud-7fm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="leQ-g9-nka">
+                    <connections>
+                        <action selector="tweetMessageTapped:" destination="55e-0i-MQ7" id="OOE-Qg-9kt"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="686" y="-466"/>
         </scene>
