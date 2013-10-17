@@ -150,8 +150,8 @@
         
         [self calculateAndSetFonts];
         
-        [self.contentView addSubview:tweetMessage];
         [self.contentView addSubview:tweetedByName];
+        [self.contentView addSubview:tweetMessage];
         [self.contentView addSubview:tweetTime];
         [self.contentView addSubview:tweetedByProileImage];
         [self assignConstraints];
