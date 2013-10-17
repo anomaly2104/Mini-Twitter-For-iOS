@@ -51,20 +51,26 @@
     }
 }
 
-+ (MTUser *)userWithTwitterData:(NSDictionary *)userTwitterData
-         inManagedObjectContext:(NSManagedObjectContext *)context {
++ (NSFetchRequest *)fetchRequestForUserName:(NSString *)userName userId:(NSString *)userId {
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"MTUser"];
-    
-    NSPredicate *predicate = [self predicateForUserName:[userTwitterData valueForKey:TWITTER_USER_USERNAME] userId:[userTwitterData valueForKey:TWITTER_USER_ID_STR]];
-
+    NSPredicate *predicate = [self predicateForUserName:userName userId:userId];
     if (predicate) {
         request.predicate = predicate;
     } else {
         return nil;
     }
-    
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    return request;
+}
+
++ (MTUser *)userWithTwitterData:(NSDictionary *)userTwitterData
+         inManagedObjectContext:(NSManagedObjectContext *)context {
+    NSFetchRequest *request = [self fetchRequestForUserName:[userTwitterData valueForKey:TWITTER_USER_USERNAME]
+                                                     userId:[userTwitterData valueForKey:TWITTER_USER_ID_STR]];
+    if (!request) {
+        return nil;
+    }
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
 
