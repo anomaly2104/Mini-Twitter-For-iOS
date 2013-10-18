@@ -52,6 +52,11 @@
 		AD5405AE17E2F0910059677A /* MTUserFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405AD17E2F0900059677A /* MTUserFollowersViewController.m */; };
 		AD5405B417E2F9930059677A /* MTUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AD5405B317E2F9920059677A /* MTUserCell.m */; };
 		AD75F8AF1806884700700AD6 /* MTAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD75F8AE1806884700700AD6 /* MTAboutUsViewController.m */; };
+		AD75F8B71810278800700AD6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD75F8B61810278800700AD6 /* XCTest.framework */; };
+		AD75F8B81810278800700AD6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7C17D6F5190097987A /* Foundation.framework */; };
+		AD75F8B91810278800700AD6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB7A17D6F5190097987A /* UIKit.framework */; };
+		AD75F8BF1810278900700AD6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AD75F8BD1810278900700AD6 /* InfoPlist.strings */; };
+		AD75F8C11810278900700AD6 /* Mini_Twitter_For_iOS_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD75F8C01810278900700AD6 /* Mini_Twitter_For_iOS_Tests.m */; };
 		ADBCA7EA17E74BF900E7B644 /* coreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7E817E74BF900E7B644 /* coreData.xcdatamodeld */; };
 		ADBCA7ED17E74CB900E7B644 /* MTUser+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EC17E74CB900E7B644 /* MTUser+Twitter.m */; };
 		ADBCA7F017E74CC500E7B644 /* MTTweet+Twitter.m in Sources */ = {isa = PBXBuildFile; fileRef = ADBCA7EF17E74CC500E7B644 /* MTTweet+Twitter.m */; };
@@ -73,6 +78,16 @@
 		ADE4EB9417D6F5190097987A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADE4EB9217D6F5190097987A /* MainStoryboard.storyboard */; };
 		ADE4EB9E17D6F5280097987A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADE4EB9D17D6F5280097987A /* Social.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AD75F8C31810278900700AD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ADE4EB6F17D6F5190097987A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ADE4EB7617D6F5190097987A;
+			remoteInfo = "Mini Twitter For iOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AD28ACA417EAE75C001A3C34 /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
@@ -148,6 +163,12 @@
 		AD5405B317E2F9920059677A /* MTUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTUserCell.m; sourceTree = "<group>"; };
 		AD75F8AD1806884700700AD6 /* MTAboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAboutUsViewController.h; sourceTree = "<group>"; };
 		AD75F8AE1806884700700AD6 /* MTAboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAboutUsViewController.m; sourceTree = "<group>"; };
+		AD75F8B51810278800700AD6 /* Mini Twitter For iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mini Twitter For iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD75F8B61810278800700AD6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		AD75F8BC1810278900700AD6 /* Mini Twitter For iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mini Twitter For iOS Tests-Info.plist"; sourceTree = "<group>"; };
+		AD75F8BE1810278900700AD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AD75F8C01810278900700AD6 /* Mini_Twitter_For_iOS_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Mini_Twitter_For_iOS_Tests.m; sourceTree = "<group>"; };
+		AD75F8C21810278900700AD6 /* Mini Twitter For iOS Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mini Twitter For iOS Tests-Prefix.pch"; sourceTree = "<group>"; };
 		ADBCA7E917E74BF900E7B644 /* coreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coreData.xcdatamodel; sourceTree = "<group>"; };
 		ADBCA7EB17E74CB900E7B644 /* MTUser+Twitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MTUser+Twitter.h"; sourceTree = "<group>"; };
 		ADBCA7EC17E74CB900E7B644 /* MTUser+Twitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MTUser+Twitter.m"; sourceTree = "<group>"; };
@@ -182,6 +203,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AD75F8B21810278800700AD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD75F8B71810278800700AD6 /* XCTest.framework in Frameworks */,
+				AD75F8B91810278800700AD6 /* UIKit.framework in Frameworks */,
+				AD75F8B81810278800700AD6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ADE4EB7417D6F5190097987A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -286,11 +317,28 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		AD75F8BA1810278900700AD6 /* Mini Twitter For iOS Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AD75F8C01810278900700AD6 /* Mini_Twitter_For_iOS_Tests.m */,
+				AD75F8BB1810278900700AD6 /* Supporting Files */,
+			);
+			path = "Mini Twitter For iOS Tests";
+			sourceTree = "<group>";
+		};
+		AD75F8BB1810278900700AD6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AD75F8BC1810278900700AD6 /* Mini Twitter For iOS Tests-Info.plist */,
+				AD75F8BD1810278900700AD6 /* InfoPlist.strings */,
+				AD75F8C21810278900700AD6 /* Mini Twitter For iOS Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		ADBCA7E617E74B9A00E7B644 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ADBCA80517E8215A00E7B644 /* MTCoreDataTableViewController.h */,
-				ADBCA80617E8215A00E7B644 /* MTCoreDataTableViewController.m */,
 				ADBCA7EB17E74CB900E7B644 /* MTUser+Twitter.h */,
 				ADBCA7EC17E74CB900E7B644 /* MTUser+Twitter.m */,
 				ADBCA7EE17E74CC500E7B644 /* MTTweet+Twitter.h */,
@@ -311,6 +359,8 @@
 		ADBCA7E717E74BA700E7B644 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ADBCA80517E8215A00E7B644 /* MTCoreDataTableViewController.h */,
+				ADBCA80617E8215A00E7B644 /* MTCoreDataTableViewController.m */,
 				AD49F89B17D72E3A0030F0FD /* MTUserTweetsViewController.h */,
 				AD49F89C17D72E3A0030F0FD /* MTUserTweetsViewController.m */,
 				AD49F8AC17D874F00030F0FD /* MTTweetViewController.h */,
@@ -341,6 +391,7 @@
 				AD28ACCC17EB1721001A3C34 /* Security.framework */,
 				AD28ACA717EAEB85001A3C34 /* SystemConfiguration.framework */,
 				ADE4EB8017D6F5190097987A /* Mini Twitter For iOS */,
+				AD75F8BA1810278900700AD6 /* Mini Twitter For iOS Tests */,
 				ADE4EB7917D6F5190097987A /* Frameworks */,
 				ADE4EB7817D6F5190097987A /* Products */,
 			);
@@ -350,6 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				ADE4EB7717D6F5190097987A /* Mini Twitter For iOS.app */,
+				AD75F8B51810278800700AD6 /* Mini Twitter For iOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -365,6 +417,7 @@
 				ADE4EB7A17D6F5190097987A /* UIKit.framework */,
 				ADE4EB7C17D6F5190097987A /* Foundation.framework */,
 				ADE4EB7E17D6F5190097987A /* CoreGraphics.framework */,
+				AD75F8B61810278800700AD6 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -403,6 +456,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AD75F8B41810278800700AD6 /* Mini Twitter For iOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD75F8C51810278900700AD6 /* Build configuration list for PBXNativeTarget "Mini Twitter For iOS Tests" */;
+			buildPhases = (
+				AD75F8B11810278800700AD6 /* Sources */,
+				AD75F8B21810278800700AD6 /* Frameworks */,
+				AD75F8B31810278800700AD6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD75F8C41810278900700AD6 /* PBXTargetDependency */,
+			);
+			name = "Mini Twitter For iOS Tests";
+			productName = "Mini Twitter For iOS Tests";
+			productReference = AD75F8B51810278800700AD6 /* Mini Twitter For iOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		ADE4EB7617D6F5190097987A /* Mini Twitter For iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ADE4EB9A17D6F5190097987A /* Build configuration list for PBXNativeTarget "Mini Twitter For iOS" */;
@@ -429,6 +500,11 @@
 				CLASSPREFIX = minitwitter;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = udit.ag;
+				TargetAttributes = {
+					AD75F8B41810278800700AD6 = {
+						TestTargetID = ADE4EB7617D6F5190097987A;
+					};
+				};
 			};
 			buildConfigurationList = ADE4EB7217D6F5190097987A /* Build configuration list for PBXProject "Mini Twitter For iOS" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -443,11 +519,20 @@
 			projectRoot = "";
 			targets = (
 				ADE4EB7617D6F5190097987A /* Mini Twitter For iOS */,
+				AD75F8B41810278800700AD6 /* Mini Twitter For iOS Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AD75F8B31810278800700AD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD75F8BF1810278900700AD6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ADE4EB7517D6F5190097987A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -476,6 +561,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AD75F8B11810278800700AD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD75F8C11810278900700AD6 /* Mini_Twitter_For_iOS_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ADE4EB7317D6F5190097987A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -522,7 +615,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AD75F8C41810278900700AD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ADE4EB7617D6F5190097987A /* Mini Twitter For iOS */;
+			targetProxy = AD75F8C31810278900700AD6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		AD75F8BD1810278900700AD6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AD75F8BE1810278900700AD6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		ADE4EB8317D6F5190097987A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -542,6 +651,65 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AD75F8C61810278900700AD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mini Twitter For iOS.app/Mini Twitter For iOS";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mini Twitter For iOS Tests/Mini Twitter For iOS Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Mini Twitter For iOS Tests/Mini Twitter For iOS Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		AD75F8C71810278900700AD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mini Twitter For iOS.app/Mini Twitter For iOS";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Mini Twitter For iOS Tests/Mini Twitter For iOS Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Mini Twitter For iOS Tests/Mini Twitter For iOS Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		ADE4EB9817D6F5190097987A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -627,6 +795,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AD75F8C51810278900700AD6 /* Build configuration list for PBXNativeTarget "Mini Twitter For iOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD75F8C61810278900700AD6 /* Debug */,
+				AD75F8C71810278900700AD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		ADE4EB7217D6F5190097987A /* Build configuration list for PBXProject "Mini Twitter For iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
