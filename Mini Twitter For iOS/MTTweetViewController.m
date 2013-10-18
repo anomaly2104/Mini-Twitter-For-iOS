@@ -37,18 +37,25 @@ NSString * const tweetWordType = @"TweetWordType";
     return _utils;
 }
 
+- (BOOL)isFirstCharacter:(char)character inString:(NSString *)string {
+    if (string.length > 0 && [string characterAtIndex:0] == character) {
+        return YES;
+    }
+    return NO;
+}
+
 - (NSAttributedString *)attributedMessageFromMessage:(NSString *)tweetMessage {
     NSArray* messageWords = [tweetMessage componentsSeparatedByString: @" "];
     NSMutableAttributedString *attributedTweetMessage = [[NSMutableAttributedString alloc] initWithString:@""];
     
     for (NSString *word in messageWords) {
         NSDictionary * attributes;
-        if([word characterAtIndex:0] == '@'){
+        if( [self isFirstCharacter:'@' inString:word] ) {
             attributes = @{NSForegroundColorAttributeName:[UIColor redColor],
                            tweetWordType: userNameKey,
                            userNameKey:[word substringFromIndex:1]};
             
-        } else if([word characterAtIndex:0] == '#'){
+        } else if([self isFirstCharacter:'#' inString:word]){
             attributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.180392
                                                                           green:0.545098
                                                                            blue:0.341176
