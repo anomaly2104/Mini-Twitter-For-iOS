@@ -159,6 +159,7 @@
         MTUser* user = [MTUser userWithTwitterData:UserData inManagedObjectContext:self.user.managedObjectContext];
         
         self.userName.text = user.name;
+//        self.userName.accessibilityLabel = [Utils appendString:[Utils appendString:@"You are viewing " withString:user.name] withString:@" Profile"];
         self.userUserName.text = [NSString stringWithFormat:@"@%@", user.userName ];
         self.tweetsCount.text = [NSString stringWithFormat:@"%@", user.numberTweets];
         self.tweetsCount.textColor = [UIColor blueColor];
