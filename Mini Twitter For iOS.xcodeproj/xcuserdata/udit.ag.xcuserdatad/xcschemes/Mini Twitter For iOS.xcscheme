@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AD75F8B41810278800700AD6"
+               BuildableName = "Mini Twitter For iOS Tests.xctest"
+               BlueprintName = "Mini Twitter For iOS Tests"
+               ReferencedContainer = "container:Mini Twitter For iOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

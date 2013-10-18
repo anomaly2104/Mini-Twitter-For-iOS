@@ -86,6 +86,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.accessibilityLabel = @"Welcome! Please wait while we fetch your details!";
     if (!self.twitterDatabase) {
         NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
         url = [url URLByAppendingPathComponent:@"Mini Twitter Database"];
