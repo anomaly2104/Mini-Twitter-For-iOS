@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Utils : NSObject
++ (NSString *)appendString:(NSString *)stringA withString:(NSString *)stringB;
 +(NSString *) convertTweetNSDateToTimeAgo:(NSDate*) tweetTime;
 +(NSDate*) convertTweetDateStringToTweetNSDate:(id)tweetDateString;
 +(NSString *)extractValueForKey:(NSString *)target fromHTTPBody:(NSString *)body;

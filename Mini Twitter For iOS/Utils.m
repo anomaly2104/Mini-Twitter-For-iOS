@@ -10,6 +10,10 @@
 #import "NSDate+TimeAgo.h"
 
 @implementation Utils
++ (NSString *)appendString:(NSString *)stringA withString:(NSString *)stringB {
+    return [stringA stringByAppendingString:stringB];
+}
+
 + (NSString *)convertTweetNSDateToTimeAgo:(NSDate *)tweetTime {
         return [tweetTime timeAgo];
 }
