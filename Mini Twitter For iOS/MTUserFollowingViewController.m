@@ -120,10 +120,12 @@
         NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
             NSData *data = [[NSData alloc] initWithContentsOfURL:user.profileUrl];
             UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-            [self.userNameToUIImage setObject:tmpImage forKey:user.userName];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if (tmpImage) {
+              [self.userNameToUIImage setObject:tmpImage forKey:user.userName];
+              [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 cell.userProileImage.image = tmpImage;
-            }];
+              }];
+            }
         }];
         [self.userNameToImageLoadOperation setObject:operation forKey:user.userName];
         [self.queue addOperation:operation];
