@@ -498,7 +498,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = minitwitter;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = udit.ag;
 				TargetAttributes = {
 					AD75F8B41810278800700AD6 = {
@@ -654,7 +654,6 @@
 		AD75F8C61810278900700AD6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mini Twitter For iOS.app/Mini Twitter For iOS";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -685,7 +684,6 @@
 		AD75F8C71810278900700AD6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Mini Twitter For iOS.app/Mini Twitter For iOS";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
