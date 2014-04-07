@@ -165,10 +165,12 @@
         NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
             NSData *data = [[NSData alloc] initWithContentsOfURL:tweet.tweetedBy.profileUrl];
             UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-            [self.userNameToUIImage setObject:tmpImage forKey:tweet.tweetedBy.userName];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if (tmpImage) {
+              [self.userNameToUIImage setObject:tmpImage forKey:tweet.tweetedBy.userName];
+              [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 cell.tweetedByProileImage.image = tmpImage;
-            }];
+              }];
+            }
         }];
         [self.userNameToImageLoadOperation setObject:operation forKey:tweet.tweetedBy.userName];
         [self.queue addOperation:operation];
